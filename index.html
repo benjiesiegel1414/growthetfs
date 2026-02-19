@@ -567,7 +567,7 @@
     document.getElementById('footerYear').textContent = new Date().getFullYear();
 
     const CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgB3eBiOxZ6CoBjVvi9Rm3PmJDssWCsHWuVG4YgCPnXLG02u0tQxoR055J-e21MYbXJES1UpPTy7h9/pub?gid=0&single=true&output=csv';
-    const VOTE_API = 'https://script.google.com/macros/s/AKfycbwWhWPe1cyqPQXPr-N8mnB7Fd7TtI9D5cIBBExBzeJVupxnPGlxCY9_04FR43GNz_KL/exec';
+    const VOTE_API = 'https://script.google.com/macros/s/AKfycbyOcrfqyj6f4AEp5myhyYqMElvKIBAKU7guyiOBXxpd0FDTqPmn2DwrU3EkK8ASDKz7/exec';
 
     let allRows = [], headers = [], sortCol = -1, sortDir = 1;
     let countdownTimer = null;
@@ -655,7 +655,7 @@
         fetch(VOTE_API, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: 'vote', symbol: sym })
         });
       });
