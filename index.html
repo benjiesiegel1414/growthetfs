@@ -3,30 +3,845 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Growth ETFs - High-Growth ETF Insights & Analysis</title>
-  <meta name="description" content="Explore top growth ETFs, performance data, comparisons, and investment strategies.">
-  <!-- Add favicon later: <link rel="icon" href="/favicon.ico"> -->
-  <!-- Optional: Tailwind via CDN for quick styling -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="GrowthETFs.com">
+  <title>Top Growth ETFs 2026 | GrowthETFs.com</title>
+  <meta name="description" content="Free curated list of the best growth ETFs for 2026. Research and compare top growth-focused ETFs all in one place.">
+  <meta name="keywords" content="growth ETFs, best growth ETFs 2026, top ETFs, stock market ETFs, growth investing">
+  <meta property="og:title" content="Top Growth ETFs 2026 | GrowthETFs.com">
+  <meta property="og:description" content="A free, curated list of the best growth ETFs — all in one place.">
+  <meta property="og:url" content="https://growthetfs.com">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────── */
+    :root {
+      --brand:      #002D22;
+      --brand-dark: #001a14;
+      --brand-mid:  #003d2e;
+      --brand-lite: #004d3a;
+      --gold:       #c9a94e;
+      --gold2:      #e8c96a;
+      --green-pos:  #2ecc8f;
+      --red:        #e74c3c;
+      --bg:         #f2f4f0;
+      --border:     rgba(201,169,78,0.22);
+    }
+
+    /* ─── RESET ──────────────────────────────────── */
+    html, body { margin: 0; padding: 0; overflow-x: hidden; width: 100%; }
+    body {
+      font-family: 'Lato', Arial, sans-serif;
+      background: var(--bg);
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─────────────────────────────────── */
+    header {
+      background: var(--brand);
+      padding: 20px 20px 17px;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+      cursor: pointer;
+      border-bottom: 3px solid var(--gold);
+      box-sizing: border-box;
+    }
+    .logo {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: clamp(24px, 6vw, 42px);
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -0.01em;
+    }
+    .logo span { color: var(--gold); }
+    .logo-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68em;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      color: rgba(255,255,255,0.38);
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero {
+      width: 100%;
+      background: linear-gradient(160deg, var(--brand-mid) 0%, var(--brand-dark) 100%);
+      padding: 50px 20px 42px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      box-sizing: border-box;
+    }
+    .hero h1 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: clamp(1.5em, 4vw, 2.5em);
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 14px;
+    }
+    .hero h1 span { color: #fff; }
+    .hero-desc {
+      color: #fff;
+      font-size: 0.96em;
+      max-width: 680px;
+      margin: 0 auto 30px;
+      line-height: 1.75;
+    }
+    .hero-desc strong { color: #fff; }
+    .hero-stats {
+      display: inline-flex;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .hero-stat {
+      padding: 16px 34px;
+      text-align: center;
+      border-right: 1px solid rgba(201,169,78,0.14);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-val {
+      font-family: 'Merriweather', serif;
+      font-size: 1.75em;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-lbl {
+      font-size: 0.63em;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      margin-top: 6px;
+      font-weight: 700;
+    }
+
+    /* ─── CONTENT ────────────────────────────────── */
+    .content {
+      width: 94%;
+      max-width: 1400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ─── SECTION HEAD ───────────────────────────── */
+    .section-head {
+      width: 100%;
+      text-align: center;
+      margin: 36px 0 6px;
+    }
+    .section-head h2 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.2em, 3vw, 1.8em);
+      font-weight: 900;
+      color: var(--brand);
+      margin: 0 0 6px;
+    }
+    .section-head p { color: #666; font-size: 0.88em; margin: 0; }
+    .gold-rule {
+      width: 48px; height: 3px;
+      background: var(--gold);
+      margin: 12px auto 22px;
+      border-radius: 2px;
+    }
+
+    /* ─── FILTERS ────────────────────────────────── */
+    #filters {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    #filters input, #filters select {
+      padding: 9px 14px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      font-size: 0.88em;
+      font-family: 'Lato', sans-serif;
+      background: #fff;
+      color: #222;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    #filters input:focus, #filters select:focus { border-color: var(--gold); }
+    #resetFilters {
+      padding: 9px 18px;
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.88em;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      transition: background 0.2s;
+    }
+    #resetFilters:hover { background: var(--gold); color: var(--brand); }
+
+    /* ─── VOTE MESSAGE ───────────────────────────── */
+    #voteMsg {
+      font-weight: 700;
+      margin: 8px 0;
+      text-align: center;
+      color: var(--brand);
+      font-size: 1em;
+      min-height: 1.4em;
+    }
+
+    /* ─── TABLE META ─────────────────────────────── */
+    .table-meta {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 2px;
+      font-size: 0.78em;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    /* ─── TABLE ──────────────────────────────────── */
+    #etfTableWrapper {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      margin-bottom: 8px;
+    }
+    #etfTable {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 3px solid var(--brand);
+    }
+    #etfTable thead { background: var(--brand); }
+    #etfTable th {
+      color: rgba(255,255,255,0.8);
+      padding: 13px 10px;
+      font-size: 0.75em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      text-align: center;
+      user-select: none;
+      transition: color 0.15s;
+    }
+    #etfTable th:hover { color: var(--gold2); }
+    #etfTable th.sort-asc::after  { content: ' ▲'; color: var(--gold2); }
+    #etfTable th.sort-desc::after { content: ' ▼'; color: var(--gold2); }
+
+    #etfTable td {
+      padding: 11px 10px;
+      text-align: center;
+      border-bottom: 1px solid #e8e8e0;
+      vertical-align: middle;
+    }
+    #etfTable tbody tr:last-child td { border-bottom: none; }
+    #etfTable tbody tr:nth-child(even) { background: #f7f9f6; }
+    #etfTable tbody tr:hover { background: #eaf3ec; }
+
+    .col-ticker {
+      font-weight: 900;
+      font-size: 1.1em;
+      color: var(--brand);
+      font-family: 'Merriweather', serif;
+      white-space: nowrap;
+    }
+    .col-name {
+      text-align: left !important;
+      font-weight: 400;
+      color: #333;
+      max-width: 280px;
+      white-space: normal;
+      line-height: 1.35;
+    }
+    .num-cell { font-weight: 700; }
+    .positive { color: #1a8c52; }
+    .negative { color: var(--red); }
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.76em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      background: #dceee2;
+      color: var(--brand);
+      white-space: nowrap;
+    }
+
+    /* ─── VOTE BUTTON ────────────────────────────── */
+    .vote-btn {
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: transform 0.15s;
+      line-height: 1;
+      padding: 0 2px;
+    }
+    .vote-btn:hover { transform: scale(1.2); }
+    .vote-btn.voted { transform: scale(1.3); filter: drop-shadow(0 0 4px rgba(0,180,80,0.5)); }
+    .vote-count {
+      display: inline-block;
+      margin-left: 5px;
+      font-weight: 900;
+      font-size: 0.95em;
+      color: var(--brand);
+      min-width: 20px;
+    }
+
+    /* Loading state */
+    .tbl-loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: #888;
+      font-size: 0.92em;
+    }
+    .spinner {
+      width: 34px; height: 34px;
+      border: 3px solid #dde8da;
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      margin: 0 auto 14px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── INFO CARDS ─────────────────────────────── */
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+      width: 100%;
+      margin: 36px 0 8px;
+    }
+    .info-card {
+      background: var(--brand);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 26px 22px;
+      text-align: center;
+    }
+    .info-card-icon { font-size: 1.8em; margin-bottom: 10px; }
+    .info-card h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 1em;
+      color: #fff;
+      margin: 0 0 8px;
+    }
+    .info-card p {
+      font-size: 0.82em;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ─── DISCLAIMER ─────────────────────────────── */
+    .disclaimer {
+      font-size: 0.82em;
+      color: #777;
+      margin: 28px auto 10px;
+      max-width: 900px;
+      line-height: 1.6;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    /* ─── SHARE BUTTONS ──────────────────────────── */
+    .share-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 18px 0 8px;
+    }
+    .share-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.82em;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .share-btn:hover { transform: translateY(-2px); opacity: 0.88; }
+    .share-btn.fb { background: #1877F2; }
+    .share-btn.x  { background: #111; }
+    .share-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    .footer {
+      font-size: 0.85em;
+      color: #888;
+      margin: 16px auto 28px;
+      padding-top: 12px;
+      border-top: 1px solid #ddd;
+      max-width: 900px;
+      text-align: center;
+      width: 90%;
+      line-height: 1.9;
+    }
+    .footer a { color: var(--brand); text-decoration: none; font-weight: 700; }
+    .footer a:hover { color: var(--gold); }
+
+    .back-to-top {
+      display: inline-block;
+      margin: 14px auto 0;
+      padding: 8px 22px;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.82em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      transition: background 0.2s;
+    }
+    .back-to-top:hover { background: var(--gold); color: var(--brand); }
+
+    /* ─── MOBILE ─────────────────────────────────── */
+    @media (max-width: 700px) {
+      .hero-stats { flex-direction: column; }
+      .hero-stat  { border-right: none; border-bottom: 1px solid rgba(201,169,78,0.14); }
+      .hero-stat:last-child { border-bottom: none; }
+      #etfTable th, #etfTable td { padding: 9px 6px; font-size: 0.82em; }
+      .col-name { max-width: 150px; }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
-  <header class="bg-blue-600 text-white p-6">
-    <h1 class="text-4xl font-bold">GrowthETFs.com</h1>
-    <p>Discover the best growth-oriented ETFs</p>
+<body>
+
+  <!-- HEADER -->
+  <header onclick="location.reload()">
+    <div class="logo">Growth<span>ETFs</span>.com 📈</div>
+    <div class="logo-sub">The Top Growth ETFs &mdash; All In One Place</div>
   </header>
-  <main class="max-w-6xl mx-auto p-6">
-    <h2>Welcome to Growth ETFs</h2>
-    <p>Content coming soon: ETF lists, performance trackers, articles...</p>
-  </main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Top <span>Growth ETFs</span> for 2026</h1>
+    <p class="hero-desc">
+      A free, hand-curated list of the best growth-focused ETFs across the stock market.<br>
+      <strong>One place. All the top names. 100% free.</strong><br><br>
+      <span style="font-size:0.9em;">
+        <strong>Data:</strong> Sourced from public information — market data can change.<br>
+        <strong>Curation:</strong> ETFs are hand-picked and may be added or removed over time.<br>
+        <strong>*For informational &amp; entertainment purposes ONLY!</strong>
+      </span>
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val" id="statCount">—</div>
+        <div class="hero-stat-lbl">ETFs Listed</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">Free</div>
+        <div class="hero-stat-lbl">Always</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">Curated</div>
+        <div class="hero-stat-lbl">By Hand</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <div class="section-head">
+      <h2>The Growth ETF List</h2>
+      <p>Click any column header to sort &nbsp;·&nbsp; Search by ticker, name, or category</p>
+      <div class="gold-rule"></div>
+    </div>
+
+    <!-- FILTERS -->
+    <div id="filters">
+      <button id="resetFilters" onclick="location.reload()">Reset Filters</button>
+      <input type="text" id="searchInput" placeholder="Search by ticker or name…">
+      <select id="categoryFilter"><option value="">All Categories</option></select>
+    </div>
+
+    <!-- VOTE MESSAGE -->
+    <div id="voteMsg"></div>
+
+    <!-- ROW COUNT -->
+    <div class="table-meta">
+      <span id="rowCount">Loading…</span>
+      <span id="lastUpdated"></span>
+    </div>
+
+    <!-- TABLE -->
+    <div id="etfTableWrapper">
+      <table id="etfTable">
+        <thead id="tableHead">
+          <tr>
+            <th colspan="20">
+              <div class="tbl-loading">
+                <div class="spinner"></div>Loading ETF data…
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- INFO CARDS -->
+    <div class="cards-row">
+      <div class="info-card">
+        <div class="info-card-icon">📈</div>
+        <h3>Focused on Growth</h3>
+        <p>Only growth-oriented ETFs — large-cap growth, tech, innovation, and more. No noise.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">✋</div>
+        <h3>Hand Curated</h3>
+        <p>Every ETF is manually reviewed before it makes the list. Quality over quantity.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🆓</div>
+        <h3>Always Free</h3>
+        <p>No subscriptions, no paywalls, no catch. GrowthETFs.com is completely free.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🔄</div>
+        <h3>Regularly Updated</h3>
+        <p>The list evolves as the market does. ETFs are added and removed over time.</p>
+      </div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <p class="disclaimer">
+      <strong>Disclaimer:</strong> GrowthETFs.com is for informational and educational purposes only. Nothing on this site constitutes investment advice or a recommendation to buy or sell any security. ETF data may be inaccurate or outdated. Investing carries risk, including loss of principal. We are not financial advisors. Always consult a licensed financial advisor before making investment decisions. <strong>This site is for entertainment purposes ONLY.</strong>
+    </p>
+
+    <!-- SHARE -->
+    <div class="share-buttons">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgrowthetfs.com" target="_blank" class="share-btn fb"
+         onclick="window.open(this.href,'','width=570,height=350');return false;">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Share
+      </a>
+      <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgrowthetfs.com&text=Top%20Growth%20ETFs%20in%20one%20place%20%E2%80%94%20free%20curated%20list!" target="_blank" class="share-btn x"
+         onclick="window.open(this.href,'','width=570,height=350');return false;">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Post
+      </a>
+    </div>
+
+    <button class="back-to-top" onclick="location.reload()">↑ Back to Top</button>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>
+        <a href="terms-of-use.html">Terms of Use</a> &nbsp;|&nbsp;
+        <a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        Contact: <a href="mailto:hello@growthetfs.com">hello@GrowthETFs.com</a>
+      </p>
+      <p>&copy; <span id="footerYear"></span> GrowthETFs.com &mdash; For informational purposes only.</p>
+    </footer>
+
+  </div><!-- /content -->
+
+  <script>
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    const CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgB3eBiOxZ6CoBjVvi9Rm3PmJDssWCsHWuVG4YgCPnXLG02u0tQxoR055J-e21MYbXJES1UpPTy7h9/pub?gid=0&single=true&output=csv';
+    const VOTE_API = 'https://script.google.com/macros/s/AKfycbzfPNqPDmGClNjp6697luIXHtVOOu8rQAIivtTSoAYLIzzqvvI6pCpfaPlnD3hF9mYH/exec';
+
+    let allRows = [], headers = [], sortCol = -1, sortDir = 1;
+    let countdownTimer = null;
+
+    /* ══════════════════════════════════════
+       VOTE LIMIT — 10 per hour via localStorage
+    ══════════════════════════════════════ */
+    function getHourKey() {
+      const d = new Date(); d.setMinutes(0,0,0);
+      return 'gretf_votes_' + d.getTime();
+    }
+    function votesThisHour() { return parseInt(localStorage.getItem(getHourKey()) || '0'); }
+    function recordVote()    { localStorage.setItem(getHourKey(), votesThisHour() + 1); }
+
+    function startCountdown() {
+      clearInterval(countdownTimer);
+      updateVoteMsg();
+      countdownTimer = setInterval(updateVoteMsg, 1000);
+    }
+
+    function updateVoteMsg() {
+      const left = 10 - votesThisHour();
+      const msg  = document.getElementById('voteMsg');
+      if (left > 0) {
+        msg.innerHTML = `You have <strong>${left}</strong> vote${left !== 1 ? 's' : ''} left this hour`;
+        msg.style.color = 'var(--brand)';
+        return;
+      }
+      // Out of votes — show countdown to next hour
+      const now      = Date.now();
+      const nextHour = parseInt(getHourKey().split('_').pop()) + 3600000;
+      const secs     = Math.max(0, Math.floor((nextHour - now) / 1000));
+      const m = String(Math.floor(secs / 60)).padStart(2,'0');
+      const s = String(secs % 60).padStart(2,'0');
+      msg.innerHTML  = `Thanks for voting! Come back in <span style="color:var(--red);font-weight:900">${m}:${s}</span>`;
+      msg.style.color = '#555';
+    }
+
+    /* ══════════════════════════════════════
+       LOAD GLOBAL VOTE COUNTS
+    ══════════════════════════════════════ */
+    function loadGlobalVotes() {
+      fetch(VOTE_API + '?t=' + Date.now())
+        .then(r => r.json())
+        .then(data => {
+          document.querySelectorAll('.vote-count').forEach(span => {
+            const sym = span.dataset.symbol;
+            if (sym && data[sym] !== undefined) {
+              span.textContent = data[sym];
+              span.dataset.global = data[sym];
+            }
+          });
+        })
+        .catch(() => {}); // silently fail — votes just show 0
+    }
+
+    /* ══════════════════════════════════════
+       HANDLE VOTE CLICK
+    ══════════════════════════════════════ */
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.vote-btn');
+      if (!btn || btn.classList.contains('voted')) return;
+
+      if (votesThisHour() >= 10) {
+        startCountdown();
+        return;
+      }
+
+      const sym   = btn.dataset.symbol;
+      const span  = btn.nextElementSibling;
+      const cur   = parseInt(span.dataset.global || span.textContent) || 0;
+
+      btn.classList.add('voted');
+      span.textContent   = cur + 1;
+      span.dataset.global = cur + 1;
+      recordVote();
+      startCountdown();
+
+      // Fire-and-forget POST to Apps Script
+      fetch(VOTE_API, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'vote', symbol: sym })
+      });
+    });
+
+    /* ══════════════════════════════════════
+       FETCH ETF CSV — unchanged from original
+    ══════════════════════════════════════ */
+    function loadCSV() {
+      fetch(CSV_URL + '&t=' + Date.now())
+        .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+        .then(parseAndRender)
+        .catch(() => {
+          setTimeout(() => {
+            fetch(CSV_URL + '&t=' + Date.now())
+              .then(r => r.text()).then(parseAndRender).catch(showError);
+          }, 2000);
+        });
+    }
+
+    /* ── CSV PARSER — unchanged ── */
+    function parseCSV(text) {
+      return text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').trim().split('\n').map(line => {
+        const result = []; let cur = '', inQ = false;
+        for (let i = 0; i < line.length; i++) {
+          const ch = line[i];
+          if (ch === '"') { inQ = !inQ; continue; }
+          if (ch === ',' && !inQ) { result.push(cur.trim()); cur = ''; continue; }
+          cur += ch;
+        }
+        result.push(cur.trim());
+        return result;
+      });
+    }
+
+    function parseAndRender(text) {
+      const rows = parseCSV(text);
+      if (!rows || rows.length < 2) { showError(); return; }
+      headers = rows[0];
+      allRows = rows.slice(1).filter(r => r.some(c => c !== ''));
+      document.getElementById('statCount').textContent = allRows.length;
+      buildCategoryFilter();
+      buildHead();
+      renderTable(allRows);
+      document.getElementById('lastUpdated').textContent =
+        'Loaded ' + new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+      startCountdown();
+      loadGlobalVotes();
+    }
+
+    function showError() {
+      document.getElementById('tableHead').innerHTML =
+        '<tr><th colspan="20"><div class="tbl-loading" style="color:#c00;">⚠️ Could not load data — please refresh.</div></th></tr>';
+      document.getElementById('rowCount').textContent = 'Error loading data';
+    }
+
+    /* ── COLUMN HELPERS — unchanged ── */
+    function isTickerCol(h) { const l=h.toLowerCase().trim(); return l==='ticker'||l==='symbol'||l==='etf ticker'; }
+    function isNameCol(h)   { const l=h.toLowerCase().trim(); return l==='name'||l==='etf name'||l==='fund name'||l==='fund'||l.includes('etf name'); }
+    function isCatCol(h)    { const l=h.toLowerCase().trim(); return l.includes('categ')||l.includes('type')||l==='style'||l.includes('sector')||l.includes('focus'); }
+    function isReturnCol(h) { const l=h.toLowerCase().trim(); return l.includes('return')||l.includes('ytd')||l.includes('perf')||l.includes('gain')||l.includes('year'); }
+    function isNumericCol(h){ const l=h.toLowerCase().trim(); return l.includes('aum')||l.includes('ratio')||l.includes('yield')||l.includes('expense')||l.includes('price')||isReturnCol(h); }
+
+    function parseNum(s) { return parseFloat(String(s).replace(/[$%,BMKTbmkt]/g,'').trim()) || 0; }
+
+    function parseAUM(s) {
+      if (!s || typeof s !== 'string') return 0;
+      s = s.trim().toUpperCase().replace(/[^0-9.BMK]/g, '');
+      let num = parseFloat(s);
+      if (isNaN(num)) return 0;
+      if (s.includes('B')) num *= 1000000000;
+      if (s.includes('M')) num *= 1000000;
+      if (s.includes('K')) num *= 1000;
+      return num;
+    }
+
+    function colorClass(val,h) {
+      if (!isReturnCol(h)) return '';
+      const n = parseNum(val);
+      return n >= 0 ? 'positive' : 'negative';
+    }
+
+    /* ── TABLE HEAD — vote column added ── */
+    function buildHead() {
+      const head = document.getElementById('tableHead');
+      const cols = headers.map((h,i) => {
+        const cls = (i===sortCol) ? (sortDir===1 ? 'sort-asc' : 'sort-desc') : '';
+        return `<th class="${cls}" data-col="${i}">${h}</th>`;
+      });
+      // Votes column — sortable, index = headers.length
+      const voteIdx = headers.length;
+      const voteCls = (sortCol===voteIdx) ? (sortDir===1?'sort-asc':'sort-desc') : '';
+      cols.push(`<th class="${voteCls}" data-col="${voteIdx}" data-vote="1">Votes 🗳️</th>`);
+      head.innerHTML = '<tr>' + cols.join('') + '</tr>';
+
+      head.querySelectorAll('th').forEach(th => {
+        th.addEventListener('click', () => {
+          const col = parseInt(th.dataset.col);
+          if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; }
+          renderTable(filteredRows());
+        });
+      });
+    }
+
+    /* ── RENDER ROWS — vote cell added ── */
+    function renderTable(rows) {
+      const voteIdx = headers.length; // votes is the extra column
+
+      if (sortCol >= 0) {
+        rows.sort((a, b) => {
+          // Sort by votes
+          if (sortCol === voteIdx) {
+            const symA = a[headers.findIndex(isTickerCol)] || '';
+            const symB = b[headers.findIndex(isTickerCol)] || '';
+            const vA = parseInt(document.querySelector(`.vote-count[data-symbol="${symA}"]`)?.dataset.global || 0);
+            const vB = parseInt(document.querySelector(`.vote-count[data-symbol="${symB}"]`)?.dataset.global || 0);
+            return (vA - vB) * sortDir;
+          }
+          const av = a[sortCol] || '';
+          const bv = b[sortCol] || '';
+          if (headers[sortCol] && headers[sortCol].toLowerCase().includes('aum')) {
+            return (parseAUM(av) - parseAUM(bv)) * sortDir;
+          }
+          const an = parseNum(av), bn = parseNum(bv);
+          if (!isNaN(an) && !isNaN(bn)) return (an - bn) * sortDir;
+          return String(av).localeCompare(String(bv)) * sortDir;
+        });
+      }
+
+      const tbody = document.getElementById('tableBody');
+      if (rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="'+(headers.length+1)+'" class="tbl-loading">No ETFs match your search.</td></tr>';
+        document.getElementById('rowCount').textContent = '0 ETFs';
+        buildHead(); return;
+      }
+
+      tbody.innerHTML = rows.map(row => {
+        const cells = headers.map((h,i) => {
+          const val = (row[i] !== undefined) ? row[i] : '';
+          if (isTickerCol(h))  return `<td class="col-ticker">${val}</td>`;
+          if (isNameCol(h))    return `<td class="col-name">${val}</td>`;
+          if (isCatCol(h))     return val ? `<td><span class="pill">${val}</span></td>` : '<td>—</td>';
+          if (isReturnCol(h))  return `<td class="num-cell ${colorClass(val,h)}">${val||'—'}</td>`;
+          if (isNumericCol(h)) return `<td class="num-cell">${val||'—'}</td>`;
+          return `<td>${val||'—'}</td>`;
+        });
+
+        // Get ticker for vote button
+        const tickerIdx = headers.findIndex(isTickerCol);
+        const sym = tickerIdx >= 0 ? (row[tickerIdx] || '') : '';
+
+        cells.push(`<td>
+          <button class="vote-btn" data-symbol="${sym}" title="Vote for ${sym}">🗳️</button>
+          <span class="vote-count" data-symbol="${sym}" data-global="0">0</span>
+        </td>`);
+
+        return `<tr>${cells.join('')}</tr>`;
+      }).join('');
+
+      document.getElementById('rowCount').textContent =
+        'Showing ' + rows.length + ' ETF' + (rows.length!==1?'s':'');
+      buildHead();
+      // Re-fetch global votes to populate counts after re-render
+      loadGlobalVotes();
+    }
+
+    /* ── CATEGORY FILTER — unchanged ── */
+    function buildCategoryFilter() {
+      const catIdx = headers.findIndex(isCatCol);
+      if (catIdx < 0) return;
+      const cats = [...new Set(allRows.map(r=>(r[catIdx]||'').trim()).filter(Boolean))].sort();
+      const sel = document.getElementById('categoryFilter');
+      cats.forEach(c => { const o=document.createElement('option'); o.value=c; o.textContent=c; sel.appendChild(o); });
+    }
+
+    /* ── FILTER LOGIC — unchanged ── */
+    function filteredRows() {
+      const q      = (document.getElementById('searchInput').value||'').toLowerCase().trim();
+      const catVal = (document.getElementById('categoryFilter').value||'').toLowerCase();
+      const catIdx = headers.findIndex(isCatCol);
+      return allRows.filter(row => {
+        const matchQ   = !q      || row.join(' ').toLowerCase().includes(q);
+        const matchCat = !catVal || (catIdx>=0 && (row[catIdx]||'').toLowerCase()===catVal);
+        return matchQ && matchCat;
+      });
+    }
+
+    document.getElementById('searchInput').addEventListener('input',    ()=>renderTable(filteredRows()));
+    document.getElementById('categoryFilter').addEventListener('change', ()=>renderTable(filteredRows()));
+
+    loadCSV();
+  </script>
+
 </body>
 </html>
- 
-<footer>
-  ...
-  <p>
-    <a href="/disclaimer.html">Disclaimer</a> |
-    <a href="/privacy-policy.html">Privacy Policy</a> |
-    <a href="/terms.html">Terms of Service</a>
-  </p>
-  <p>&copy; 2026 GrowthETFs.com • Not investment advice</p>
-</footer>
