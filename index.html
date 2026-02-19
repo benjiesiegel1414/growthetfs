@@ -638,8 +638,7 @@
         if (!btn) return;
         if (btn.classList.contains('voted')) return;
 
-        // TESTING: limit disabled — restore to 10 after testing
-        // if (votesThisHour() >= 10) { startCountdown(); return; }
+        if (votesThisHour() >= 10) { startCountdown(); return; }
 
         const sym  = btn.dataset.symbol;
         const span = btn.nextElementSibling;
