@@ -567,7 +567,7 @@
     document.getElementById('footerYear').textContent = new Date().getFullYear();
 
     const CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgB3eBiOxZ6CoBjVvi9Rm3PmJDssWCsHWuVG4YgCPnXLG02u0tQxoR055J-e21MYbXJES1UpPTy7h9/pub?gid=0&single=true&output=csv';
-    const VOTE_API = 'https://script.google.com/macros/s/AKfycbzfPNqPDmGClNjp6697luIXHtVOOu8rQAIivtTSoAYLIzzqvvI6pCpfaPlnD3hF9mYH/exec';
+    const VOTE_API = 'https://script.google.com/macros/s/AKfycbwWhWPe1cyqPQXPr-N8mnB7Fd7TtI9D5cIBBExBzeJVupxnPGlxCY9_04FR43GNz_KL/exec';
 
     let allRows = [], headers = [], sortCol = -1, sortDir = 1;
     let countdownTimer = null;
@@ -606,6 +606,9 @@
       msg.style.color = '#555';
     }
 
+    /* ── GLOBAL VOTE STORE — for sort-by-votes ── */
+    const globalVotes = {};
+
     /* ══════════════════════════════════════
        LOAD GLOBAL VOTE COUNTS
     ══════════════════════════════════════ */
@@ -613,47 +616,50 @@
       fetch(VOTE_API + '?t=' + Date.now())
         .then(r => r.json())
         .then(data => {
+          Object.assign(globalVotes, data);
           document.querySelectorAll('.vote-count').forEach(span => {
             const sym = span.dataset.symbol;
             if (sym && data[sym] !== undefined) {
               span.textContent = data[sym];
               span.dataset.global = data[sym];
+              globalVotes[sym] = data[sym];
             }
           });
         })
-        .catch(() => {}); // silently fail — votes just show 0
+        .catch(() => {});
     }
 
     /* ══════════════════════════════════════
-       HANDLE VOTE CLICK
+       HANDLE VOTE CLICK — attached after render
     ══════════════════════════════════════ */
-    document.addEventListener('click', e => {
-      const btn = e.target.closest('.vote-btn');
-      if (!btn || btn.classList.contains('voted')) return;
+    function attachVoteListener() {
+      document.getElementById('tableBody').addEventListener('click', function(e) {
+        const btn = e.target.closest('.vote-btn');
+        if (!btn) return;
+        if (btn.classList.contains('voted')) return;
 
-      if (votesThisHour() >= 10) {
+        // TESTING: limit disabled — restore to 10 after testing
+        // if (votesThisHour() >= 10) { startCountdown(); return; }
+
+        const sym  = btn.dataset.symbol;
+        const span = btn.nextElementSibling;
+        const cur  = parseInt(span.dataset.global || span.textContent) || 0;
+
+        btn.classList.add('voted');
+        span.textContent    = cur + 1;
+        span.dataset.global = cur + 1;
+        globalVotes[sym]    = cur + 1;
+        recordVote();
         startCountdown();
-        return;
-      }
 
-      const sym   = btn.dataset.symbol;
-      const span  = btn.nextElementSibling;
-      const cur   = parseInt(span.dataset.global || span.textContent) || 0;
-
-      btn.classList.add('voted');
-      span.textContent   = cur + 1;
-      span.dataset.global = cur + 1;
-      recordVote();
-      startCountdown();
-
-      // Fire-and-forget POST to Apps Script
-      fetch(VOTE_API, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'vote', symbol: sym })
+        fetch(VOTE_API, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ action: 'vote', symbol: sym })
+        });
       });
-    });
+    }
 
     /* ══════════════════════════════════════
        FETCH ETF CSV — unchanged from original
@@ -698,6 +704,7 @@
         'Loaded ' + new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
       startCountdown();
       loadGlobalVotes();
+      attachVoteListener();
     }
 
     function showError() {
@@ -712,6 +719,7 @@
     function isCatCol(h)    { const l=h.toLowerCase().trim(); return l.includes('categ')||l.includes('type')||l==='style'||l.includes('sector')||l.includes('focus'); }
     function isReturnCol(h) { const l=h.toLowerCase().trim(); return l.includes('return')||l.includes('ytd')||l.includes('perf')||l.includes('gain')||l.includes('year'); }
     function isNumericCol(h){ const l=h.toLowerCase().trim(); return l.includes('aum')||l.includes('ratio')||l.includes('yield')||l.includes('expense')||l.includes('price')||isReturnCol(h); }
+    function isVoteCol(h)   { const l=h.toLowerCase().trim(); return l==='votes'||l==='vote'||l==='vote count'||l==='votes 🗳️'; }
 
     function parseNum(s) { return parseFloat(String(s).replace(/[$%,BMKTbmkt]/g,'').trim()) || 0; }
 
@@ -732,14 +740,15 @@
       return n >= 0 ? 'positive' : 'negative';
     }
 
-    /* ── TABLE HEAD — vote column added ── */
+    /* ── TABLE HEAD — CSV vote col skipped, our button col added ── */
     function buildHead() {
       const head = document.getElementById('tableHead');
       const cols = headers.map((h,i) => {
+        if (isVoteCol(h)) return ''; // skip CSV vote column from header
         const cls = (i===sortCol) ? (sortDir===1 ? 'sort-asc' : 'sort-desc') : '';
         return `<th class="${cls}" data-col="${i}">${h}</th>`;
       });
-      // Votes column — sortable, index = headers.length
+      // Our vote button column — index = headers.length
       const voteIdx = headers.length;
       const voteCls = (sortCol===voteIdx) ? (sortDir===1?'sort-asc':'sort-desc') : '';
       cols.push(`<th class="${voteCls}" data-col="${voteIdx}" data-vote="1">Votes 🗳️</th>`);
@@ -748,24 +757,25 @@
       head.querySelectorAll('th').forEach(th => {
         th.addEventListener('click', () => {
           const col = parseInt(th.dataset.col);
-          if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; }
+          if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = -1; }
           renderTable(filteredRows());
         });
       });
     }
 
-    /* ── RENDER ROWS — vote cell added ── */
+    /* ── RENDER ROWS — vote cell added, CSV vote col skipped ── */
     function renderTable(rows) {
-      const voteIdx = headers.length; // votes is the extra column
+      const voteIdx    = headers.length; // our button column is always last
+      const tickerIdx  = headers.findIndex(isTickerCol);
 
       if (sortCol >= 0) {
         rows.sort((a, b) => {
-          // Sort by votes
+          // Sort by our vote button column
           if (sortCol === voteIdx) {
-            const symA = a[headers.findIndex(isTickerCol)] || '';
-            const symB = b[headers.findIndex(isTickerCol)] || '';
-            const vA = parseInt(document.querySelector(`.vote-count[data-symbol="${symA}"]`)?.dataset.global || 0);
-            const vB = parseInt(document.querySelector(`.vote-count[data-symbol="${symB}"]`)?.dataset.global || 0);
+            const symA = tickerIdx >= 0 ? (a[tickerIdx] || '') : '';
+            const symB = tickerIdx >= 0 ? (b[tickerIdx] || '') : '';
+            const vA = parseInt(globalVotes[symA] || 0);
+            const vB = parseInt(globalVotes[symB] || 0);
             return (vA - vB) * sortDir;
           }
           const av = a[sortCol] || '';
@@ -788,6 +798,8 @@
 
       tbody.innerHTML = rows.map(row => {
         const cells = headers.map((h,i) => {
+          // Skip any votes column that came from the CSV
+          if (isVoteCol(h)) return '';
           const val = (row[i] !== undefined) ? row[i] : '';
           if (isTickerCol(h))  return `<td class="col-ticker">${val}</td>`;
           if (isNameCol(h))    return `<td class="col-name">${val}</td>`;
@@ -797,13 +809,12 @@
           return `<td>${val||'—'}</td>`;
         });
 
-        // Get ticker for vote button
-        const tickerIdx = headers.findIndex(isTickerCol);
         const sym = tickerIdx >= 0 ? (row[tickerIdx] || '') : '';
+        const gv  = globalVotes[sym] || 0;
 
         cells.push(`<td>
           <button class="vote-btn" data-symbol="${sym}" title="Vote for ${sym}">🗳️</button>
-          <span class="vote-count" data-symbol="${sym}" data-global="0">0</span>
+          <span class="vote-count" data-symbol="${sym}" data-global="${gv}">${gv}</span>
         </td>`);
 
         return `<tr>${cells.join('')}</tr>`;
@@ -812,7 +823,6 @@
       document.getElementById('rowCount').textContent =
         'Showing ' + rows.length + ' ETF' + (rows.length!==1?'s':'');
       buildHead();
-      // Re-fetch global votes to populate counts after re-render
       loadGlobalVotes();
     }
 
