@@ -25,7 +25,7 @@
   <meta name="twitter:image" content="https://growthetfs.com/growth1.png">
   <meta name="twitter:site" content="@TopDividendETFs">
 
-  <!-- Open Graph (for Facebook, LinkedIn, etc. - also helps X fallback) -->
+  <!-- Open Graph -->
   <meta property="og:image" content="https://growthetfs.com/growth1.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="628">
@@ -175,7 +175,7 @@
       border-radius: 2px;
     }
 
-    /* ─── FILTERS ────────────────────────────────── */
+    /* ─── FILTERS & SPECIAL VIEWS ────────────────── */
     #filters {
       width: 100%;
       display: flex;
@@ -184,7 +184,7 @@
       justify-content: center;
       margin-bottom: 10px;
     }
-    #filters input, #filters select {
+    #filters input {
       padding: 9px 14px;
       border: 2px solid #ccc;
       border-radius: 5px;
@@ -194,8 +194,9 @@
       color: #222;
       outline: none;
       transition: border-color 0.2s;
+      min-width: 250px;
     }
-    #filters input:focus, #filters select:focus { border-color: var(--gold); }
+    #filters input:focus { border-color: var(--gold); }
     #resetFilters {
       padding: 9px 18px;
       background: var(--brand);
@@ -209,6 +210,49 @@
       transition: background 0.2s;
     }
     #resetFilters:hover { background: var(--gold); color: var(--brand); }
+
+    /* Special view buttons with faint pulse animation when inactive */
+    #special-views {
+      width: 100%;
+      max-width: 1400px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 16px 0 20px;
+    }
+    .special-btn {
+      padding: 10px 20px;
+      border: 2px solid var(--brand);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 0.95em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 0 rgba(201,169,78,0);
+      animation: pulseGlow 3s infinite ease-in-out;
+    }
+    .special-btn.active {
+      background: var(--gold);
+      color: var(--brand);
+      border-color: var(--gold);
+      box-shadow: 0 0 12px rgba(201,169,78,0.5);
+      animation: none; /* No pulse when active */
+    }
+    .special-btn:hover:not(.active) {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      animation: none;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 rgba(201,169,78,0); }
+      50%      { box-shadow: 0 0 12px rgba(201,169,78,0.18); }
+    }
 
     /* ─── VOTE MESSAGE ───────────────────────────── */
     #voteMsg {
@@ -444,6 +488,7 @@
       .hero-stat:last-child { border-bottom: none; }
       #etfTable th, #etfTable td { padding: 9px 6px; font-size: 0.82em; }
       .col-name { max-width: 150px; }
+      #special-views { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
@@ -488,20 +533,22 @@
 
     <div class="section-head">
       <h2>The Growth ETF List</h2>
-      <p>Click any column header to sort &nbsp;·&nbsp; Search by ticker, name, or special view</p>
+      <p>Click any column header to sort &nbsp;·&nbsp; Search by ticker or name</p>
       <div class="gold-rule"></div>
     </div>
 
     <!-- FILTERS -->
     <div id="filters">
-      <button id="resetFilters" onclick="location.reload()">Reset Filters</button>
+      <button id="resetFilters" onclick="resetAll()">Reset All</button>
       <input type="text" id="searchInput" placeholder="Search by ticker or name…">
-      <select id="categoryFilter">
-        <option value="">All Categories</option>
-        <option value="biggest-aum">Biggest AUM (AUM > $1B)</option>
-        <option value="biggest-returns">Biggest Returns (>100% total return)</option>
-        <option value="top-voted">Top Voted ETFs (Top 25)</option>
-      </select>
+    </div>
+
+    <!-- SPECIAL VIEW BUTTONS -->
+    <div id="special-views">
+      <button class="special-btn" id="btn-aum" onclick="toggleView('biggest-aum')">Big AUM 💪 (> $1B)</button>
+      <button class="special-btn" id="btn-returns" onclick="toggleView('biggest-returns')">Huge Growth 📈 (>100%)</button>
+      <button class="special-btn" id="btn-super" onclick="toggleView('super-growth')">Super Growth 🚀 (>300%)</button>
+      <button class="special-btn" id="btn-voted" onclick="toggleView('top-voted')">Top 25 Voted 🗳️</button>
     </div>
 
     <!-- VOTE MESSAGE -->
@@ -594,10 +641,9 @@
 
     let allRows = [], headers = [], sortCol = -1, sortDir = 1;
     let countdownTimer = null;
+    let activeView = ''; // '', 'biggest-aum', 'biggest-returns', 'super-growth', 'top-voted'
 
-    /* ══════════════════════════════════════
-       VOTE LIMIT — 10 per hour via localStorage
-    ══════════════════════════════════════ */
+    /* VOTE LIMIT */
     function getHourKey() {
       const d = new Date(); d.setMinutes(0,0,0);
       return 'gretf_votes_' + d.getTime();
@@ -619,7 +665,6 @@
         msg.style.color = 'var(--brand)';
         return;
       }
-      // Out of votes — show countdown to next hour
       const now      = Date.now();
       const nextHour = parseInt(getHourKey().split('_').pop()) + 3600000;
       const secs     = Math.max(0, Math.floor((nextHour - now) / 1000));
@@ -629,12 +674,8 @@
       msg.style.color = '#555';
     }
 
-    /* ── GLOBAL VOTE STORE — for sort-by-votes ── */
     const globalVotes = {};
 
-    /* ══════════════════════════════════════
-       LOAD GLOBAL VOTE COUNTS
-    ══════════════════════════════════════ */
     function loadGlobalVotes() {
       fetch(VOTE_API + '?t=' + Date.now())
         .then(r => r.json())
@@ -648,13 +689,11 @@
               globalVotes[sym] = data[sym];
             }
           });
+          if (activeView === 'top-voted' || activeView === 'super-growth') renderTable(filteredRows());
         })
         .catch(() => {});
     }
 
-    /* ══════════════════════════════════════
-       HANDLE VOTE CLICK — attached after render
-    ══════════════════════════════════════ */
     function attachVoteListener() {
       document.getElementById('tableBody').addEventListener('click', function(e) {
         const btn = e.target.closest('.vote-btn');
@@ -683,9 +722,6 @@
       });
     }
 
-    /* ══════════════════════════════════════
-       FETCH ETF CSV — unchanged from original
-    ══════════════════════════════════════ */
     function loadCSV() {
       fetch(CSV_URL + '&t=' + Date.now())
         .then(r => { if (!r.ok) throw new Error(); return r.text(); })
@@ -698,7 +734,6 @@
         });
     }
 
-    /* ── CSV PARSER — unchanged ── */
     function parseCSV(text) {
       return text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').trim().split('\n').map(line => {
         const result = []; let cur = '', inQ = false;
@@ -717,9 +752,8 @@
       const rows = parseCSV(text);
       if (!rows || rows.length < 2) { showError(); return; }
       headers = rows[0];
-      allRows = rows.slice(1).filter(r => r.some(c => c !== ''));
+      allRows = rows.slice(1).filter(r => r.some(c => c.trim() !== ''));
       document.getElementById('statCount').textContent = allRows.length;
-      // Removed buildCategoryFilter() since we no longer use dynamic categories
       buildHead();
       renderTable(allRows);
       document.getElementById('lastUpdated').textContent =
@@ -735,7 +769,6 @@
       document.getElementById('rowCount').textContent = 'Error loading data';
     }
 
-    /* ── COLUMN HELPERS — unchanged ── */
     function isTickerCol(h) { const l=h.toLowerCase().trim(); return l==='ticker'||l==='symbol'||l==='etf ticker'; }
     function isNameCol(h)   { const l=h.toLowerCase().trim(); return l==='name'||l==='etf name'||l==='fund name'||l==='fund'||l.includes('etf name'); }
     function isReturnCol(h) { const l=h.toLowerCase().trim(); return l.includes('return')||l.includes('ytd')||l.includes('perf')||l.includes('gain')||l.includes('year')||l.includes('total return'); }
@@ -762,11 +795,10 @@
       return n >= 0 ? 'positive' : 'negative';
     }
 
-    /* ── TABLE HEAD — unchanged ── */
     function buildHead() {
       const head = document.getElementById('tableHead');
       const cols = headers.map((h,i) => {
-        if (isVoteCol(h)) return ''; // skip CSV vote column from header
+        if (isVoteCol(h)) return '';
         const cls = (i===sortCol) ? (sortDir===1 ? 'sort-asc' : 'sort-desc') : '';
         return `<th class="${cls}" data-col="${i}">${h}</th>`;
       });
@@ -778,13 +810,12 @@
       head.querySelectorAll('th').forEach(th => {
         th.addEventListener('click', () => {
           const col = parseInt(th.dataset.col);
-          if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; } // default asc for most, but votes/returns/aum prefer desc
+          if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; }
           renderTable(filteredRows());
         });
       });
     }
 
-    /* ── SPECIAL FILTERED/SORTED ROWS ── */
     function getSpecialFilteredRows(mode) {
       let filtered = [...allRows];
 
@@ -800,6 +831,12 @@
           filtered = filtered.filter(row => parseNum(row[retIdx]) > 100);
           filtered.sort((a, b) => parseNum(b[retIdx]) - parseNum(a[retIdx]));
         }
+      } else if (mode === 'super-growth') {
+        const retIdx = headers.findIndex(isReturnCol);
+        if (retIdx >= 0) {
+          filtered = filtered.filter(row => parseNum(row[retIdx]) > 300);
+          filtered.sort((a, b) => parseNum(b[retIdx]) - parseNum(a[retIdx]));
+        }
       } else if (mode === 'top-voted') {
         filtered.sort((a, b) => {
           const symA = a[headers.findIndex(isTickerCol)] || '';
@@ -812,12 +849,10 @@
       return filtered;
     }
 
-    /* ── RENDER TABLE — now uses special modes ── */
     function renderTable(rows) {
       const voteIdx    = headers.length;
       const tickerIdx  = headers.findIndex(isTickerCol);
 
-      // If sorting is active, apply it (including to votes column)
       if (sortCol >= 0) {
         rows.sort((a, b) => {
           if (sortCol === voteIdx) {
@@ -840,9 +875,15 @@
 
       const tbody = document.getElementById('tableBody');
       if (rows.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="'+(headers.length+1)+'" class="tbl-loading">No ETFs match your selection.</td></tr>';
+        let msg = 'No ETFs match your selection.';
+        if (activeView === 'biggest-aum') msg = 'No ETFs with AUM > $1B found.';
+        if (activeView === 'biggest-returns') msg = 'No ETFs with >100% total return found.';
+        if (activeView === 'super-growth') msg = 'No ETFs with >300% total return found.';
+        if (activeView === 'top-voted') msg = 'No votes recorded yet or no ETFs qualify.';
+        tbody.innerHTML = `<tr><td colspan="${headers.length+1}" class="tbl-loading">${msg}</td></tr>`;
         document.getElementById('rowCount').textContent = '0 ETFs';
-        buildHead(); return;
+        buildHead();
+        return;
       }
 
       tbody.innerHTML = rows.map(row => {
@@ -870,23 +911,16 @@
       document.getElementById('rowCount').textContent =
         'Showing ' + rows.length + ' ETF' + (rows.length!==1?'s':'');
       buildHead();
-      loadGlobalVotes();
     }
 
-    /* ── MAIN FILTER FUNCTION — now handles special modes ── */
     function filteredRows() {
       const q = (document.getElementById('searchInput').value||'').toLowerCase().trim();
-      const mode = document.getElementById('categoryFilter').value;
 
-      let rows;
-
-      if (mode === 'biggest-aum' || mode === 'biggest-returns' || mode === 'top-voted') {
-        rows = getSpecialFilteredRows(mode);
-      } else {
-        rows = allRows; // All Categories
+      let rows = allRows;
+      if (activeView) {
+        rows = getSpecialFilteredRows(activeView);
       }
 
-      // Apply text search on top of any special mode
       if (q) {
         rows = rows.filter(row => row.join(' ').toLowerCase().includes(q));
       }
@@ -894,8 +928,40 @@
       return rows;
     }
 
-    document.getElementById('searchInput').addEventListener('input',    ()=>renderTable(filteredRows()));
-    document.getElementById('categoryFilter').addEventListener('change', ()=>renderTable(filteredRows()));
+    function toggleView(mode) {
+      const btnAum   = document.getElementById('btn-aum');
+      const btnRet   = document.getElementById('btn-returns');
+      const btnSuper = document.getElementById('btn-super');
+      const btnVot   = document.getElementById('btn-voted');
+
+      if (activeView === mode) {
+        activeView = '';
+        btnAum.classList.remove('active');
+        btnRet.classList.remove('active');
+        btnSuper.classList.remove('active');
+        btnVot.classList.remove('active');
+      } else {
+        activeView = mode;
+        btnAum.classList.toggle('active', mode === 'biggest-aum');
+        btnRet.classList.toggle('active', mode === 'biggest-returns');
+        btnSuper.classList.toggle('active', mode === 'super-growth');
+        btnVot.classList.toggle('active', mode === 'top-voted');
+      }
+
+      renderTable(filteredRows());
+    }
+
+    function resetAll() {
+      document.getElementById('searchInput').value = '';
+      activeView = '';
+      document.getElementById('btn-aum').classList.remove('active');
+      document.getElementById('btn-returns').classList.remove('active');
+      document.getElementById('btn-super').classList.remove('active');
+      document.getElementById('btn-voted').classList.remove('active');
+      location.reload();
+    }
+
+    document.getElementById('searchInput').addEventListener('input', ()=>renderTable(filteredRows()));
 
     loadCSV();
   </script>
