@@ -511,33 +511,33 @@
     <div class="logo-sub">The Top Growth ETFs &mdash; All In One Place</div>
   </header>
 
-  <!-- HERO -->
-  <div class="hero">
-    <h1>Top <span>Growth ETFs</span> for 2026</h1>
-    <p class="hero-desc">
-      A free, hand-curated list of the best growth-focused ETFs across the stock market.<br>
-      <strong>One place. All the top names. 100% free.</strong><br><br>
-      <span style="font-size:0.9em;">
-        <strong>Data:</strong> Sourced from public information — market data can change.<br>
-        <strong>Curation:</strong> ETFs are hand-picked and may be added or removed over time.<br>
-        <strong>*For informational &amp; entertainment purposes ONLY!</strong>
-      </span>
-    </p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-val" id="statCount">—</div>
-        <div class="hero-stat-lbl">ETFs Listed</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val">Free</div>
-        <div class="hero-stat-lbl">Always</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val">Curated</div>
-        <div class="hero-stat-lbl">By Hand</div>
-      </div>
+<!-- HERO -->
+<div class="hero">
+  <h1>Top <span>Growth ETFs</span> for 2026</h1>
+  <p class="hero-desc">
+    A free, hand-curated list of the best growth-focused ETFs across the stock market.<br>
+    <strong>One place. All the top names. 100% free!</strong><br><br>
+    <span style="font-size:0.9em;">
+      <strong>Data:</strong> Sourced from public information — market data can change.<br>
+      <strong>Curation:</strong> ETFs are hand-picked and may be added or removed over time.<br>
+      <strong style="color: #c9a94e; font-weight: 900;">*For informational &amp; entertainment purposes ONLY!*</strong>
+    </span>
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-val" id="statCount">—</div>
+      <div class="hero-stat-lbl">ETFs Listed</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">Free</div>
+      <div class="hero-stat-lbl">Always</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">Curated</div>
+      <div class="hero-stat-lbl">By Hand</div>
     </div>
   </div>
+</div>
 
   <!-- CONTENT -->
   <div class="content">
@@ -587,29 +587,121 @@
       </table>
     </div>
 
-    <!-- INFO CARDS -->
-    <div class="cards-row">
-      <div class="info-card">
-        <div class="info-card-icon">📈</div>
-        <h3>Focused on Growth</h3>
-        <p>Only growth-oriented ETFs — large-cap growth, tech, innovation, and more. No noise.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-icon">✋</div>
-        <h3>Hand Curated</h3>
-        <p>Every ETF is manually reviewed before it makes the list. Quality over quantity.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-icon">🆓</div>
-        <h3>Always Free</h3>
-        <p>No subscriptions, no paywalls, no catch. GrowthETFs.com is completely free.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-icon">🔄</div>
-        <h3>Regularly Updated</h3>
-        <p>The list evolves as the market does. ETFs are added and removed over time.</p>
-      </div>
-    </div>
+<!-- INFO CARDS -->
+<div class="cards-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; width: 100%; margin: 2rem 0 1.5rem; padding: 0 1rem;">
+  <a href="https://topdividendetfs.com" target="_blank" class="info-card info-card-link" style="
+    background: var(--brand);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: inherit;
+    animation: subtlePulse 4s infinite ease-in-out;
+  ">
+    <div class="info-card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem; color: var(--gold);">💰</div>
+    <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--gold); margin: 0 0 0.6rem;">Top 100 Dividend ETFs</h3>
+    <p style="font-size: 0.82em; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.4;">Top 100 dividend ETFs of 2026</p>
+  </a>
+
+  <a href="https://monthlyetfs.com" target="_blank" class="info-card info-card-link" style="
+    background: var(--brand);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: inherit;
+    animation: subtlePulse 4s infinite ease-in-out 0.8s;
+  ">
+    <div class="info-card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem; color: var(--gold);">💵</div>
+    <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--gold); margin: 0 0 0.6rem;">Top 100 Monthly ETFs</h3>
+    <p style="font-size: 0.82em; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.4;">Top Monthly Dividend ETFs</p>
+  </a>
+
+  <a href="https://weeklyetfs.com" target="_blank" class="info-card info-card-link" style="
+    background: var(--brand);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: inherit;
+    animation: subtlePulse 4s infinite ease-in-out 1.6s;
+  ">
+    <div class="info-card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem; color: var(--gold);">📅</div>
+    <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--gold); margin: 0 0 0.6rem;">Top 100 Weekly ETFs</h3>
+    <p style="font-size: 0.82em; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.4;">Top 100 Weekly Paying ETFs.</p>
+  </a>
+
+  <a href="https://topdividendtools.com" target="_blank" class="info-card info-card-link" style="
+    background: var(--brand);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: inherit;
+    animation: subtlePulse 4s infinite ease-in-out 2.4s;
+  ">
+    <div class="info-card-icon" style="font-size: 2.2rem; margin-bottom: 0.8rem; color: var(--gold);">🛠️</div>
+    <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--gold); margin: 0 0 0.6rem;">BEST FREE Stock Market Tools</h3>
+    <p style="font-size: 0.82em; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.4;">Powerful free calculators, screeners, trackers & resources — built for dividend & growth investors.</p>
+  </a>
+</div>
+
+<!-- Add this to your existing <style> block (at the bottom) -->
+<style>
+  @keyframes subtlePulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      border-color: rgba(201,169,78,0.22);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(201,169,78,0.12);
+      border-color: rgba(201,169,78,0.4);
+    }
+  }
+
+  .info-card-link:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    border-color: var(--gold);
+    animation: none; /* Stop pulse on hover for clarity */
+  }
+
+  .info-card-link h3 {
+    transition: color 0.3s;
+  }
+
+  .info-card-link:hover h3 {
+    color: white;
+  }
+
+  .info-card-icon {
+    transition: transform 0.4s, filter 0.4s;
+  }
+
+  .info-card-link:hover .info-card-icon {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 12px rgba(201,169,78,0.7));
+  }
+</style>
+
 
     <!-- DISCLAIMER -->
     <p class="disclaimer">
@@ -637,7 +729,7 @@
       <p>
         <a href="terms.html">Terms of Use</a> &nbsp;|&nbsp;
         <a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp;
-        Contact: <a href="mailto:hello@growthetfs.com">hello@GrowthETFs.com</a>
+        Contact: <a href="mailto:Business@TopDividendETFs.com">Business@TopDividendETFs.com</a>
       </p>
       <p>&copy; <span id="footerYear"></span> GrowthETFs.com &mdash; For informational purposes only.</p>
     </footer>
