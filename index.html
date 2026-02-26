@@ -488,7 +488,7 @@
 
     <div class="section-head">
       <h2>The Growth ETF List</h2>
-      <p>Click any column header to sort &nbsp;·&nbsp; Search by ticker, name, or category</p>
+      <p>Click any column header to sort &nbsp;·&nbsp; Search by ticker, name, or special view</p>
       <div class="gold-rule"></div>
     </div>
 
@@ -496,7 +496,12 @@
     <div id="filters">
       <button id="resetFilters" onclick="location.reload()">Reset Filters</button>
       <input type="text" id="searchInput" placeholder="Search by ticker or name…">
-      <select id="categoryFilter"><option value="">All Categories</option></select>
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="biggest-aum">Biggest AUM (AUM > $1B)</option>
+        <option value="biggest-returns">Biggest Returns (>100% total return)</option>
+        <option value="top-voted">Top Voted ETFs (Top 25)</option>
+      </select>
     </div>
 
     <!-- VOTE MESSAGE -->
@@ -714,7 +719,7 @@
       headers = rows[0];
       allRows = rows.slice(1).filter(r => r.some(c => c !== ''));
       document.getElementById('statCount').textContent = allRows.length;
-      buildCategoryFilter();
+      // Removed buildCategoryFilter() since we no longer use dynamic categories
       buildHead();
       renderTable(allRows);
       document.getElementById('lastUpdated').textContent =
@@ -733,8 +738,8 @@
     /* ── COLUMN HELPERS — unchanged ── */
     function isTickerCol(h) { const l=h.toLowerCase().trim(); return l==='ticker'||l==='symbol'||l==='etf ticker'; }
     function isNameCol(h)   { const l=h.toLowerCase().trim(); return l==='name'||l==='etf name'||l==='fund name'||l==='fund'||l.includes('etf name'); }
-    function isCatCol(h)    { const l=h.toLowerCase().trim(); return l.includes('categ')||l.includes('type')||l==='style'||l.includes('sector')||l.includes('focus'); }
-    function isReturnCol(h) { const l=h.toLowerCase().trim(); return l.includes('return')||l.includes('ytd')||l.includes('perf')||l.includes('gain')||l.includes('year'); }
+    function isReturnCol(h) { const l=h.toLowerCase().trim(); return l.includes('return')||l.includes('ytd')||l.includes('perf')||l.includes('gain')||l.includes('year')||l.includes('total return'); }
+    function isAumCol(h)    { const l=h.toLowerCase().trim(); return l==='aum'||l.includes('assets')||l.includes('assets under management'); }
     function isNumericCol(h){ const l=h.toLowerCase().trim(); return l.includes('aum')||l.includes('ratio')||l.includes('yield')||l.includes('expense')||l.includes('price')||isReturnCol(h); }
     function isVoteCol(h)   { const l=h.toLowerCase().trim(); return l==='votes'||l==='vote'||l==='vote count'||l==='votes 🗳️'; }
 
@@ -757,7 +762,7 @@
       return n >= 0 ? 'positive' : 'negative';
     }
 
-    /* ── TABLE HEAD — CSV vote col skipped, our button col added ── */
+    /* ── TABLE HEAD — unchanged ── */
     function buildHead() {
       const head = document.getElementById('tableHead');
       const cols = headers.map((h,i) => {
@@ -765,7 +770,6 @@
         const cls = (i===sortCol) ? (sortDir===1 ? 'sort-asc' : 'sort-desc') : '';
         return `<th class="${cls}" data-col="${i}">${h}</th>`;
       });
-      // Our vote button column — index = headers.length
       const voteIdx = headers.length;
       const voteCls = (sortCol===voteIdx) ? (sortDir===1?'sort-asc':'sort-desc') : '';
       cols.push(`<th class="${voteCls}" data-col="${voteIdx}" data-vote="1">Votes 🗳️</th>`);
@@ -774,20 +778,48 @@
       head.querySelectorAll('th').forEach(th => {
         th.addEventListener('click', () => {
           const col = parseInt(th.dataset.col);
-          if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = -1; }
+          if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; } // default asc for most, but votes/returns/aum prefer desc
           renderTable(filteredRows());
         });
       });
     }
 
-    /* ── RENDER ROWS — vote cell added, CSV vote col skipped ── */
+    /* ── SPECIAL FILTERED/SORTED ROWS ── */
+    function getSpecialFilteredRows(mode) {
+      let filtered = [...allRows];
+
+      if (mode === 'biggest-aum') {
+        const aumIdx = headers.findIndex(isAumCol);
+        if (aumIdx >= 0) {
+          filtered = filtered.filter(row => parseAUM(row[aumIdx]) > 1000000000);
+          filtered.sort((a, b) => parseAUM(b[aumIdx]) - parseAUM(a[aumIdx]));
+        }
+      } else if (mode === 'biggest-returns') {
+        const retIdx = headers.findIndex(isReturnCol);
+        if (retIdx >= 0) {
+          filtered = filtered.filter(row => parseNum(row[retIdx]) > 100);
+          filtered.sort((a, b) => parseNum(b[retIdx]) - parseNum(a[retIdx]));
+        }
+      } else if (mode === 'top-voted') {
+        filtered.sort((a, b) => {
+          const symA = a[headers.findIndex(isTickerCol)] || '';
+          const symB = b[headers.findIndex(isTickerCol)] || '';
+          return (globalVotes[symB] || 0) - (globalVotes[symA] || 0);
+        });
+        filtered = filtered.slice(0, 25);
+      }
+
+      return filtered;
+    }
+
+    /* ── RENDER TABLE — now uses special modes ── */
     function renderTable(rows) {
-      const voteIdx    = headers.length; // our button column is always last
+      const voteIdx    = headers.length;
       const tickerIdx  = headers.findIndex(isTickerCol);
 
+      // If sorting is active, apply it (including to votes column)
       if (sortCol >= 0) {
         rows.sort((a, b) => {
-          // Sort by our vote button column
           if (sortCol === voteIdx) {
             const symA = tickerIdx >= 0 ? (a[tickerIdx] || '') : '';
             const symB = tickerIdx >= 0 ? (b[tickerIdx] || '') : '';
@@ -797,7 +829,7 @@
           }
           const av = a[sortCol] || '';
           const bv = b[sortCol] || '';
-          if (headers[sortCol] && headers[sortCol].toLowerCase().includes('aum')) {
+          if (headers[sortCol] && isAumCol(headers[sortCol])) {
             return (parseAUM(av) - parseAUM(bv)) * sortDir;
           }
           const an = parseNum(av), bn = parseNum(bv);
@@ -808,19 +840,17 @@
 
       const tbody = document.getElementById('tableBody');
       if (rows.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="'+(headers.length+1)+'" class="tbl-loading">No ETFs match your search.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="'+(headers.length+1)+'" class="tbl-loading">No ETFs match your selection.</td></tr>';
         document.getElementById('rowCount').textContent = '0 ETFs';
         buildHead(); return;
       }
 
       tbody.innerHTML = rows.map(row => {
         const cells = headers.map((h,i) => {
-          // Skip any votes column that came from the CSV
           if (isVoteCol(h)) return '';
           const val = (row[i] !== undefined) ? row[i] : '';
           if (isTickerCol(h))  return `<td class="col-ticker">${val}</td>`;
           if (isNameCol(h))    return `<td class="col-name">${val}</td>`;
-          if (isCatCol(h))     return val ? `<td><span class="pill">${val}</span></td>` : '<td>—</td>';
           if (isReturnCol(h))  return `<td class="num-cell ${colorClass(val,h)}">${val||'—'}</td>`;
           if (isNumericCol(h)) return `<td class="num-cell">${val||'—'}</td>`;
           return `<td>${val||'—'}</td>`;
@@ -843,25 +873,25 @@
       loadGlobalVotes();
     }
 
-    /* ── CATEGORY FILTER — unchanged ── */
-    function buildCategoryFilter() {
-      const catIdx = headers.findIndex(isCatCol);
-      if (catIdx < 0) return;
-      const cats = [...new Set(allRows.map(r=>(r[catIdx]||'').trim()).filter(Boolean))].sort();
-      const sel = document.getElementById('categoryFilter');
-      cats.forEach(c => { const o=document.createElement('option'); o.value=c; o.textContent=c; sel.appendChild(o); });
-    }
-
-    /* ── FILTER LOGIC — unchanged ── */
+    /* ── MAIN FILTER FUNCTION — now handles special modes ── */
     function filteredRows() {
-      const q      = (document.getElementById('searchInput').value||'').toLowerCase().trim();
-      const catVal = (document.getElementById('categoryFilter').value||'').toLowerCase();
-      const catIdx = headers.findIndex(isCatCol);
-      return allRows.filter(row => {
-        const matchQ   = !q      || row.join(' ').toLowerCase().includes(q);
-        const matchCat = !catVal || (catIdx>=0 && (row[catIdx]||'').toLowerCase()===catVal);
-        return matchQ && matchCat;
-      });
+      const q = (document.getElementById('searchInput').value||'').toLowerCase().trim();
+      const mode = document.getElementById('categoryFilter').value;
+
+      let rows;
+
+      if (mode === 'biggest-aum' || mode === 'biggest-returns' || mode === 'top-voted') {
+        rows = getSpecialFilteredRows(mode);
+      } else {
+        rows = allRows; // All Categories
+      }
+
+      // Apply text search on top of any special mode
+      if (q) {
+        rows = rows.filter(row => row.join(' ').toLowerCase().includes(q));
+      }
+
+      return rows;
     }
 
     document.getElementById('searchInput').addEventListener('input',    ()=>renderTable(filteredRows()));
