@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swipe Growth ETFs • GrowthETFs.com</title>
+<meta name="description" content="Tinder-style swiping for the best growth ETFs. Swipe right to build your personal high-growth ETF watchlist. Free on GrowthETFs.com.">
+
+<meta property="og:title" content="Swipe Growth ETFs • GrowthETFs.com">
+<meta property="og:description" content="Swipe right on the top growth ETFs of 2026. Build your watchlist instantly.">
+<meta property="og:url" content="https://growthetfs.com/swipe">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://growthetfs.com/growth1.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Swipe Growth ETFs • GrowthETFs.com">
+<meta name="twitter:description" content="Discover &amp; build your growth ETF watchlist with one swipe.">
+
+<link rel="canonical" href="https://growthetfs.com/swipe">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Growth ETF Swipe Tool",
+  "url": "https://growthetfs.com/swipe",
+  "description": "Interactive swipe tool to discover the best growth ETFs. Swipe right to save to your personal watchlist. Free on GrowthETFs.com.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@type": "Organization", "name": "GrowthETFs.com", "url": "https://growthetfs.com" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+
+<!-- GrowthETFs.com GA -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YP7X02DW6C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YP7X02DW6C');
+</script>
+
+<style>
+:root {
+  --brand: #002D22;
+  --brand-dark: #001a14;
+  --brand-mid: #003d2e;
+  --gold: #c9a94e;
+  --gold2: #e8c96a;
+  --green-pos: #2ecc8f;
+  --red: #e74c3c;
+  --bg: #f2f4f0;
+  --text: #222;
+  --muted: #666;
+  --card-bg: #ffffff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+  font-family: 'Lato', Arial, sans-serif; 
+  background: var(--bg); 
+  color: var(--text); 
+  overflow-x: hidden; 
+}
+
+/* HEADER */
+.site-header { 
+  background: var(--brand); 
+  height: 64px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0 24px; 
+  position: sticky; 
+  top: 0; 
+  z-index: 200; 
+  box-shadow: 0 4px 12px rgba(0,0,0,.35); 
+  border-bottom: 4px solid var(--gold);
+}
+.header-logo { 
+  color: var(--gold); 
+  font-family: 'Merriweather', Georgia, serif; 
+  font-weight: 900; 
+  font-size: 22px; 
+  text-decoration: none; 
+  letter-spacing: -0.5px; 
+}
+.saved-btn { 
+  background: rgba(201,169,78,.2); 
+  color: var(--gold); 
+  border: 2px solid var(--gold); 
+  padding: 8px 20px; 
+  border-radius: 999px; 
+  font-weight: 700; 
+  font-size: 14px; 
+  cursor: pointer; 
+}
+.saved-btn:hover { background: var(--gold); color: var(--brand); }
+
+/* TOP BAR */
+.top-bar { 
+  background: var(--brand-mid); 
+  padding: 16px 20px; 
+  text-align: center; 
+  color: white; 
+  border-bottom: 4px solid var(--gold); 
+}
+.top-bar p { 
+  font-size: 16px; 
+  font-weight: 700; 
+}
+
+/* PRO BUTTON */
+.pro-wrap { text-align: center; margin: 12px 0 8px; }
+.pro-btn { 
+  display: inline-block; 
+  padding: 12px 32px; 
+  background: var(--gold); 
+  color: var(--brand); 
+  border: none; 
+  border-radius: 999px; 
+  font-weight: 900; 
+  font-size: 15px; 
+  text-decoration: none; 
+  box-shadow: 0 4px 14px rgba(201,169,78,.4); 
+}
+.pro-btn:hover { background: var(--gold2); transform: translateY(-1px); }
+
+/* CONTROLS */
+.controls-row { 
+  max-width: 520px; 
+  margin: 0 auto; 
+  padding: 0 20px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  font-size: 14px; 
+  margin-bottom: 8px; 
+}
+.ctrl-btn { 
+  padding: 8px 18px; 
+  background: white; 
+  border: 2px solid var(--brand); 
+  color: var(--brand); 
+  border-radius: 999px; 
+  font-weight: 700; 
+  font-size: 13px; 
+  cursor: pointer; 
+}
+.ctrl-btn:hover { background: var(--brand); color: white; }
+
+/* SWIPE CONTAINER */
+.swipe-container { 
+  max-width: 520px; 
+  margin: 0 auto; 
+  padding: 0 20px; 
+  position: relative; 
+  min-height: 560px; 
+}
+.etf-card { 
+  position: absolute; 
+  inset: 0; 
+  background: var(--card-bg); 
+  border-radius: 24px; 
+  overflow: hidden; 
+  box-shadow: 0 20px 60px -10px rgba(0,45,34,.25); 
+  display: flex; 
+  flex-direction: column; 
+  transition: all .42s cubic-bezier(0.34,1.56,0.64,1); 
+  border: 4px solid var(--brand); 
+}
+.etf-card.swipe-left  { transform: translateX(-480px) rotate(-22deg) !important; opacity: 0; }
+.etf-card.swipe-right { transform: translateX(480px)  rotate( 22deg) !important; opacity: 0; }
+
+/* CARD HEADER */
+.card-header { 
+  height: 170px; 
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-mid) 100%); 
+  color: white; 
+  padding: 0 28px 22px; 
+  display: flex; 
+  align-items: flex-end; 
+  position: relative; 
+}
+.ticker-big { 
+  font-size: clamp(52px, 12vw, 72px); 
+  font-weight: 900; 
+  font-family: 'Merriweather', Georgia, serif; 
+  letter-spacing: -5px; 
+  line-height: 1; 
+  color: var(--gold); 
+}
+.etf-name { 
+  font-size: 17px; 
+  font-weight: 700; 
+  margin-top: 6px; 
+  opacity: .95; 
+  line-height: 1.3; 
+}
+
+/* MAIN FOCUS */
+.main-focus { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 12px; 
+  padding: 16px; 
+  background: white; 
+}
+.focus-box { 
+  background: #f0f4f0; 
+  border-radius: 16px; 
+  padding: 16px 12px; 
+  text-align: center; 
+  border: 3px solid var(--brand); 
+}
+.focus-box.growth { 
+  border-color: var(--green-pos); 
+  background: #f0fdf4; 
+}
+.focus-val { 
+  font-size: 32px; 
+  font-weight: 900; 
+  font-family: 'Merriweather', Georgia, serif; 
+  line-height: 1; 
+  color: var(--brand); 
+}
+.focus-box.growth .focus-val { color: var(--green-pos); }
+.focus-label { 
+  font-size: 11px; 
+  font-weight: 900; 
+  color: var(--muted); 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  margin-top: 6px; 
+}
+
+/* STATS BAR */
+.stats-bar { 
+  display: grid; 
+  grid-template-columns: repeat(3,1fr); 
+  gap: 6px; 
+  padding: 14px 20px; 
+  background: white; 
+  border-bottom: 1px solid #e8e8e0; 
+}
+.stat-box { text-align: center; }
+.stat-val { 
+  font-size: 16px; 
+  font-weight: 900; 
+  font-family: 'Merriweather', Georgia, serif; 
+  color: var(--brand); 
+}
+.stat-val.positive { color: var(--green-pos); }
+.stat-val.negative { color: var(--red); }
+.stat-lbl { 
+  font-size: 10px; 
+  font-weight: 700; 
+  color: var(--muted); 
+  text-transform: uppercase; 
+  letter-spacing: .6px; 
+  margin-top: 2px; 
+}
+
+/* CARD INFO */
+.card-info { 
+  flex: 1; 
+  overflow: auto; 
+  padding: 16px 22px 12px; 
+  background: #fafaf8; 
+}
+.info-row { 
+  display: flex; 
+  justify-content: space-between; 
+  padding: 9px 0; 
+  border-bottom: 1px solid #e8e8e0; 
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { color: var(--muted); font-size: 14px; }
+.info-value { 
+  font-weight: 800; 
+  font-family: 'Merriweather', Georgia, serif; 
+  font-size: 15px; 
+  color: var(--brand); 
+}
+.info-value.positive { color: var(--green-pos); }
+.info-value.negative { color: var(--red); }
+
+/* ACTION BUTTONS */
+.actions { 
+  display: flex; 
+  justify-content: center; 
+  gap: 48px; 
+  padding: 16px 20px 24px; 
+  max-width: 520px; 
+  margin: 0 auto; 
+}
+.action-btn { 
+  width: 78px; 
+  height: 78px; 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 34px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,.2); 
+  transition: all .2s; 
+  border: 5px solid white; 
+  cursor: pointer; 
+}
+#noBtn  { background: white; color: var(--red); }
+#yesBtn { background: var(--green-pos); color: white; }
+#noBtn:hover  { transform: scale(1.12); }
+#yesBtn:hover { transform: scale(1.12); box-shadow: 0 12px 36px rgba(46,204,143,.4); }
+
+/* PROGRESS */
+.progress-wrap { max-width: 520px; margin: 0 auto 8px; padding: 0 20px; }
+.progress-bar { height: 7px; background: #d1d5c8; border-radius: 999px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold2)); width: 0%; transition: width .5s ease; }
+
+/* MODALS */
+#offerModal, #detailModal { position: fixed; inset: 0; background: rgba(0,0,0,.8); display: none; align-items: center; justify-content: center; z-index: 700; }
+#offerContent, #detailInner { background: white; max-width: 420px; width: 92%; border-radius: 20px; padding: 32px 26px; text-align: center; border-top: 6px solid var(--gold); }
+#savedPanel { position: fixed; bottom: 20px; right: 20px; background: white; border-radius: 18px; box-shadow: 0 16px 50px -8px rgba(0,0,0,.3); width: 340px; max-height: 560px; overflow: hidden; z-index: 500; display: none; border: 3px solid var(--brand); }
+
+.saved-panel-head { padding: 16px 22px; background: var(--brand); color: white; display: flex; justify-content: space-between; align-items: center; font-weight: 900; }
+#savedList { max-height: 450px; overflow: auto; }
+
+footer { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px; border-top: 1px solid #ddd; margin-top: 30px; }
+footer a { color: var(--brand); text-decoration: none; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://growthetfs.com" class="header-logo">GrowthETFs.com</a>
+  <button class="saved-btn" onclick="showSaved()">📈 My Watchlist (<span id="savedCount">0</span>)</button>
+</header>
+
+<div class="top-bar">
+  <p>Swipe right on high-growth ETFs • Build your 2026 watchlist</p>
+</div>
+
+<div class="pro-wrap">
+  <a class="pro-btn" href="https://growthetfs.com" target="_blank">See Full Growth ETF Rankings &amp; Voting →</a>
+</div>
+
+<div class="controls-row">
+  <div>Remaining: <strong id="remaining">—</strong></div>
+  <div style="display:flex;gap:10px">
+    <button class="ctrl-btn" onclick="newCard()">New Deck</button>
+    <button class="ctrl-btn" onclick="shuffleDeck()">🔀 Shuffle</button>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="swipe-container" id="swipeContainer"></div>
+
+<div class="actions">
+  <button id="noBtn" class="action-btn" onclick="swipeLeft()">✕</button>
+  <button id="yesBtn" class="action-btn" onclick="swipeRight()">🚀</button>
+</div>
+
+<!-- OFFER MODAL -->
+<div id="offerModal">
+  <div id="offerContent">
+    <h2 id="offerTitle" style="color:var(--brand);font-size:22px;margin-bottom:12px"></h2>
+    <p id="offerText" style="color:#555;line-height:1.6;margin-bottom:24px"></p>
+    <div style="display:flex;gap:12px">
+      <button onclick="goToSite()" style="flex:1;padding:16px;background:var(--brand);color:white;border:none;border-radius:12px;font-weight:900;font-size:15px;cursor:pointer">Take Me to Full Rankings →</button>
+      <button onclick="closeOffer()" style="flex:1;padding:16px;background:#e8e8e0;color:#222;border:none;border-radius:12px;font-weight:900;font-size:15px;cursor:pointer">Keep Swiping</button>
+    </div>
+  </div>
+</div>
+
+<!-- SAVED PANEL -->
+<div id="savedPanel">
+  <div class="saved-panel-head">
+    <span>📈 My Growth Watchlist</span>
+    <span onclick="hideSaved()" style="cursor:pointer;font-size:24px">✕</span>
+  </div>
+  <div id="savedList"></div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div id="detailModal">
+  <div id="detailInner" style="max-width:520px;text-align:left">
+    <div style="padding:22px 26px;background:var(--brand);color:white;display:flex;justify-content:space-between;align-items:center">
+      <div id="detailTicker" style="font-size:28px;font-weight:900;font-family:'Merriweather',Georgia,serif;color:var(--gold)"></div>
+      <span onclick="closeDetail()" style="font-size:28px;cursor:pointer">✕</span>
+    </div>
+    <div id="detailBody" style="padding:26px"></div>
+  </div>
+</div>
+
+<footer>
+  <a href="https://growthetfs.com">GrowthETFs.com</a> • 
+  <a href="https://growthetfs.com/terms.html">Terms</a> • 
+  <a href="https://growthetfs.com/privacy-policy.html">Privacy</a><br><br>
+  Data sourced from public information • Updated regularly • <strong>Not financial advice</strong><br>
+  GrowthETFs.com is for entertainment &amp; educational purposes ONLY.
+</footer>
+
+<script>
+// ====================== CONFIG ======================
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgB3eBiOxZ6CoBjVvi9Rm3PmJDssWCsHWuVG4YgCPnXLG02u0tQxoR055J-e21MYbXJES1UpPTy7h9/pub?gid=0&single=true&output=csv';
+
+let allETFs = [];
+let deck = [];
+let currentIndex = 0;
+let savedETFs = [];
+let totalSwipes = 0;
+
+// ====================== HELPERS ======================
+function parseNum(str) {
+  if (!str || str === '-' || str === 'N/A') return null;
+  return parseFloat(String(str).replace(/[%,$BMKbmk]/g, '')) || null;
+}
+
+function returnClass(val) {
+  const n = parseNum(val);
+  if (n === null) return '';
+  return n >= 0 ? 'positive' : 'negative';
+}
+
+function getColIndex(headers, keywords) {
+  for (let i = 0; i < headers.length; i++) {
+    const h = headers[i].toLowerCase().trim();
+    if (keywords.some(k => h.includes(k))) return i;
+  }
+  return -1;
+}
+
+// ====================== LOAD DATA ======================
+async function loadETFs() {
+  try {
+    const res = await fetch(CSV_URL + '&t=' + Date.now());
+    const text = await res.text();
+    const lines = text.trim().split('\n');
+    
+    const rawHeaders = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim());
+    const headers = rawHeaders;
+
+    // Find column indices based on actual sheet
+    const tickerIdx = getColIndex(headers, ['ticker', 'symbol']);
+    const nameIdx   = getColIndex(headers, ['name', 'etf name', 'fund name']);
+    const aumIdx    = getColIndex(headers, ['aum', 'assets']);
+    const expenseIdx= getColIndex(headers, ['expense', 'exp']);
+    const returnIdx = getColIndex(headers, ['return', 'ytd', '1 year', 'performance', 'gain']);
+
+    allETFs = [];
+    for (let i = 1; i < lines.length; i++) {
+      const cols = lines[i].split(',').map(c => c.replace(/^"|"$/g, '').trim());
+      if (cols.length < 2 || !cols[tickerIdx]) continue;
+
+      allETFs.push({
+        symbol: cols[tickerIdx] || '',
+        name: (nameIdx >= 0 ? cols[nameIdx] : '') || 'Growth ETF',
+        aum: (aumIdx >= 0 ? cols[aumIdx] : '—'),
+        expense: (expenseIdx >= 0 ? cols[expenseIdx] : '—'),
+        returnVal: (returnIdx >= 0 ? cols[returnIdx] : '—')
+      });
+    }
+    
+    resetDeck();
+  } catch(e) {
+    document.getElementById('swipeContainer').innerHTML = 
+      '<div style="padding:60px 20px;text-align:center;color:#666;background:white;border-radius:24px;margin:0 20px">⚠️ Could not load ETF data. Please refresh.</div>';
+  }
+}
+
+function resetDeck() {
+  deck = [...allETFs].sort(() => Math.random() - 0.5);
+  currentIndex = 0;
+  renderCard();
+}
+
+function shuffleDeck() {
+  deck = [...allETFs].sort(() => Math.random() - 0.5);
+  currentIndex = 0;
+  renderCard();
+}
+
+// ====================== RENDER CARD ======================
+function renderCard() {
+  const container = document.getElementById('swipeContainer');
+  container.innerHTML = '';
+
+  if (currentIndex >= deck.length) {
+    container.innerHTML = `
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:white;border-radius:24px;border:4px solid var(--brand);text-align:center;padding:50px">
+        <div style="font-size:60px;margin-bottom:16px">🚀</div>
+        <h2 style="font-size:28px;color:var(--brand);margin-bottom:12px">Deck complete!</h2>
+        <p style="color:#666;margin-bottom:30px">You've seen every growth ETF.</p>
+        <button onclick="shuffleDeck()" style="padding:16px 40px;background:var(--brand);color:white;border:none;border-radius:999px;font-size:16px;font-weight:900;cursor:pointer">🔀 Start Fresh Deck</button>
+      </div>`;
+    return;
+  }
+
+  const etf = deck[currentIndex];
+  const retClass = returnClass(etf.returnVal);
+
+  container.innerHTML = `
+    <div class="etf-card" id="mainCard" ondblclick="showDetail('${etf.symbol}')">
+      <div class="card-header">
+        <div>
+          <div class="ticker-big">${etf.symbol}</div>
+          <div class="etf-name">${etf.name}</div>
+        </div>
+      </div>
+
+      <div class="main-focus">
+        <div class="focus-box growth">
+          <div class="focus-val ${retClass}">${etf.returnVal}</div>
+          <div class="focus-label">Return</div>
+        </div>
+        <div class="focus-box">
+          <div class="focus-val">${etf.aum}</div>
+          <div class="focus-label">AUM</div>
+        </div>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-box">
+          <div class="stat-val">${etf.expense}</div>
+          <div class="stat-lbl">Expense</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">${etf.aum}</div>
+          <div class="stat-lbl">AUM</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val ${retClass}">${etf.returnVal}</div>
+          <div class="stat-lbl">Performance</div>
+        </div>
+      </div>
+
+      <div class="card-info">
+        <div class="info-row"><span class="info-label">Ticker</span><span class="info-value">${etf.symbol}</span></div>
+        <div class="info-row"><span class="info-label">Performance</span><span class="info-value ${retClass}">${etf.returnVal}</span></div>
+        <div class="info-row"><span class="info-label">AUM</span><span class="info-value">${etf.aum}</span></div>
+        <div class="info-row"><span class="info-label">Expense Ratio</span><span class="info-value">${etf.expense}</span></div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('remaining').textContent = deck.length - currentIndex;
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = deck.length ? Math.round((currentIndex / deck.length) * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+// ====================== SWIPE ======================
+function swipeLeft() {
+  const card = document.getElementById('mainCard');
+  if (!card) return;
+  card.classList.add('swipe-left');
+  setTimeout(() => {
+    currentIndex++;
+    totalSwipes++;
+    renderCard();
+    trackPageview();
+    checkOffer();
+  }, 420);
+}
+
+function swipeRight() {
+  const card = document.getElementById('mainCard');
+  if (!card) return;
+  const etf = deck[currentIndex];
+  if (etf && !savedETFs.some(e => e.symbol === etf.symbol)) {
+    savedETFs.push(etf);
+    document.getElementById('savedCount').textContent = savedETFs.length;
+  }
+  card.classList.add('swipe-right');
+  setTimeout(() => {
+    currentIndex++;
+    totalSwipes++;
+    renderCard();
+    trackPageview();
+    checkOffer();
+  }, 420);
+}
+
+// ====================== GA ======================
+function trackPageview() {
+  const symbol = deck[currentIndex] ? deck[currentIndex].symbol : 'Done';
+  const url = window.location.origin + (window.location.pathname || '/swipe') + '?etf=' + symbol + '&t=' + Date.now();
+  history.pushState({ symbol }, '', url);
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'page_view', { page_location: url, page_title: 'Growth ETF Swipe • ' + symbol });
+  }
+}
+
+// ====================== OFFER ======================
+const OFFERS = [
+  { title: "Want the full picture?", text: "See every growth ETF ranked, sorted, and voted on at GrowthETFs.com — completely free." },
+  { title: "Love a particular ETF?", text: "Vote for your favorites and see real-time community rankings on the main site." },
+  { title: "Building a serious growth portfolio?", text: "Our full list includes all available metrics with powerful filters." }
+];
+
+function checkOffer() {
+  if (totalSwipes > 0 && totalSwipes % 5 === 0) {
+    setTimeout(showOffer, 800);
+  }
+}
+
+function showOffer() {
+  const offer = OFFERS[Math.floor(totalSwipes / 5 - 1) % OFFERS.length];
+  document.getElementById('offerTitle').textContent = offer.title;
+  document.getElementById('offerText').textContent = offer.text;
+  document.getElementById('offerModal').style.display = 'flex';
+}
+
+function closeOffer() { document.getElementById('offerModal').style.display = 'none'; }
+function goToSite() { window.open('https://growthetfs.com', '_blank'); closeOffer(); }
+
+// ====================== SAVED & DETAIL ======================
+function showSaved() {
+  const list = document.getElementById('savedList');
+  list.innerHTML = '';
+  if (!savedETFs.length) {
+    list.innerHTML = '<div style="padding:50px 20px;text-align:center;color:#666">No ETFs saved yet.<br>Swipe right 🚀 on ones you like!</div>';
+  } else {
+    savedETFs.forEach((etf, i) => {
+      const div = document.createElement('div');
+      div.style.cssText = 'padding:14px 20px;border-bottom:1px solid #e8e8e0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;';
+      div.innerHTML = `
+        <div onclick="showDetail('${etf.symbol}')">
+          <strong style="font-size:17px;color:var(--brand);font-family:'Merriweather',Georgia,serif">${etf.symbol}</strong>
+          <span style="margin-left:10px;color:var(--green-pos);font-weight:800">${etf.returnVal}</span>
+          <div style="font-size:13px;color:#666;margin-top:3px">${etf.name}</div>
+        </div>
+        <span onclick="removeSaved(${i},event)" style="color:var(--red);font-size:22px;padding:6px 10px;cursor:pointer">✕</span>
+      `;
+      list.appendChild(div);
+    });
+  }
+  document.getElementById('savedPanel').style.display = 'block';
+}
+
+function hideSaved() { document.getElementById('savedPanel').style.display = 'none'; }
+
+function removeSaved(idx, e) {
+  e.stopPropagation();
+  savedETFs.splice(idx, 1);
+  document.getElementById('savedCount').textContent = savedETFs.length;
+  showSaved();
+}
+
+function showDetail(symbol) {
+  const etf = allETFs.find(e => e.symbol === symbol);
+  if (!etf) return;
+
+  document.getElementById('detailTicker').innerHTML = `${etf.symbol} <span style="font-size:15px;opacity:.8;color:#c9a94e">${etf.returnVal}</span>`;
+
+  document.getElementById('detailBody').innerHTML = `
+    <h2 style="font-size:21px;margin-bottom:20px;color:var(--brand)">${etf.name}</h2>
+    <div style="background:#f0fdf4;padding:20px;border-radius:14px;text-align:center;border:3px solid var(--green-pos);margin-bottom:20px">
+      <div style="font-size:36px;font-weight:900;color:var(--green-pos);font-family:'Merriweather',Georgia,serif">${etf.returnVal}</div>
+      <div style="font-size:12px;color:#1a8c52;font-weight:700;margin-top:6px">PERFORMANCE</div>
+    </div>
+    <div style="background:white;border:2px solid #e8e8e0;border-radius:14px;padding:18px;margin-bottom:24px">
+      <div class="info-row"><span class="info-label">AUM</span><span class="info-value">${etf.aum}</span></div>
+      <div class="info-row"><span class="info-label">Expense Ratio</span><span class="info-value">${etf.expense}</span></div>
+    </div>
+    <div style="display:flex;gap:12px">
+      <button onclick="saveFromDetail('${etf.symbol}');closeDetail()" style="flex:1;padding:18px;background:var(--green-pos);color:white;border:none;border-radius:12px;font-weight:900;font-size:16px;cursor:pointer">🚀 Add to Watchlist</button>
+      <button onclick="closeDetail()" style="flex:1;padding:18px;background:#e8e8e0;color:#222;border:none;border-radius:12px;font-weight:900;font-size:16px;cursor:pointer">Close</button>
+    </div>
+  `;
+  document.getElementById('detailModal').style.display = 'flex';
+}
+
+function closeDetail() { document.getElementById('detailModal').style.display = 'none'; }
+
+function saveFromDetail(symbol) {
+  const etf = allETFs.find(e => e.symbol === symbol);
+  if (etf && !savedETFs.some(e => e.symbol === symbol)) {
+    savedETFs.push(etf);
+    document.getElementById('savedCount').textContent = savedETFs.length;
+  }
+}
+
+// ====================== INPUT ======================
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') swipeLeft();
+  if (e.key === 'ArrowRight') swipeRight();
+});
+
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+document.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (diff < -90) swipeLeft();
+  if (diff > 90) swipeRight();
+});
+
+function newCard() { location.reload(); }
+
+window.onload = loadETFs;
+</script>
+
+<!-- STATIC SEO CONTENT -->
+<section style="max-width:860px;margin:50px auto 30px;padding:0 24px">
+  <h2 style="font-size:26px;font-weight:900;color:var(--brand);margin-bottom:14px">Swipe Growth ETFs — Build Your High-Growth Watchlist</h2>
+  <p style="font-size:15.5px;line-height:1.75;color:#444;margin-bottom:18px">
+    Discover the best growth ETFs with a fun, fast swipe experience. 
+    Swipe right 🚀 to save any ETF to your personal watchlist.
+  </p>
+
+  <h3 style="font-size:19px;font-weight:900;color:var(--brand);margin:22px 0 10px">How to Use</h3>
+  <ul style="font-size:15.5px;line-height:1.85;color:#444;margin-bottom:18px;padding-left:22px">
+    <li>Swipe right on ETFs you want to watch</li>
+    <li>Double-tap any card for more details</li>
+    <li>Use the Watchlist button to review saved ETFs</li>
+  </ul>
+
+  <p style="font-size:13.5px;color:#777;line-height:1.7;margin-top:30px">
+    <strong>Disclaimer:</strong> This tool is for entertainment and educational purposes only. 
+    All data is pulled directly from GrowthETFs.com public sheet. Nothing here is investment advice. 
+    Always consult a licensed financial advisor. GrowthETFs.com is for entertainment purposes ONLY.
+  </p>
+</section>
+
+</body>
+</html>
