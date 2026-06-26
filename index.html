@@ -47,6 +47,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
 
   <style>
+    /* Watchlist Builder Button */
+.watchlist-btn {
+  background: #c9a94e;
+  color: #002D22;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 14.5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s;
+  box-shadow: 0 4px 12px rgba(201,169,78,0.35);
+  white-space: nowrap;
+}
+.watchlist-btn:hover {
+  background: #e8c96a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(201,169,78,0.45);
+}
     /* ─── TOKENS ─────────────────────────────────── */
     :root {
       --brand:      #002D22;
@@ -509,7 +532,11 @@
   <!-- HEADER -->
   <header onclick="location.reload()">
     <div class="logo">Growth<span>ETFs</span>.com 📈</div>
-    <div class="logo-sub">The Top Growth ETFs &mdash; All In One Place</div>
+    <div class="logo-sub">The Top Growth ETFs &mdash; All In One Place</div><br>
+     <a href="https://growthetfs.com/growth-rtfs-watchlist-builder" class="watchlist-btn">
+    📋 Watchlist Builder
+  </a>
+</header>
   </header>
 
 <!-- HERO -->
