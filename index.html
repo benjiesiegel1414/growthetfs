@@ -525,6 +525,17 @@
       .col-name { max-width: 150px; }
       #special-views { flex-direction: column; align-items: center; }
     }
+
+    /* ─── SITE NETWORK BAR ───────────────────────── */
+    .site-network-bar{width:100%;background:#fff;border-bottom:1px solid #ddd;padding:5px 0;}
+    .site-network-track{max-width:1400px;margin:0 auto;padding:0 15px;display:flex;align-items:center;justify-content:flex-start;gap:5px;overflow-x:auto;white-space:nowrap;-ms-overflow-style:none;scrollbar-width:none;}
+    .site-network-track::-webkit-scrollbar{display:none;}
+    .site-network-track::after{content:"";flex:0 0 4px;}
+    .site-network-label{font-size:0.56em;text-transform:uppercase;letter-spacing:0.5px;color:#999;font-weight:900;flex-shrink:0;margin-right:2px;}
+    .site-pill{display:inline-flex;align-items:center;gap:3.5px;padding:3.5px 7.5px;border-radius:999px;border:1px solid var(--brand);background:#fff;color:var(--brand);font-size:0.62em;font-weight:700;text-decoration:none;flex-shrink:0;transition:background .15s ease, color .15s ease;box-sizing:border-box;font-family:'Lato',sans-serif;}
+    .site-pill:hover{background:var(--brand);color:var(--gold2);}
+    .site-pill.current{background:var(--brand);color:var(--gold2);cursor:default;}
+    @media(min-width:1150px){.site-network-track{justify-content:center;}}
   </style>
 </head>
 <body>
@@ -538,6 +549,19 @@
   </a>
 </header>
   </header>
+
+  <div class="site-network-bar">
+    <div class="site-network-track">
+      <span class="site-network-label">Our Sites:</span>
+      <a href="https://topdividendetfs.com/" class="site-pill" title="Top 100 Dividend ETFs ranked by yield & performance">💵 TopDividendETFs.com</a>
+      <a href="https://weeklyetfs.com/" class="site-pill" title="Best weekly paying dividend ETFs">📅 WeeklyETFs.com</a>
+      <a href="https://monthlyetfs.com/" class="site-pill" title="Best monthly paying dividend ETFs">🗓️ MonthlyETFs.com</a>
+      <span class="site-pill current" title="You're here">📈 GrowthETFs.com</span>
+      <a href="https://topspaceetfs.com/" class="site-pill" title="Best space & aerospace ETFs ranked">🚀 TopSpaceETFs.com</a>
+      <a href="https://etftotalreturns.com/" class="site-pill" title="Total return analysis & performance metrics for ETFs">📊 ETFTotalReturns.com</a>
+      <a href="https://topdividendtools.com/" class="site-pill" title="Best tools & calculators for dividend investors">🛠️ TopDividendTools.com</a>
+    </div>
+  </div>
 
 <!-- HERO -->
 <div class="hero">
