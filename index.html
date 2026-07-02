@@ -351,6 +351,7 @@
     #etfTable tbody tr:last-child td { border-bottom: none; }
     #etfTable tbody tr:nth-child(even) { background: #f7f9f6; }
     #etfTable tbody tr:hover { background: #eaf3ec; }
+    #etfTable tbody tr[data-symbol] { cursor: pointer; }
 
     .col-ticker {
       font-weight: 900;
@@ -959,6 +960,18 @@
       startCountdown();
       loadGlobalVotes();
       attachVoteListener();
+      attachRowClickListener();
+    }
+
+    function attachRowClickListener() {
+      document.getElementById('tableBody').addEventListener('click', function(e) {
+        if (e.target.closest('.vote-btn')) return;
+        const tr = e.target.closest('tr[data-symbol]');
+        if (!tr) return;
+        const sym = tr.getAttribute('data-symbol');
+        if (!sym) return;
+        window.location.href = 'etf.html?symbol=' + encodeURIComponent(sym);
+      });
     }
 
     function showError() {
@@ -1103,7 +1116,7 @@
           <span class="vote-count" data-symbol="${sym}" data-global="${gv}">${gv}</span>
         </td>`);
 
-        return `<tr>${cells.join('')}</tr>`;
+        return `<tr data-symbol="${sym}" title="View full scorecard for ${sym}">${cells.join('')}</tr>`;
       }).join('');
 
       document.getElementById('rowCount').textContent =
