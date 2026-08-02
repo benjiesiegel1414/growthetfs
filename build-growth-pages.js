@@ -3,12 +3,15 @@
  * build-growth-pages.js
  * GrowthETFs.com programmatic page generator.
  *
+ * Sheet columns: Symbol | Name | AUM | Total Returns
+ * There is no expense ratio column, so expense ratio is not referenced anywhere.
+ *
  * Outputs:
  *   /etf/TICKER-growth-etf.html   one static page per ETF
  *   /all-growth-etfs.html         hub page linking every generated page
  *   /sitemap.xml                  regenerated from static pages + generated pages
  *
- * Run:  node /build-growth-pages.js
+ * Run:  node build-growth-pages.js
  * Node 18+ (uses global fetch).
  */
 
@@ -26,11 +29,8 @@ const GA_ID    = 'G-YP7X02DW6C';
 const ADSENSE  = 'ca-pub-9929351005136304';
 const OG_IMAGE = SITE + '/growth1.png';
 
-// Hand-maintained pages. Edit this list when you add or remove a real page.
-// Verify each one resolves before adding it — a 404 in the sitemap is worse
-// than an omission.
 const STATIC_PAGES = [
-  { loc: SITE + '/',                                    priority: true },
+  { loc: SITE + '/' },
   { loc: SITE + '/all-growth-etfs.html' },
   { loc: SITE + '/swipe.html' },
   { loc: SITE + '/growth-etfs-watchlist-builder.html' },
@@ -48,7 +48,6 @@ function esc(s) {
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-// XML needs ampersands escaped or the parse dies at the first one.
 function escXml(s) {
   return String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -63,7 +62,7 @@ function parseNum(str) {
   return isNaN(n) ? null : n;
 }
 
-// "$1.2B" -> 1200 (millions).  "$450M" -> 450.  "1,250" -> 1250.
+// "$1.2B" -> 1200 (millions).  "$450M" -> 450.
 function parseAUM(str) {
   if (!str) return null;
   const s = String(str).trim().toUpperCase();
@@ -71,14 +70,13 @@ function parseAUM(str) {
   if (isNaN(n)) return null;
   if (s.includes('B')) return n * 1000;
   if (s.includes('K')) return n / 1000;
-  return n; // assume millions
+  return n;
 }
 
 function slug(sym) {
   return String(sym).trim().toUpperCase().replace(/[^A-Z0-9]/g, '').toLowerCase();
 }
 
-// Quote-aware CSV parser. Handles commas inside fund names and "" escapes.
 function parseCSV(text) {
   return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim().split('\n').map(line => {
     const out = [];
@@ -109,6 +107,61 @@ function ordinal(n) {
   const s = ['th', 'st', 'nd', 'rd'], v = n % 100;
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
+
+/* ─── FUND TYPE DETECTION ───────────────────────────────────
+   Reads the fund name and ticker to work out what kind of product it is.
+   With only four columns in the sheet, this is what keeps 125 pages from
+   reading identically. */
+function classify(etf) {
+  const n = (etf.name + ' ' + etf.symbol).toLowerCase();
+
+  const leveraged =
+    /\b3x\b|\b2x\b|ultrapro|ultra\s|leveraged|daily\s+(bull|bear)/.test(n) ||
+    /^(TQQQ|SOXL|NVD3|TSL3|MST3|GDX3|XLE3|SLV3|GLD5|QQQ5|PLT3|TLT5|VT3|SP5Y)$/.test(etf.symbol);
+  const inverse = /inverse|\bbear\b|\bshort\s/.test(n);
+
+  let cap = null;
+  if (/small.?cap|russell 2000|s&p 600|smallcap/.test(n)) cap = 'small-cap';
+  else if (/mid.?cap|s&p 400|russell mid|midcap/.test(n)) cap = 'mid-cap';
+  else if (/mega.?cap/.test(n)) cap = 'mega-cap';
+  else if (/large.?cap|russell 1000|s&p 500|largecap/.test(n)) cap = 'large-cap';
+
+  let geo = null;
+  if (/emerging/.test(n)) geo = 'emerging markets';
+  else if (/international|\bglobal\b|world|ex.?u\.?s|eafe|japan|china|europe/.test(n)) geo = 'international';
+
+  let sector = null;
+  if (/semiconduct|\bchip/.test(n)) sector = 'semiconductors';
+  else if (/technolog|software|artificial intelligence|innovat/.test(n)) sector = 'technology';
+  else if (/nasdaq/.test(n)) sector = 'the Nasdaq-100';
+  else if (/health|biotech/.test(n)) sector = 'healthcare';
+  else if (/energy/.test(n)) sector = 'energy';
+  else if (/gold|silver|platinum/.test(n)) sector = 'precious metals';
+
+  return { cap, geo, sector, leveraged, inverse };
+}
+
+function typeSentence(etf, cls) {
+  const bits = [];
+  if (cls.cap) bits.push(cls.cap);
+  if (cls.geo) bits.push(cls.geo);
+  if (bits.length) {
+    return `Judging by its fund name, ${esc(etf.symbol)} is a ${bits.join(' ')} strategy` +
+      (cls.sector ? ` with exposure concentrated in ${cls.sector}.` : '.');
+  }
+  if (cls.sector) {
+    return `Judging by its fund name, ${esc(etf.symbol)} concentrates its exposure in ${cls.sector}.`;
+  }
+  return `${esc(etf.symbol)} sits on the broad growth side of this list rather than targeting a single sector or market-cap band.`;
+}
+
+const LEVERAGE_WARNING = `<div class="warn">
+  <strong>This is a leveraged or inverse product.</strong> Funds like this reset their exposure
+  daily. Over any period longer than a single trading session, returns compound in a way that can
+  differ sharply from the stated multiple of the underlying index, and volatility alone can erode
+  value even when the index finishes flat. They are built as short-term trading instruments, not
+  buy-and-hold investments. Read the issuer's prospectus before going anywhere near one.
+</div>`;
 
 // ─── SHARED CHROME ─────────────────────────────────────────
 const HEAD_COMMON = `
@@ -153,6 +206,9 @@ border-radius:20px;border:3px solid var(--brand);padding:26px 22px;margin:14px 0
 .hero .ticker{font-family:'Merriweather',Georgia,serif;font-weight:900;color:var(--gold);
 font-size:clamp(38px,11vw,60px);line-height:1;letter-spacing:-2px}
 .hero h1{font-size:clamp(17px,4.4vw,22px);font-weight:700;margin-top:8px;line-height:1.35}
+.badges{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.badge{background:rgba(201,169,78,.2);border:1px solid var(--gold);color:var(--gold2);
+border-radius:999px;padding:4px 12px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px}
 .focus-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
 .focus-box{background:#fff;border:2px solid var(--brand);border-radius:14px;padding:16px 10px;text-align:center}
 .focus-box.growth{border-color:var(--green-pos);background:#f0fdf4}
@@ -161,6 +217,9 @@ color:var(--brand);line-height:1.05;overflow-wrap:anywhere}
 .focus-box.growth .focus-val{color:var(--green-deep)}
 .focus-val.negative{color:var(--red)}
 .focus-label{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:7px}
+.warn{background:#fff6f5;border:2px solid var(--red);border-left-width:6px;border-radius:10px;
+padding:16px 18px;margin:20px 0;font-size:14.5px;line-height:1.65;color:#5a2a25}
+.warn strong{color:var(--red);display:block;margin-bottom:6px}
 h2{font-family:'Merriweather',Georgia,serif;font-size:clamp(19px,5.2vw,25px);color:var(--brand);margin:30px 0 12px}
 h3{font-size:clamp(15px,4.2vw,18px);color:var(--brand);margin:22px 0 8px;font-weight:900}
 p{margin-bottom:14px;color:#3a3a3a}
@@ -194,7 +253,7 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
   th,td{padding:9px 8px}
 }`;
 
-function header(currentLabel) {
+function header() {
   return `<header class="site-header">
   <a href="${SITE}" class="header-logo">GrowthETFs.com</a>
   <a href="${SITE}/swipe.html" class="header-cta">\u{1F4C8} Swipe ETFs</a>
@@ -234,24 +293,25 @@ function etfPage(etf, all) {
   const url   = `${SITE}/etf/${etf.slug}-growth-etf.html`;
   const rank  = etf.rank;
   const total = all.length;
+  const cls   = etf.cls;
   const rc    = etf.returnNum === null ? '' : (etf.returnNum >= 0 ? '' : 'negative');
 
-  // Differentiating context so no two pages read the same.
-  const ranked   = all.filter(e => e.returnNum !== null);
-  const medianRet = ranked.length
-    ? ranked[Math.floor(ranked.length / 2)].returnNum
-    : null;
+  const ranked = all.filter(e => e.returnNum !== null);
+  const medianRet = ranked.length ? ranked[Math.floor(ranked.length / 2)].returnNum : null;
+  const topRet = ranked.length ? ranked[0] : null;
 
   let placement;
   if (rank === null) {
-    placement = `${esc(etf.symbol)} does not currently have a return figure in our data set, so it is not ranked against the rest of the list.`;
+    placement = `${esc(etf.symbol)} does not currently have a return figure in our data, so it is not ranked against the rest of the list.`;
   } else {
-    const pct = Math.round(((total - rank + 1) / total) * 100);
-    placement = `${esc(etf.symbol)} currently sits ${ordinal(rank)} out of ${total} funds on the GrowthETFs list when sorted by return, putting it in roughly the top ${100 - pct + 1}% of the funds we track.`;
+    placement = `${esc(etf.symbol)} currently sits ${ordinal(rank)} out of ${total} funds on the GrowthETFs list when sorted by total return.`;
     if (medianRet !== null && etf.returnNum !== null) {
       placement += etf.returnNum >= medianRet
-        ? ` That places it above the median return across the list.`
-        : ` That places it below the median return across the list.`;
+        ? ` That is above the median for the list.`
+        : ` That is below the median for the list.`;
+    }
+    if (topRet && topRet.symbol !== etf.symbol) {
+      placement += ` For reference, the strongest performer on the list right now is ${esc(topRet.symbol)} at ${esc(topRet.returnVal)}.`;
     }
   }
 
@@ -259,28 +319,15 @@ function etfPage(etf, all) {
   if (etf.aumNum === null) {
     sizeNote = `Assets under management are not listed for ${esc(etf.symbol)} in our current data.`;
   } else if (etf.aumNum >= 10000) {
-    sizeNote = `At ${esc(etf.aum)} in assets, ${esc(etf.symbol)} is one of the larger funds on the list, which generally means tighter spreads and deeper daily liquidity.`;
+    sizeNote = `At ${esc(etf.aum)} in assets, ${esc(etf.symbol)} is one of the largest funds on this list. Size at that level usually means tight bid-ask spreads and deep daily volume.`;
   } else if (etf.aumNum >= 1000) {
     sizeNote = `With ${esc(etf.aum)} in assets, ${esc(etf.symbol)} clears the $1B mark used by the "Big AUM" filter on the main GrowthETFs list.`;
   } else if (etf.aumNum >= 100) {
-    sizeNote = `${esc(etf.symbol)} holds ${esc(etf.aum)} in assets, a mid-sized fund by the standards of this list.`;
+    sizeNote = `${esc(etf.symbol)} holds ${esc(etf.aum)} in assets, mid-sized by the standards of this list.`;
   } else {
-    sizeNote = `${esc(etf.symbol)} holds ${esc(etf.aum)} in assets, which is small relative to most funds on this list. Smaller funds can carry wider bid-ask spreads and higher closure risk.`;
+    sizeNote = `${esc(etf.symbol)} holds ${esc(etf.aum)} in assets, small relative to most funds here. Smaller funds can carry wider spreads and a higher chance of being closed or merged away.`;
   }
 
-  const expNum = parseNum(etf.expense);
-  let expNote;
-  if (expNum === null) {
-    expNote = `An expense ratio is not listed for ${esc(etf.symbol)} in our current data.`;
-  } else if (expNum <= 0.20) {
-    expNote = `Its expense ratio of ${esc(etf.expense)} is on the low end, typical of broad index-tracking growth funds.`;
-  } else if (expNum <= 0.60) {
-    expNote = `Its expense ratio of ${esc(etf.expense)} sits in the middle of the range for growth ETFs.`;
-  } else {
-    expNote = `Its expense ratio of ${esc(etf.expense)} is on the higher end, which is common for thematic or actively managed growth strategies. Fees compound against you over long holding periods.`;
-  }
-
-  // Related = neighbours by rank, so every page links somewhere different.
   const idx = all.indexOf(etf);
   const related = all
     .slice(Math.max(0, idx - 3), idx)
@@ -293,23 +340,40 @@ function etfPage(etf, all) {
       <div class="r-ret">${esc(r.returnVal)}</div>
     </a>`).join('\n      ');
 
+  const badges = [];
+  if (cls.leveraged) badges.push('Leveraged');
+  if (cls.inverse) badges.push('Inverse');
+  if (cls.cap) badges.push(cls.cap);
+  if (cls.geo) badges.push(cls.geo);
+  if (cls.sector) badges.push(cls.sector);
+  const badgeHtml = badges.length
+    ? `<div class="badges">${badges.map(b => `<span class="badge">${esc(b)}</span>`).join('')}</div>`
+    : '';
+
   const faq = [
     {
       q: `What is ${etf.symbol}?`,
-      a: `${etf.symbol} is ${etf.name}, listed on the GrowthETFs.com curated growth ETF list. It is tracked here alongside ${total - 1} other growth-focused ETFs.`
-    },
-    {
-      q: `What is the expense ratio of ${etf.symbol}?`,
-      a: `Our data lists the expense ratio for ${etf.symbol} as ${etf.expense}. Always confirm the current figure on the issuer's own fund page before investing.`
+      a: `${etf.symbol} is ${etf.name}. It is one of ${total} growth-focused ETFs tracked on the GrowthETFs.com curated list.`
     },
     {
       q: `How large is ${etf.symbol}?`,
-      a: `Our data lists assets under management for ${etf.symbol} as ${etf.aum}. Fund size changes daily with flows and market moves.`
+      a: `Our data lists assets under management for ${etf.symbol} as ${etf.aum}. Fund size moves daily with investor flows and market performance, so treat this as a snapshot rather than a fixed figure.`
     },
     {
-      q: `Is ${etf.symbol} a good investment?`,
-      a: `We don't answer that. GrowthETFs.com is an informational and entertainment site and publishes no buy or sell signals. Whether any fund suits you depends on your own goals, time horizon and risk tolerance. Speak with a licensed financial advisor.`
-    }
+      q: `Where does ${etf.symbol} rank against other growth ETFs?`,
+      a: rank === null
+        ? `${etf.symbol} is currently unranked on our list because no return figure is available for it.`
+        : `${etf.symbol} ranks ${ordinal(rank)} of ${total} on our list by total return, at ${etf.returnVal}.`
+    },
+    (cls.leveraged || cls.inverse)
+      ? {
+          q: `Is ${etf.symbol} suitable for long-term holding?`,
+          a: `${etf.symbol} appears to be a leveraged or inverse product. These reset exposure daily and are designed for short holding periods. Over longer stretches their returns can diverge substantially from the underlying index. They are not typically used as buy-and-hold positions.`
+        }
+      : {
+          q: `Is ${etf.symbol} a good investment?`,
+          a: `We don't answer that. GrowthETFs.com is an informational and entertainment site and publishes no buy or sell signals. Whether any fund suits you depends on your own goals, time horizon and risk tolerance. Speak with a licensed financial advisor.`
+        }
   ];
 
   const faqSchema = {
@@ -332,8 +396,8 @@ function etfPage(etf, all) {
     ]
   };
 
-  const title = `${etf.symbol} Growth ETF \u2014 Return, AUM & Expense Ratio | GrowthETFs.com`;
-  const desc  = `${etf.symbol} (${etf.name}) growth ETF data: return ${etf.returnVal}, AUM ${etf.aum}, expense ratio ${etf.expense}. See how it ranks against ${total} growth ETFs.`;
+  const title = `${etf.symbol} \u2014 ${etf.name} | Total Return & AUM | GrowthETFs.com`;
+  const desc  = `${etf.symbol} (${etf.name}): total return ${etf.returnVal}, AUM ${etf.aum}${rank !== null ? `, ranked ${ordinal(rank)} of ${total}` : ''} on the GrowthETFs.com curated growth ETF list.`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -365,27 +429,27 @@ ${header()}
   <section class="hero">
     <div class="ticker">${esc(etf.symbol)}</div>
     <h1>${esc(etf.name)}</h1>
+    ${badgeHtml}
   </section>
 
   <div class="focus-grid">
     <div class="focus-box growth">
       <div class="focus-val ${rc}">${esc(etf.returnVal)}</div>
-      <div class="focus-label">Return</div>
+      <div class="focus-label">Total Return</div>
     </div>
     <div class="focus-box">
       <div class="focus-val">${esc(etf.aum)}</div>
       <div class="focus-label">AUM</div>
     </div>
   </div>
-
+${(cls.leveraged || cls.inverse) ? '\n  ' + LEVERAGE_WARNING + '\n' : ''}
   <h2>${esc(etf.symbol)} at a glance</h2>
   <table>
     <tbody>
       <tr><th scope="row">Ticker</th><td><strong>${esc(etf.symbol)}</strong></td></tr>
       <tr><th scope="row">Fund name</th><td>${esc(etf.name)}</td></tr>
-      <tr><th scope="row">Return</th><td class="${etf.returnNum === null ? '' : (etf.returnNum >= 0 ? 'pos' : 'neg')}">${esc(etf.returnVal)}</td></tr>
+      <tr><th scope="row">Total return</th><td class="${etf.returnNum === null ? '' : (etf.returnNum >= 0 ? 'pos' : 'neg')}">${esc(etf.returnVal)}</td></tr>
       <tr><th scope="row">Assets under management</th><td>${esc(etf.aum)}</td></tr>
-      <tr><th scope="row">Expense ratio</th><td>${esc(etf.expense)}</td></tr>
       <tr><th scope="row">Rank on this list</th><td>${rank === null ? 'Unranked' : ordinal(rank) + ' of ' + total}</td></tr>
     </tbody>
   </table>
@@ -393,13 +457,14 @@ ${header()}
   <h2>How ${esc(etf.symbol)} compares</h2>
   <p>${placement}</p>
   <p>${sizeNote}</p>
-  <p>${expNote}</p>
+  <p>${typeSentence(etf, cls)}</p>
 
   <h3>Reading these numbers</h3>
-  <p>Return figures on this list are backward-looking. A fund near the top has already moved, which tells you about
-  the period behind it and nothing about the period ahead. Concentrated growth funds in particular tend to post the
-  biggest gains and the biggest drawdowns, often in the same year. Pair the return column with the AUM and expense
-  columns rather than reading it alone.</p>
+  <p>The return figure above is backward-looking. A fund near the top of this list has already made
+  its move, which tells you about the period behind it and nothing about the period ahead.
+  Concentrated growth funds in particular tend to post the largest gains and the largest drawdowns,
+  often within the same year. Read the return alongside fund size rather than on its own, and check
+  the issuer's own fund page for holdings, fees and the full prospectus before acting on anything here.</p>
 
   <div class="cta-row">
     <a class="cta cta-gold" href="${SITE}/">See the full ranked list &rarr;</a>
@@ -425,14 +490,14 @@ ${FOOTER}
 function hubPage(all) {
   const url = `${SITE}/all-growth-etfs.html`;
   const title = `All Growth ETFs \u2014 Full List of ${all.length} Funds | GrowthETFs.com`;
-  const desc = `Complete list of all ${all.length} growth ETFs tracked on GrowthETFs.com, with return, AUM and expense ratio for each. Free, updated daily.`;
+  const desc = `Complete list of all ${all.length} growth ETFs tracked on GrowthETFs.com, with total return and AUM for each. Free, updated daily.`;
 
   const rows = all.map(e => `      <tr>
+        <td>${e.rank === null ? '\u2014' : e.rank}</td>
         <td><a href="${SITE}/etf/${e.slug}-growth-etf.html">${esc(e.symbol)}</a></td>
         <td>${esc(e.name)}</td>
         <td class="${e.returnNum === null ? '' : (e.returnNum >= 0 ? 'pos' : 'neg')}">${esc(e.returnVal)}</td>
         <td>${esc(e.aum)}</td>
-        <td>${esc(e.expense)}</td>
       </tr>`).join('\n');
 
   const itemList = {
@@ -473,8 +538,8 @@ ${header()}
   <div class="crumbs"><a href="${SITE}/">Home</a> &rsaquo; All Growth ETFs</div>
 
   <h2 style="margin-top:16px">All ${all.length} growth ETFs we track</h2>
-  <p>Every growth ETF on the GrowthETFs.com list, sorted by return. Each ticker links to its own page with full
-  data and context. Rebuilt daily from our public data sheet.</p>
+  <p>Every growth ETF on the GrowthETFs.com list, ranked by total return. Each ticker links to its
+  own page with full data and context. Rebuilt daily from our public data sheet.</p>
 
   <div class="cta-row">
     <a class="cta cta-gold" href="${SITE}/">Ranked list with filters &amp; voting &rarr;</a>
@@ -483,7 +548,7 @@ ${header()}
 
   <table>
     <thead>
-      <tr><th>Ticker</th><th>Fund name</th><th>Return</th><th>AUM</th><th>Expense</th></tr>
+      <tr><th>#</th><th>Ticker</th><th>Fund name</th><th>Total return</th><th>AUM</th></tr>
     </thead>
     <tbody>
 ${rows}
@@ -500,14 +565,12 @@ ${FOOTER}
 // ─── SITEMAP ───────────────────────────────────────────────
 function sitemap(all) {
   const entries = [];
-
   for (const p of STATIC_PAGES) {
     entries.push(`  <url>\n    <loc>${escXml(p.loc)}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`);
   }
   for (const e of all) {
     entries.push(`  <url>\n    <loc>${escXml(SITE + '/etf/' + e.slug + '-growth-etf.html')}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`);
   }
-
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${entries.join('\n')}
@@ -523,42 +586,47 @@ async function main() {
   const rows = parseCSV(await res.text());
   if (rows.length < 2) throw new Error('CSV has no data rows');
 
-  const headers    = rows[0];
-  const tickerIdx  = getColIndex(headers, ['ticker', 'symbol']);
-  const nameIdx    = getColIndex(headers, ['etf name', 'fund name', 'name']);
-  const aumIdx     = getColIndex(headers, ['aum', 'assets']);
-  const expenseIdx = getColIndex(headers, ['expense', 'exp']);
-  const returnIdx  = getColIndex(headers, ['return', 'ytd', '1 year', 'performance', 'gain']);
+  const headers   = rows[0];
+  const tickerIdx = getColIndex(headers, ['ticker', 'symbol']);
+  const nameIdx   = getColIndex(headers, ['etf name', 'fund name', 'name']);
+  const aumIdx    = getColIndex(headers, ['aum', 'assets']);
+  const returnIdx = getColIndex(headers, ['return', 'ytd', 'performance', 'gain']);
+
+  const pick = i => (i >= 0 ? '"' + headers[i] + '"' : '*** NOT FOUND ***');
+  console.log('Column mapping:');
+  console.log('  Ticker ->', pick(tickerIdx));
+  console.log('  Name   ->', pick(nameIdx));
+  console.log('  AUM    ->', pick(aumIdx));
+  console.log('  Return ->', pick(returnIdx));
 
   if (tickerIdx < 0) throw new Error('No ticker/symbol column found. Headers: ' + headers.join(' | '));
-  console.log('Headers detected:', headers.join(' | '));
 
   const seen = new Set();
-  let all = [];
+  const all = [];
   for (let i = 1; i < rows.length; i++) {
     const c = rows[i];
-    const sym = (tickerIdx >= 0 ? c[tickerIdx] : '').trim().toUpperCase();
+    const sym = (tickerIdx >= 0 ? (c[tickerIdx] || '') : '').trim().toUpperCase();
     if (!sym || seen.has(sym)) continue;
     seen.add(sym);
 
     const returnVal = (returnIdx >= 0 && c[returnIdx]) ? c[returnIdx] : '\u2014';
     const aum       = (aumIdx >= 0 && c[aumIdx]) ? c[aumIdx] : '\u2014';
 
-    all.push({
+    const etf = {
       symbol: sym,
       slug: slug(sym),
       name: (nameIdx >= 0 ? c[nameIdx] : '') || 'Growth ETF',
       aum,
       aumNum: parseAUM(aum),
-      expense: (expenseIdx >= 0 && c[expenseIdx]) ? c[expenseIdx] : '\u2014',
       returnVal,
       returnNum: parseNum(returnVal)
-    });
+    };
+    etf.cls = classify(etf);
+    all.push(etf);
   }
 
   if (!all.length) throw new Error('No valid rows parsed');
 
-  // Sort by return desc; unranked entries fall to the bottom.
   all.sort((a, b) => {
     if (a.returnNum === null && b.returnNum === null) return a.symbol.localeCompare(b.symbol);
     if (a.returnNum === null) return 1;
@@ -579,9 +647,11 @@ async function main() {
   fs.writeFileSync(path.join(ROOT, 'all-growth-etfs.html'), hubPage(all), 'utf8');
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap(all), 'utf8');
 
+  const flagged = all.filter(e => e.cls.leveraged || e.cls.inverse).map(e => e.symbol);
   console.log(`Wrote ${written} ETF pages to /etf/`);
-  console.log(`Wrote all-growth-etfs.html`);
+  console.log('Wrote all-growth-etfs.html');
   console.log(`Wrote sitemap.xml with ${STATIC_PAGES.length + all.length} URLs`);
+  console.log(`Leveraged/inverse warning applied to ${flagged.length} funds: ${flagged.join(', ') || 'none'}`);
 }
 
 main().catch(err => {
