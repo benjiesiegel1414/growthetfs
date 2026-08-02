@@ -8,7 +8,7 @@
  *   /all-growth-etfs.html         hub page linking every generated page
  *   /sitemap.xml                  regenerated from static pages + generated pages
  *
- * Run:  node scripts/build-growth-pages.js
+ * Run:  node /build-growth-pages.js
  * Node 18+ (uses global fetch).
  */
 
