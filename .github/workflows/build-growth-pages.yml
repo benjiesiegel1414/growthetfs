@@ -21,7 +21,7 @@ jobs:
           node-version: '20'
 
       - name: Generate pages
-        run: node scripts/build-growth-pages.js
+        run: node build-growth-pages.js
 
       - name: Commit and push if changed
         run: |
