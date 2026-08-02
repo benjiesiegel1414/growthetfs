@@ -9,6 +9,10 @@
   <meta name="description" content="Free curated list of the best growth ETFs for 2026. Research and compare top growth-focused ETFs all in one place.">
   <meta name="keywords" content="growth ETFs, best growth ETFs 2026, top ETFs, stock market ETFs, growth investing">
 
+  <!-- CANONICAL — was missing entirely. Without this, growthetfs.com,
+       growthetfs.com/, and growthetfs.com/index.html can all index separately. -->
+  <link rel="canonical" href="https://growthetfs.com/">
+
   <!-- Google tag (gtag.js) - placed early for optimal tracking -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YP7X02DW6C"></script>
   <script>
@@ -18,9 +22,11 @@
     gtag('config', 'G-YP7X02DW6C');
   </script>
 
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9929351005136304" crossorigin="anonymous"></script>
+
   <meta property="og:title" content="Top Growth ETFs 2026 | GrowthETFs.com">
   <meta property="og:description" content="Free curated list of the best growth ETFs for 2026. Research and compare top growth-focused ETFs all in one place.">
-  <meta property="og:url" content="https://growthetfs.com">
+  <meta property="og:url" content="https://growthetfs.com/">
   <meta property="og:type" content="website">
 
   <!-- Favicons -->
@@ -86,6 +92,7 @@
 
     /* ─── RESET ──────────────────────────────────── */
     html, body { margin: 0; padding: 0; overflow-x: hidden; width: 100%; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Lato', Arial, sans-serif;
       background: var(--bg);
@@ -103,10 +110,10 @@
       text-align: center;
       width: 100%;
       box-shadow: 0 3px 14px rgba(0,0,0,0.4);
-      cursor: pointer;
       border-bottom: 3px solid var(--gold);
       box-sizing: border-box;
     }
+    .logo-link { text-decoration: none; display: block; }
     .logo {
       font-family: 'Merriweather', Georgia, serif;
       font-size: clamp(24px, 6vw, 42px);
@@ -124,6 +131,26 @@
       text-transform: uppercase;
       margin-top: 5px;
     }
+    .header-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .header-link {
+      background: rgba(201,169,78,0.16);
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 13.5px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .header-link:hover { background: var(--gold); color: var(--brand); }
 
     /* ─── HERO ───────────────────────────────────── */
     .hero {
@@ -208,6 +235,33 @@
       margin: 12px auto 22px;
       border-radius: 2px;
     }
+
+    /* ─── BROWSE ROW (crawlable internal links) ──── */
+    .browse-row {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 8px 0 20px;
+    }
+    .browse-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 22px;
+      background: #fff;
+      border: 2px solid var(--brand);
+      color: var(--brand);
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.92em;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .browse-link:hover { background: var(--brand); color: var(--gold2); }
+    .browse-link.primary { background: var(--gold); border-color: var(--gold); color: var(--brand); }
+    .browse-link.primary:hover { background: var(--gold2); color: var(--brand); }
 
     /* ─── FILTERS & SPECIAL VIEWS ────────────────── */
     #filters {
@@ -360,6 +414,8 @@
       font-family: 'Merriweather', serif;
       white-space: nowrap;
     }
+    .col-ticker a { color: var(--brand); text-decoration: none; }
+    .col-ticker a:hover { color: var(--gold); text-decoration: underline; }
     .col-name {
       text-align: center !important;
       font-weight: 400;
@@ -420,7 +476,7 @@
       margin: 0 auto 14px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    
+
 
     /* ─── INFO CARDS ─────────────────────────────── */
     .cards-row {
@@ -537,18 +593,50 @@
     .site-pill:hover{background:var(--brand);color:var(--gold2);}
     .site-pill.current{background:var(--brand);color:var(--gold2);cursor:default;}
     @media(min-width:1150px){.site-network-track{justify-content:center;}}
+
+    /* ─── INFO CARD PULSE ────────────────────────── */
+    @keyframes subtlePulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        border-color: rgba(201,169,78,0.22);
+      }
+      50% {
+        transform: scale(1.02);
+        box-shadow: 0 8px 24px rgba(201,169,78,0.12);
+        border-color: rgba(201,169,78,0.4);
+      }
+    }
+    .info-card-link:hover {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+      border-color: var(--gold);
+      animation: none;
+    }
+    .info-card-link h3 { transition: color 0.3s; }
+    .info-card-link:hover h3 { color: white; }
+    .info-card-icon { transition: transform 0.4s, filter 0.4s; }
+    .info-card-link:hover .info-card-icon {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 12px rgba(201,169,78,0.7));
+    }
   </style>
 </head>
-<body>
+<body id="top">
 
   <!-- HEADER -->
-  <header onclick="location.reload()">
-    <div class="logo">Growth<span>ETFs</span>.com 📈</div>
-    <div class="logo-sub">The Top Growth ETFs &mdash; All In One Place</div><br>
-     <a href="https://growthetfs.com/growth-etfs-watchlist-builder" class="watchlist-btn">
-    📋 Watchlist Builder
-  </a>
-</header>
+  <!-- FIXED: was a div with onclick="location.reload()" and a duplicate closing tag.
+       Reloading fired a real GA4 pageview every time anyone tapped the logo. -->
+  <header>
+    <a href="https://growthetfs.com/" class="logo-link">
+      <div class="logo">Growth<span>ETFs</span>.com 📈</div>
+      <div class="logo-sub">The Top Growth ETFs &mdash; All In One Place</div>
+    </a>
+    <div class="header-links">
+      <a href="https://growthetfs.com/all-growth-etfs.html" class="header-link">📊 All Growth ETFs</a>
+      <a href="https://growthetfs.com/swipe.html" class="header-link">📈 Swipe ETFs</a>
+      <a href="https://growthetfs.com/growth-etfs-watchlist-builder.html" class="header-link">📋 Watchlist Builder</a>
+    </div>
   </header>
 
   <div class="site-network-bar">
@@ -601,19 +689,29 @@
       <p>Click any column header to sort &nbsp;·&nbsp; Search by ticker or name</p>
       <div class="gold-rule"></div>
     </div>
-<!-- TOP BANNER – inline style, same as your working site -->
+
+    <!-- CRAWLABLE INTERNAL LINKS.
+         The table below is built by JS, so its links are invisible to a
+         first-pass crawl. These are in the raw HTML. -->
+    <div class="browse-row">
+      <a href="https://growthetfs.com/all-growth-etfs.html" class="browse-link primary">📊 Browse all growth ETFs</a>
+      <a href="https://growthetfs.com/swipe.html" class="browse-link">📈 Swipe through the list</a>
+      <a href="https://growthetfs.com/growth-etfs-watchlist-builder.html" class="browse-link">📋 Build a watchlist</a>
+    </div>
+
 <!-- SPONSORED BANNER -->
 <div style="text-align: center; margin: 20px auto 30px; max-width: 970px; width: 100%;">
-  <a href="https://www.vistashares.com/etf/pow/" target="_blank" style="text-decoration: none;">
-    <img src="https://i.postimg.cc/yYp4Svxt/unnamed-(2).jpg" 
-         alt="Sponsored by VistaShares - POW ETF" 
+  <a href="https://www.vistashares.com/etf/pow/" target="_blank" rel="sponsored noopener" style="text-decoration: none;">
+    <img src="https://i.postimg.cc/yYp4Svxt/unnamed-(2).jpg"
+         alt="Sponsored by VistaShares - POW ETF"
          style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.12); display:block; margin:0 auto;">
   </a>
-  
+
   <div style="margin-top:10px; font-size:0.85rem; color:#555; font-weight:600;">
     Sponsored By: VistaShares
   </div>
 </div>
+
     <!-- FILTERS -->
     <div id="filters">
       <button id="resetFilters" onclick="resetAll()">Reset All</button>
@@ -652,19 +750,20 @@
         <tbody id="tableBody"></tbody>
       </table>
     </div>
-<!-- BOTTOM BANNER – inline style, same as your working site -->
+
 <!-- SPONSORED BANNER -->
 <div style="text-align: center; margin: 20px auto 30px; max-width: 970px; width: 100%;">
-  <a href="https://www.vistashares.com/etf/ais/" target="_blank" style="text-decoration: none;">
-    <img src="https://i.postimg.cc/ncPgLrwb/unnamed-(1).jpg" 
-         alt="Sponsored by VistaShares - AIS ETF" 
+  <a href="https://www.vistashares.com/etf/ais/" target="_blank" rel="sponsored noopener" style="text-decoration: none;">
+    <img src="https://i.postimg.cc/ncPgLrwb/unnamed-(1).jpg"
+         alt="Sponsored by VistaShares - AIS ETF"
          style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.12); display:block; margin:0 auto;">
   </a>
-  
+
   <div style="margin-top:10px; font-size:0.85rem; color:#555; font-weight:600;">
     Sponsored By: VistaShares
   </div>
 </div>
+
 <!-- INFO CARDS -->
 <div class="cards-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; width: 100%; margin: 2rem 0 1.5rem; padding: 0 1rem;">
   <a href="https://topdividendetfs.com" target="_blank" class="info-card info-card-link" style="
@@ -740,47 +839,6 @@
   </a>
 </div>
 
-<!-- Add this to your existing <style> block (at the bottom) -->
-<style>
-  @keyframes subtlePulse {
-    0%, 100% {
-      transform: scale(1);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      border-color: rgba(201,169,78,0.22);
-    }
-    50% {
-      transform: scale(1.02);
-      box-shadow: 0 8px 24px rgba(201,169,78,0.12);
-      border-color: rgba(201,169,78,0.4);
-    }
-  }
-
-  .info-card-link:hover {
-    transform: translateY(-6px) scale(1.04);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
-    border-color: var(--gold);
-    animation: none; /* Stop pulse on hover for clarity */
-  }
-
-  .info-card-link h3 {
-    transition: color 0.3s;
-  }
-
-  .info-card-link:hover h3 {
-    color: white;
-  }
-
-  .info-card-icon {
-    transition: transform 0.4s, filter 0.4s;
-  }
-
-  .info-card-link:hover .info-card-icon {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 12px rgba(201,169,78,0.7));
-  }
-</style>
-
-
     <!-- DISCLAIMER -->
     <p class="disclaimer">
       <strong>Disclaimer:</strong> GrowthETFs.com is for informational and educational purposes only. Nothing on this site constitutes investment advice or a recommendation to buy or sell any security. ETF data may be inaccurate or outdated. Investing carries risk, including loss of principal. We are not financial advisors. Always consult a licensed financial advisor before making investment decisions. <strong>This site is for entertainment purposes ONLY.</strong>
@@ -800,28 +858,33 @@
       </a>
     </div>
 
-    <button class="back-to-top" onclick="location.reload()">↑ Back to Top</button>
+    <!-- FIXED: was onclick="location.reload()" — a full page load just to scroll up. -->
+    <a class="back-to-top" href="#top">↑ Back to Top</a>
 
    <!-- FOOTER -->
 <footer class="footer">
+  <p>
+    <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &nbsp;|&nbsp;
+    <a href="https://growthetfs.com/swipe.html">Swipe Tool</a> &nbsp;|&nbsp;
+    <a href="https://growthetfs.com/growth-etfs-watchlist-builder.html">Watchlist Builder</a>
+  </p>
   <p>
     <a href="terms.html">Terms of Use</a> &nbsp;|&nbsp;
     <a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp;
     Contact: <a href="mailto:Business@TopDividendETFs.com">Business@TopDividendETFs.com</a>
   </p>
 
-  <!-- NEW ADVERTISE BUTTON -->
   <p style="margin: 1.2rem 0;">
-    <a href="advertise.html" 
-       style="display: inline-block; 
-              padding: 0.9rem 1.8rem; 
-              background: #c9a94e; 
-              color: #002D22; 
-              font-weight: 900; 
-              font-size: 1.1rem; 
-              border-radius: 8px; 
-              text-decoration: none; 
-              box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+    <a href="advertise.html"
+       style="display: inline-block;
+              padding: 0.9rem 1.8rem;
+              background: #c9a94e;
+              color: #002D22;
+              font-weight: 900;
+              font-size: 1.1rem;
+              border-radius: 8px;
+              text-decoration: none;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.2);
               transition: all 0.3s ease;">
       Advertise With Us 📢
     </a>
@@ -841,6 +904,19 @@
     let allRows = [], headers = [], sortCol = -1, sortDir = 1;
     let countdownTimer = null;
     let activeView = ''; // '', 'biggest-aum', 'biggest-returns', 'super-growth', 'top-voted'
+
+    /* Matches the slug used by scripts/build-growth-pages.js */
+    function slugify(sym) {
+      return String(sym).trim().toUpperCase().replace(/[^A-Z0-9]/g, '').toLowerCase();
+    }
+    function etfUrl(sym) {
+      return 'https://growthetfs.com/etf/' + slugify(sym) + '-growth-etf.html';
+    }
+    function escAttr(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
 
     /* VOTE LIMIT */
     function getHourKey() {
@@ -966,11 +1042,12 @@
     function attachRowClickListener() {
       document.getElementById('tableBody').addEventListener('click', function(e) {
         if (e.target.closest('.vote-btn')) return;
+        if (e.target.closest('a')) return;   // let the ticker link handle itself
         const tr = e.target.closest('tr[data-symbol]');
         if (!tr) return;
         const sym = tr.getAttribute('data-symbol');
         if (!sym) return;
-        window.location.href = 'etf.html?symbol=' + encodeURIComponent(sym);
+        window.location.href = etfUrl(sym);
       });
     }
 
@@ -1098,25 +1175,27 @@
       }
 
       tbody.innerHTML = rows.map(row => {
+        const sym = tickerIdx >= 0 ? (row[tickerIdx] || '') : '';
+
         const cells = headers.map((h,i) => {
           if (isVoteCol(h)) return '';
           const val = (row[i] !== undefined) ? row[i] : '';
-          if (isTickerCol(h))  return `<td class="col-ticker">${val}</td>`;
+          // Real anchor so the ticker is a crawlable link, not just a JS row handler.
+          if (isTickerCol(h))  return `<td class="col-ticker"><a href="${etfUrl(val)}">${escAttr(val)}</a></td>`;
           if (isNameCol(h))    return `<td class="col-name">${val}</td>`;
           if (isReturnCol(h))  return `<td class="num-cell ${colorClass(val,h)}">${val||'—'}</td>`;
           if (isNumericCol(h)) return `<td class="num-cell">${val||'—'}</td>`;
           return `<td>${val||'—'}</td>`;
         });
 
-        const sym = tickerIdx >= 0 ? (row[tickerIdx] || '') : '';
-        const gv  = globalVotes[sym] || 0;
+        const gv = globalVotes[sym] || 0;
 
         cells.push(`<td>
-          <button class="vote-btn" data-symbol="${sym}" title="Vote for ${sym}">🗳️</button>
-          <span class="vote-count" data-symbol="${sym}" data-global="${gv}">${gv}</span>
+          <button class="vote-btn" data-symbol="${escAttr(sym)}" title="Vote for ${escAttr(sym)}">🗳️</button>
+          <span class="vote-count" data-symbol="${escAttr(sym)}" data-global="${gv}">${gv}</span>
         </td>`);
 
-        return `<tr data-symbol="${sym}" title="View full scorecard for ${sym}">${cells.join('')}</tr>`;
+        return `<tr data-symbol="${escAttr(sym)}" title="View full page for ${escAttr(sym)}">${cells.join('')}</tr>`;
       }).join('');
 
       document.getElementById('rowCount').textContent =
@@ -1162,14 +1241,18 @@
       renderTable(filteredRows());
     }
 
+    /* FIXED: was location.reload() — a full page load just to clear a text box.
+       Now resets state in place. */
     function resetAll() {
       document.getElementById('searchInput').value = '';
       activeView = '';
+      sortCol = -1;
+      sortDir = 1;
       document.getElementById('btn-aum').classList.remove('active');
       document.getElementById('btn-returns').classList.remove('active');
       document.getElementById('btn-super').classList.remove('active');
       document.getElementById('btn-voted').classList.remove('active');
-      location.reload();
+      renderTable([...allRows]);
     }
 
     document.getElementById('searchInput').addEventListener('input', ()=>renderTable(filteredRows()));
