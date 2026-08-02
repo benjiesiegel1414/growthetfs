@@ -2,10 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://growthetfs.com/</loc>
-    <lastmod>2026-02-18</lastmod>  <!-- Update to today's date in YYYY-MM-DD -->
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-08-01</lastmod>
   </url>
-  <!-- Add more <url> blocks as you create pages, e.g. -->
-  <!-- <url><loc>https://growthetfs.com/etfs/vug.html</loc><lastmod>2026-02-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url> -->
+  <url>
+    <loc>https://growthetfs.com/all-growth-etfs.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://growthetfs.com/swipe.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://growthetfs.com/growth-etfs-watchlist-builder.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://growthetfs.com/advertise.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://growthetfs.com/privacy-policy.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://growthetfs.com/terms.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
 </urlset>
