@@ -3,7 +3,9 @@
  * build-growth-pages.js
  * GrowthETFs.com programmatic page generator.
  *
- * Sheet columns: Symbol | Name | AUM | Total Returns
+ * Sheet columns: Symbol | Name | AUM | Total Returns | Votes | Price
+ * Price comes from GOOGLEFINANCE in the sheet (delayed up to ~20 min). It is baked in
+ * at build time as a fallback, then refreshed in the browser from the published CSV.
  * There is no expense ratio column, so expense ratio is not referenced anywhere.
  *
  * Outputs:
@@ -209,7 +211,8 @@ font-size:clamp(38px,11vw,60px);line-height:1;letter-spacing:-2px}
 .badges{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
 .badge{background:rgba(201,169,78,.2);border:1px solid var(--gold);color:var(--gold2);
 border-radius:999px;padding:4px 12px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px}
-.focus-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.price-note{font-size:11px;color:var(--muted);margin:-8px 0 14px;text-align:center}
 .focus-box{background:#fff;border:2px solid var(--brand);border-radius:14px;padding:16px 10px;text-align:center}
 .focus-box.growth{border-color:var(--green-pos);background:#f0fdf4}
 .focus-val{font-family:'Merriweather',Georgia,serif;font-weight:900;font-size:clamp(22px,6.4vw,32px);
@@ -433,6 +436,10 @@ ${header()}
   </section>
 
   <div class="focus-grid">
+    <div class="focus-box">
+      <div class="focus-val" data-live-price>${esc(etf.price)}</div>
+      <div class="focus-label">Price</div>
+    </div>
     <div class="focus-box growth">
       <div class="focus-val ${rc}">${esc(etf.returnVal)}</div>
       <div class="focus-label">Total Return</div>
@@ -442,12 +449,14 @@ ${header()}
       <div class="focus-label">AUM</div>
     </div>
   </div>
+  <p class="price-note" data-price-note>Price as of ${TODAY}. Quotes may be delayed up to 20 minutes.</p>
 ${(cls.leveraged || cls.inverse) ? '\n  ' + LEVERAGE_WARNING + '\n' : ''}
   <h2>${esc(etf.symbol)} at a glance</h2>
   <table>
     <tbody>
       <tr><th scope="row">Ticker</th><td><strong>${esc(etf.symbol)}</strong></td></tr>
       <tr><th scope="row">Fund name</th><td>${esc(etf.name)}</td></tr>
+      <tr><th scope="row">Price</th><td data-live-price>${esc(etf.price)}</td></tr>
       <tr><th scope="row">Total return</th><td class="${etf.returnNum === null ? '' : (etf.returnNum >= 0 ? 'pos' : 'neg')}">${esc(etf.returnVal)}</td></tr>
       <tr><th scope="row">Assets under management</th><td>${esc(etf.aum)}</td></tr>
       <tr><th scope="row">Rank on this list</th><td>${rank === null ? 'Unranked' : ordinal(rank) + ' of ' + total}</td></tr>
@@ -482,8 +491,54 @@ ${(cls.leveraged || cls.inverse) ? '\n  ' + LEVERAGE_WARNING + '\n' : ''}
   ${DISCLAIMER}
 </main>
 ${FOOTER}
+${livePriceScript(etf.symbol)}
 </body>
 </html>`;
+}
+
+// ─── LIVE PRICE (client-side refresh from the published CSV) ─
+function livePriceScript(symbol) {
+  return `<script>
+(function () {
+  var SYM = ${JSON.stringify(symbol)};
+  var URL = ${JSON.stringify(CSV_URL)};
+  function parseLine(line) {
+    var out = [], cur = '', q = false;
+    for (var i = 0; i < line.length; i++) {
+      var ch = line[i];
+      if (ch === '"') { if (q && line[i + 1] === '"') { cur += '"'; i++; } else { q = !q; } continue; }
+      if (ch === ',' && !q) { out.push(cur.trim()); cur = ''; continue; }
+      cur += ch;
+    }
+    out.push(cur.trim());
+    return out;
+  }
+  function load() {
+    fetch(URL + '&t=' + Date.now())
+      .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
+      .then(function (text) {
+        var lines = text.split(String.fromCharCode(13)).join('').trim().split(String.fromCharCode(10));
+        var head = parseLine(lines[0]).map(function (h) { return h.toLowerCase(); });
+        var si = head.findIndex(function (h) { return h === 'symbol' || h === 'ticker'; });
+        var pi = head.findIndex(function (h) { return h.indexOf('price') !== -1; });
+        if (si < 0 || pi < 0) return;
+        for (var i = 1; i < lines.length; i++) {
+          var c = parseLine(lines[i]);
+          if ((c[si] || '').toUpperCase() !== SYM) continue;
+          var p = c[pi];
+          if (!p || !/[0-9]/.test(p) || parseFloat(p.replace(/[^0-9.]/g, '')) === 0) return;
+          document.querySelectorAll('[data-live-price]').forEach(function (el) { el.textContent = p; });
+          var note = document.querySelector('[data-price-note]');
+          if (note) note.textContent = 'Price updated ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '. Quotes may be delayed up to 20 minutes.';
+          return;
+        }
+      })
+      .catch(function () { /* keep the baked-in price */ });
+  }
+  load();
+  setInterval(load, 5 * 60 * 1000);
+})();
+</script>`;
 }
 
 // ─── HUB PAGE ──────────────────────────────────────────────
@@ -498,6 +553,7 @@ function hubPage(all) {
         <td>${esc(e.name)}</td>
         <td class="${e.returnNum === null ? '' : (e.returnNum >= 0 ? 'pos' : 'neg')}">${esc(e.returnVal)}</td>
         <td>${esc(e.aum)}</td>
+        <td>${esc(e.price)}</td>
       </tr>`).join('\n');
 
   const itemList = {
@@ -548,7 +604,7 @@ ${header()}
 
   <table>
     <thead>
-      <tr><th>#</th><th>Ticker</th><th>Fund name</th><th>Total return</th><th>AUM</th></tr>
+      <tr><th>#</th><th>Ticker</th><th>Fund name</th><th>Total return</th><th>AUM</th><th>Price</th></tr>
     </thead>
     <tbody>
 ${rows}
@@ -591,6 +647,7 @@ async function main() {
   const nameIdx   = getColIndex(headers, ['etf name', 'fund name', 'name']);
   const aumIdx    = getColIndex(headers, ['aum', 'assets']);
   const returnIdx = getColIndex(headers, ['return', 'ytd', 'performance', 'gain']);
+  const priceIdx  = getColIndex(headers, ['price']);
 
   const pick = i => (i >= 0 ? '"' + headers[i] + '"' : '*** NOT FOUND ***');
   console.log('Column mapping:');
@@ -598,6 +655,7 @@ async function main() {
   console.log('  Name   ->', pick(nameIdx));
   console.log('  AUM    ->', pick(aumIdx));
   console.log('  Return ->', pick(returnIdx));
+  console.log('  Price  ->', pick(priceIdx));
 
   if (tickerIdx < 0) throw new Error('No ticker/symbol column found. Headers: ' + headers.join(' | '));
 
@@ -611,6 +669,8 @@ async function main() {
 
     const returnVal = (returnIdx >= 0 && c[returnIdx]) ? c[returnIdx] : '\u2014';
     const aum       = (aumIdx >= 0 && c[aumIdx]) ? c[aumIdx] : '\u2014';
+    const priceRaw  = (priceIdx >= 0 && c[priceIdx]) ? c[priceIdx] : '';
+    const price     = (/[0-9]/.test(priceRaw) && parseNum(priceRaw)) ? priceRaw : '\u2014';
 
     const etf = {
       symbol: sym,
@@ -618,6 +678,7 @@ async function main() {
       name: (nameIdx >= 0 ? c[nameIdx] : '') || 'Growth ETF',
       aum,
       aumNum: parseAUM(aum),
+      price,
       returnVal,
       returnNum: parseNum(returnVal)
     };
