@@ -293,6 +293,8 @@ investment decisions. <strong>This site is for entertainment purposes ONLY.</str
 
 // ─── PER-ETF PAGE ──────────────────────────────────────────
 function etfPage(etf, all) {
+  const ogFile = String(etf.symbol).toLowerCase() + '-etf-wide.png';
+  const ogImg = fs.existsSync(path.join(__dirname, 'etf-images', ogFile)) ? `${SITE}/etf-images/${ogFile}` : OG_IMAGE;
   const url   = `${SITE}/etf/${etf.slug}-growth-etf.html`;
   const rank  = etf.rank;
   const total = all.length;
@@ -415,8 +417,9 @@ function etfPage(etf, all) {
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:type" content="article">
-<meta property="og:image" content="${OG_IMAGE}">
+<meta property="og:image" content="${ogImg}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${ogImg}">
 <meta name="twitter:site" content="@TopDividendETFs">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
