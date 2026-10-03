@@ -3,6 +3,12 @@ name: Build GrowthETFs pages
 on:
   schedule:
     - cron: '0 11 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-etf-images.mjs'
+      - 'build-growth-pages.js'
+      - '.github/workflows/build-growth-pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -20,6 +26,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Build evergreen ETF ticker images
+        run: |
+          npm i --no-save --no-package-lock --no-audit --no-fund satori@0.35.0 @resvg/resvg-js@2.6.2 @fontsource/lato@5.3.0 @fontsource/merriweather@5.3.0
+          node scripts/build-etf-images.mjs
+          rm -rf node_modules
+
       - name: Generate pages
         run: node build-growth-pages.js
 
@@ -27,7 +39,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add etf all-growth-etfs.html sitemap.xml
+          git add etf all-growth-etfs.html sitemap.xml etf-images
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
