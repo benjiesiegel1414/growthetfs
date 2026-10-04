@@ -11,6 +11,11 @@
   var SUB = 'Growth + income potential, 5 to 10% yields, no price decay. Sent straight to your inbox.';
   var BULLETS = ['7 ETFs that passed our no-price-decay filter', 'Yields in the 5 to 10% range, with real growth exposure', 'A short, plain-English breakdown of each one'];
 
+  function tint(hex, al) {
+    var h = hex.replace('#', ''); if (h.length === 3) h = h.replace(/(.)/g, '$1$1');
+    var n = parseInt(h, 16); return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + al + ')';
+  }
+
   function css(c, a) {
     return '' +
       '.etfsu{box-sizing:border-box;font-family:inherit;color:#1f2b27;margin:22px auto;max-width:900px;width:100%}' +
@@ -25,8 +30,8 @@
       '.etfsu .msg{font-size:15px;font-weight:700;color:' + c + ';padding:6px 0}' +
       '.etfsu .err{font-size:13px;color:#b3261e;margin-top:6px}' +
       /* subtle strip */
-      '.etfsu.subtle{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 18px;border:1px solid #dfe6e3;border-radius:10px;background:#fafcfb}' +
-      '.etfsu.subtle .txt{flex:1 1 260px;font-size:15px;line-height:1.4}.etfsu.subtle .txt b{color:' + c + '}' +
+      '.etfsu.subtle{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 20px;border:2px solid ' + a + ';border-left:6px solid ' + c + ';border-radius:10px;background:' + tint(a, .12) + ';box-shadow:0 3px 12px rgba(0,0,0,.07)}' +
+      '.etfsu.subtle .txt{flex:1 1 260px;font-size:16px;line-height:1.4}.etfsu.subtle .txt b{color:' + c + '}' +
       '.etfsu.subtle .frm{flex:1 1 320px}' +
       /* featured card */
       '.etfsu.featured{border-radius:12px;overflow:hidden;border:1px solid #dfe6e3;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05)}' +
