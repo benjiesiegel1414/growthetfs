@@ -30,6 +30,7 @@ const ETF_DIR  = path.join(ROOT, 'etf');
 const GA_ID    = 'G-YP7X02DW6C';
 const ADSENSE  = 'ca-pub-9929351005136304';
 const OG_IMAGE = SITE + '/growth1.png';
+const SIGNUP = '<div class="etf-signup" data-variant="featured" data-color="#002D22" data-accent="#c9a94e" data-source="growthetfs"></div>\n<script src="/email-signup.js" defer></script>';
 
 const STATIC_PAGES = [
   { loc: SITE + '/' },
@@ -453,6 +454,8 @@ ${header()}
     </div>
   </div>
   <p class="price-note" data-price-note>Price as of ${TODAY}. Quotes may be delayed up to 20 minutes.</p>
+
+  ${SIGNUP}
 ${(cls.leveraged || cls.inverse) ? '\n  ' + LEVERAGE_WARNING + '\n' : ''}
   <h2>${esc(etf.symbol)} at a glance</h2>
   <table>
@@ -604,6 +607,8 @@ ${header()}
     <a class="cta cta-gold" href="${SITE}/">Ranked list with filters &amp; voting &rarr;</a>
     <a class="cta cta-outline" href="${SITE}/swipe.html">\u{1F4C8} Swipe growth ETFs</a>
   </div>
+
+  ${SIGNUP}
 
   <table>
     <thead>
