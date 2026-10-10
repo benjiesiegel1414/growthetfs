@@ -183,9 +183,9 @@ const imageObj = e => ({
   '@type': 'ImageObject',
   contentUrl: `${SITE}/etf-images/${e.png}`,
   url: `${SITE}/etf-images/${e.png}`,
-  name: `${e.sym} ETF ticker image`,
+  name: `${e.sym} ETF logo and ticker symbol image`,
   caption: `${e.sym}: ${e.name}`,
-  description: `${e.sym} ticker symbol image for the ${e.name}.`,
+  description: `${e.sym} ETF logo and ticker symbol image for the ${e.name}.`,
   width: 600, height: 600, encodingFormat: 'image/png',
   creditText: 'GrowthETFs.com',
   creator: { '@type': 'Organization', name: 'GrowthETFs.com', url: SITE },
@@ -198,9 +198,9 @@ for (let i = 0; i < ETFS.length; i++) {
   const e = ETFS[i], prev = ETFS[(i - 1 + ETFS.length) % ETFS.length], next = ETFS[(i + 1) % ETFS.length];
   const body = `
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/etf-images/">Growth ETF Ticker Images</a><span>›</span>${e.sym}</nav>
-<h1>${e.sym} ETF Ticker Image</h1>
-<p class="lead">Ticker symbol image for the <strong>${esc(e.name)}</strong> (${e.sym}). Clean, evergreen and free to use.</p>
-<img class="hero-img" src="/etf-images/${e.png}" alt="${e.sym} ETF ticker symbol, ${esc(e.name)}" width="600" height="600">
+<h1>${e.sym} ETF Logo &amp; Ticker Symbol Image</h1>
+<p class="lead">Logo-style ticker symbol image for the <strong>${esc(e.name)}</strong> (${e.sym}). Clean, evergreen and free to use. Need a ${e.sym} ETF logo for a post, article or video? Download it below.</p>
+<img class="hero-img" src="/etf-images/${e.png}" alt="${e.sym} ETF logo and ticker symbol, ${esc(e.name)}" width="600" height="600">
 <div class="btns">
   <a class="btn" href="/etf-images/${e.png}" download>Download square (600×600)</a>
   <a class="btn alt" href="/etf-images/${e.wide}" download>Download wide (1200×630)</a>
@@ -212,10 +212,10 @@ for (let i = 0; i < ETFS.length; i++) {
 <h2>About ${e.sym}</h2>
 ${`<p>${e.sym} is the ticker symbol for the ${esc(e.name)}. See its total return, assets and how it compares on the <a href="${e.fundPage}">${e.sym} growth ETF page</a>.</p>`}
 <div class="pn"><a href="${prev.page}">← ${prev.sym}</a><a href="/etf-images/">All ticker images</a><a href="${next.page}">${next.sym} →</a></div>
-<p class="disc">Ticker symbols and fund names belong to their respective issuers. GrowthETFs.com is not affiliated with ${esc(e.name)}'s issuer. Images are provided for identification and educational use only and are not investment advice.</p>`;
+<p class="disc">These are ticker symbol graphics, not the issuers' official fund logos. Ticker symbols and fund names belong to their respective issuers. GrowthETFs.com is not affiliated with ${esc(e.name)}'s issuer. Images are provided for identification and educational use only and are not investment advice.</p>`;
   fs.writeFileSync(path.join(OUT, `${e.slug}.html`), shell({
-    title: `${e.sym} ETF Ticker Image (Free PNG) | ${e.name} | GrowthETFs`,
-    desc: `Free ${e.sym} ETF ticker symbol image for the ${e.name}. Download a 600×600 square or 1200×630 wide PNG for posts, articles and videos.`,
+    title: `${e.sym} ETF Logo & Ticker Image (Free PNG) | ${e.name} | GrowthETFs`,
+    desc: `Free ${e.sym} ETF logo and ticker symbol image for the ${e.name}. Download a 600×600 square or 1200×630 wide PNG for posts, articles and videos.`,
     canonical: `${SITE}${e.page}`,
     ogImage: `${SITE}/etf-images/${e.wide}`,
     schema: { '@context': 'https://schema.org', ...imageObj(e) },
@@ -225,20 +225,20 @@ ${`<p>${e.sym} is the ticker symbol for the ${esc(e.name)}. See its total return
 
 const galleryBody = `
 <nav class="breadcrumb"><a href="/">Home</a><span>›</span>Growth ETF Ticker Images</nav>
-<h1>Growth ETF Ticker Symbol Images</h1>
+<h1>Growth ETF Logos &amp; Ticker Symbol Images</h1>
 <p class="lead">Clean, evergreen ticker images for ${ETFS.length} growth ETFs. Tap any image for a download page with square and wide versions.</p>
 <div class="grid">
-${ETFS.map(e => `<a href="${e.page}"><img src="/etf-images/${e.png}" alt="${e.sym} ETF ticker symbol, ${esc(e.name)}" width="600" height="600" loading="lazy"><span>${e.sym}</span></a>`).join('\n')}
+${ETFS.map(e => `<a href="${e.page}"><img src="/etf-images/${e.png}" alt="${e.sym} ETF logo and ticker symbol, ${esc(e.name)}" width="600" height="600" loading="lazy"><span>${e.sym}</span></a>`).join('\n')}
 </div>
 <div class="box" id="license">
   <h2 style="margin-top:0">Free to use</h2>
   <p>${LICENSE_TXT}</p>
   <p>Every image has a permanent address: <code>${SITE}/etf-images/[ticker]-etf.png</code> for the square version and <code>${SITE}/etf-images/[ticker]-etf-wide.png</code> for the wide version, for example <code>${SITE}/etf-images/qqq-etf.png</code>.</p>
 </div>
-<p class="disc">Ticker symbols and fund names belong to their respective issuers. GrowthETFs.com is not affiliated with any issuer shown. Images are provided for identification and educational use only and are not investment advice.</p>`;
+<p class="disc">These are ticker symbol graphics, not the issuers' official fund logos. Ticker symbols and fund names belong to their respective issuers. GrowthETFs.com is not affiliated with any issuer shown. Images are provided for identification and educational use only and are not investment advice.</p>`;
 fs.writeFileSync(path.join(OUT, 'index.html'), shell({
-  title: `Growth ETF Ticker Symbol Images: ${ETFS.length} Free Growth ETF PNGs | GrowthETFs`,
-  desc: `Free, evergreen ticker symbol images for ${ETFS.length} growth ETFs including QQQ, ARKK, SCHG and more. Square and wide PNGs for posts, articles and videos.`,
+  title: `Growth ETF Logos & Ticker Symbol Images: ${ETFS.length} Free Growth ETF PNGs | GrowthETFs`,
+  desc: `Free, evergreen ETF logo and ticker symbol images for ${ETFS.length} growth ETFs including QQQ, ARKK, SCHG and more. Square and wide PNGs for posts, articles and videos.`,
   canonical: `${SITE}/etf-images/`,
   ogImage: `${SITE}/etf-images/${(ETFS.find(e => e.sym === 'QQQ') || ETFS[0]).wide}`,
   schema: { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Growth ETF Ticker Symbol Images', url: `${SITE}/etf-images/`, hasPart: ETFS.slice(0, 50).map(imageObj) },
