@@ -272,6 +272,7 @@ function header() {
     <a href="https://topspaceetfs.com/" class="site-pill">\u{1F680} TopSpaceETFs.com</a>
     <a href="https://etftotalreturns.com/" class="site-pill">\u{1F4CA} ETFTotalReturns.com</a>
     <a href="https://topdividendtools.com/" class="site-pill">\u{1F6E0}\uFE0F TopDividendTools.com</a>
+    <a href="https://topetfs.com/" class="site-pill">📰 TopETFs.com</a>
   </div>
 </div>`;
 }
