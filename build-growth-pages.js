@@ -39,7 +39,9 @@ const STATIC_PAGES = [
   { loc: SITE + '/growth-etfs-watchlist-builder.html' },
   { loc: SITE + '/advertise.html' },
   { loc: SITE + '/privacy-policy.html' },
-  { loc: SITE + '/terms.html' }
+  { loc: SITE + '/terms.html' },
+  { loc: SITE + '/blog.html' },
+  { loc: SITE + '/vug-vs-vong-vs-mgk-vs-voog.html' }
 ];
 
 const TODAY = new Date().toISOString().slice(0, 10);
