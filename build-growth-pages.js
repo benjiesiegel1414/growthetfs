@@ -41,7 +41,8 @@ const STATIC_PAGES = [
   { loc: SITE + '/privacy-policy.html' },
   { loc: SITE + '/terms.html' },
   { loc: SITE + '/blog.html' },
-  { loc: SITE + '/vug-vs-vong-vs-mgk-vs-voog.html' }
+  { loc: SITE + '/vug-vs-vong-vs-mgk-vs-voog.html' },
+  { loc: SITE + '/jgro-vs-fbcg-vs-cggr-vs-tchp-active-growth-etfs.html' }
 ];
 
 const TODAY = new Date().toISOString().slice(0, 10);
