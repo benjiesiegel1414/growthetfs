@@ -631,10 +631,36 @@ ${FOOTER}
 }
 
 // ─── SITEMAP ───────────────────────────────────────────────
+// Every page linked from blog.html (blog posts and the guides it lists), so new
+// posts land in the sitemap automatically without editing this file.
+function blogPostUrls(root) {
+  const p = path.join(root, 'blog.html');
+  if (!fs.existsSync(p)) return [];
+  const html = fs.readFileSync(p, 'utf8'), out = new Set();
+  for (const m of html.matchAll(/href=["']([^"'#?]+)["']/g)) {
+    let h = m[1];
+    if (/^https?:\/\//.test(h)) { if (!h.startsWith(SITE)) continue; h = h.slice(SITE.length); }
+    h = h.replace(/^\//, '');
+    if (!h || h === 'index.html' || h.startsWith('etf/')) continue;
+    const file = h.endsWith('.html') ? h : h + '.html';
+    const fp = path.join(root, file);
+    if (!fs.existsSync(fp)) continue;
+    if (/<meta[^>]+name=["']robots["'][^>]+noindex/i.test(fs.readFileSync(fp, 'utf8'))) continue;
+    out.add(SITE + '/' + h);
+  }
+  return [...out];
+}
+
 function sitemap(all) {
   const entries = [];
   for (const p of STATIC_PAGES) {
     entries.push(`  <url>\n    <loc>${escXml(p.loc)}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`);
+  }
+  const have = new Set(STATIC_PAGES.map(p => p.loc.replace(/\.html$/, '')));
+  for (const loc of blogPostUrls(ROOT)) {
+    if (have.has(loc.replace(/\.html$/, ''))) continue;
+    have.add(loc.replace(/\.html$/, ''));
+    entries.push(`  <url>\n    <loc>${escXml(loc)}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`);
   }
   for (const e of all) {
     entries.push(`  <url>\n    <loc>${escXml(SITE + '/etf/' + e.slug + '-growth-etf.html')}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`);
