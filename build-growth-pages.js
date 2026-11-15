@@ -406,8 +406,9 @@ function etfPage(etf, all) {
     ]
   };
 
-  const title = `${etf.symbol} \u2014 ${etf.name} | Total Return & AUM | GrowthETFs.com`;
-  const desc  = `${etf.symbol} (${etf.name}): total return ${etf.returnVal}, AUM ${etf.aum}${rank !== null ? `, ranked ${ordinal(rank)} of ${total}` : ''} on the GrowthETFs.com curated growth ETF list.`;
+  const title = `${etf.symbol} ETF: Total Return, AUM & Rank (${new Date().getFullYear()}) | ${etf.name}`;
+  const descStats = [etf.returnNum !== null ? `Total return ${etf.returnVal}` : '', etf.aumNum !== null ? `AUM ${etf.aum}` : '', rank !== null ? `ranked ${ordinal(rank)} of ${total} growth ETFs` : ''].filter(Boolean).join(', ');
+  const desc  = `${etf.symbol} ETF is the ${etf.name}.${descStats ? ` ${descStats.charAt(0).toUpperCase() + descStats.slice(1)} on GrowthETFs.com.` : ''} Free, updated daily.`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -554,7 +555,7 @@ function livePriceScript(symbol) {
 // ─── HUB PAGE ──────────────────────────────────────────────
 function hubPage(all) {
   const url = `${SITE}/all-growth-etfs.html`;
-  const title = `All Growth ETFs \u2014 Full List of ${all.length} Funds | GrowthETFs.com`;
+  const title = `All Growth ETFs: Full List of ${all.length} Funds | GrowthETFs.com`;
   const desc = `Complete list of all ${all.length} growth ETFs tracked on GrowthETFs.com, with total return and AUM for each. Free, updated daily.`;
 
   const rows = all.map(e => `      <tr>
