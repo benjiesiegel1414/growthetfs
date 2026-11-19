@@ -8,6 +8,7 @@ on:
     paths:
       - 'scripts/build-etf-images.mjs'
       - 'build-growth-pages.js'
+      - 'scripts/build-etf-insights.mjs'
       - '.github/workflows/build-growth-pages.yml'
   workflow_dispatch:
 
@@ -34,6 +35,9 @@ jobs:
 
       - name: Generate pages
         run: node build-growth-pages.js
+
+      - name: Upgrade ETF pages + breakdown pages (charts, returns vs SPY/QQQ, drawdowns, risk)
+        run: node scripts/build-etf-insights.mjs
 
       - name: Commit and push if changed
         run: |
