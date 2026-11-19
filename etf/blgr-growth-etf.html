@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BLGR ETF: Total Return, AUM &amp; Rank (2026) | Bluemonte Large Cap Growth ETF</title>
-<meta name="description" content="BLGR ETF is the Bluemonte Large Cap Growth ETF. Total return 19%, AUM $300.55M, ranked 94th of 105 growth ETFs on GrowthETFs.com. Free, updated daily.">
+<title>BLGR ETF: Performance, Total Return &amp; Risk vs SPY (2026) | Bluemonte Large Cap Growth ETF</title>
+<meta name="description" content="BLGR total return +18% since Jun 2025 (12.2%/yr), +4.9% over 1 year vs +10.7% for SPY. Charts, drawdowns, risk and rank among 105 growth ETFs.">
 <link rel="canonical" href="https://growthetfs.com/etf/blgr-growth-etf.html">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="BLGR ETF: Total Return, AUM &amp; Rank (2026) | Bluemonte Large Cap Growth ETF">
@@ -105,7 +105,80 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
 @media(max-width:520px){
   table{font-size:13px}
   th,td{padding:9px 8px}
-}</style>
+}
+.gx{--g:#002D22;--g2:#003d2e;--gold:#c9a94e;--pos:#16a34a;--neg:#dc2626;--line:#e3e8e1;--mut:#5f6b66;--bg:#f2f4f0}
+.gx *{box-sizing:border-box}
+.gx .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 16px}
+.gx h2{font-size:1.25rem;color:var(--g);margin:0 0 4px;font-weight:900}
+.gx .sub{color:var(--mut);font-size:.88rem;margin:0 0 14px}
+.gx .pos{color:var(--pos)!important}.gx .neg{color:var(--neg)!important}
+.gx-hero{background:linear-gradient(135deg,#002D22,#00513c 70%,#0b6b50);color:#fff;border-radius:18px;padding:22px 24px;margin:6px 0 16px;display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:center;box-shadow:0 10px 30px rgba(0,45,34,.2)}
+.gx-hero .tk{display:flex;align-items:center;gap:12px}
+.gx-hero .sym{font-size:2.4rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+.gx-hero .nm{font-size:1rem;opacity:.9;margin-top:4px}
+.gx-hero .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.gx-hero .chips span{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.12)}
+.gx-hero .chips span.gold{background:var(--gold);color:#1f1600}
+.gx-hero .px{text-align:right}
+.gx-hero .px b{font-size:2.3rem;font-weight:900;display:block;line-height:1}
+.gx-hero .px small{opacity:.8;font-size:.78rem}
+.gx-hero .px .chg{display:inline-block;margin-top:6px;font-weight:800;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.12)}
+.gx-hero .mini{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.gx-hero .mini a{display:block;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px;text-align:center;transition:.15s}
+.gx-hero .mini a:hover{background:rgba(255,255,255,.16)}
+.gx-hero .mini b{display:block;font-size:1.15rem;font-weight:900}
+.gx-hero .mini b.pos{color:#7ff0b0!important}.gx-hero .mini b.neg{color:#ffaaa5!important}
+.gx-hero .mini small{font-size:.68rem;opacity:.8;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.kn{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kn a{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:#222;background:#f7f9f6;border:1px solid var(--line);border-radius:12px;padding:14px;transition:.15s;position:relative}
+.kn a:hover{border-color:var(--g);background:#fff;box-shadow:0 6px 18px rgba(0,45,34,.08);transform:translateY(-2px)}
+.kn a::after{content:"→";position:absolute;right:12px;top:12px;color:var(--gold);font-weight:900}
+.kn small{font-size:.7rem;color:var(--mut);font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.kn b{font-size:1.35rem;font-weight:900;color:var(--g)}
+.kn span{font-size:.76rem;color:var(--mut)}
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.rng{display:flex;gap:4px;flex-wrap:wrap}
+.rng button,.cmp label{font-family:inherit;font-size:.78rem;font-weight:800;border:1px solid var(--line);background:#fff;color:#444;border-radius:8px;padding:6px 10px;cursor:pointer}
+.rng button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.cmp{display:flex;gap:6px;flex-wrap:wrap}
+.cmp label{display:inline-flex;align-items:center;gap:6px}
+.cmp i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.gchart{position:relative;width:100%;height:300px}
+.gchart svg{width:100%;height:100%;display:block}
+.gtip{position:absolute;pointer-events:none;background:#002D22;color:#fff;font-size:.76rem;padding:8px 10px;border-radius:8px;white-space:nowrap;display:none;box-shadow:0 6px 16px rgba(0,0,0,.2);z-index:3}
+.legend-v{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:.86rem}
+.legend-v b{font-weight:900}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem}
+.tbl th,.tbl td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+.tbl tr.me td{background:#f4faf6;font-weight:800}
+.tbl-wrap{overflow-x:auto}
+.cy{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.cy div{border-radius:10px;padding:10px 4px;text-align:center;font-weight:900;font-size:.9rem}
+.cy div small{display:block;font-size:.68rem;font-weight:700;opacity:.75}
+.r52{position:relative;height:12px;border-radius:999px;background:linear-gradient(90deg,#fecaca,#fde68a,#bbf7d0);margin:18px 0 8px}
+.r52 i{position:absolute;top:-6px;width:4px;height:24px;background:var(--g);border-radius:2px}
+.r52-l{display:flex;justify-content:space-between;font-size:.8rem;color:var(--mut)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.rel a{display:block;text-decoration:none;color:#222;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;transition:.15s}
+.rel a:hover{border-color:var(--g);transform:translateY(-2px)}
+.rel b{display:block;font-size:1rem;color:var(--g)}
+.rel small{font-size:.76rem;color:var(--mut)}
+.bd{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.bd a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--g);font-weight:800;font-size:.88rem;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.bd a:hover{border-color:var(--gold);background:#fffdf5}
+.faq details{border-bottom:1px solid var(--line);padding:12px 0}
+.faq summary{font-weight:800;cursor:pointer;color:var(--g)}
+.faq p{margin:8px 0 0;color:#444;line-height:1.6;font-size:.94rem}
+.note{font-size:.76rem;color:var(--mut);margin-top:10px;line-height:1.5}
+.bigstat{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bigstat b{font-size:2.6rem;font-weight:900;color:var(--g);line-height:1}
+.prose p{line-height:1.7;color:#333;margin:0 0 12px}
+@media(max-width:820px){.gx-hero{grid-template-columns:1fr}.gx-hero .px{text-align:left}.gx-hero .mini{grid-template-columns:repeat(3,1fr)}.kn{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.gchart{height:240px}}
+@media(max-width:480px){.gx-hero .mini{grid-template-columns:repeat(2,1fr)}.gx-hero .sym{font-size:2rem}.gx .card{padding:16px}}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -125,107 +198,42 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
     <a href="https://topetfs.com/" class="site-pill">📰 TopETFs.com</a>
   </div>
 </div>
-<main class="wrap">
-  <div class="crumbs"><a href="https://growthetfs.com/">Home</a> &rsaquo; <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; BLGR</div>
-
-  <section class="hero">
-    <div class="ticker">BLGR</div>
-    <h1>Bluemonte Large Cap Growth ETF</h1>
-    <div class="badges"><span class="badge">large-cap</span></div>
-  </section>
-
-  <div class="focus-grid">
-    <div class="focus-box">
-      <div class="focus-val" data-live-price>$29.88</div>
-      <div class="focus-label">Price</div>
-    </div>
-    <div class="focus-box growth">
-      <div class="focus-val ">19%</div>
-      <div class="focus-label">Total Return</div>
-    </div>
-    <div class="focus-box">
-      <div class="focus-val">$300.55M</div>
-      <div class="focus-label">AUM</div>
-    </div>
+<main class="wrap gx"><div class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; BLGR</div>
+<section class="gx-hero">
+  <div><div class="tk"><img src="/etf-images/blgr.png" alt="" width="54" height="54" style="border-radius:12px;background:#fff" onerror="this.remove()"><div><div class="sym">BLGR</div><div class="nm">Bluemonte Large Cap Growth ETF</div></div></div>
+  <div class="chips"><span class="gold">#94 of 105 by total return</span><span>$300.55M AUM</span><span>Since Jun 2025</span><span>0.29% yield</span></div></div>
+  <div class="px"><b data-live-price="BLGR">$29.55</b><span class="chg">-1.13% last session</span><br><small>Close as of Nov 19, 2026. Delayed quote.</small></div>
+  <div class="mini">
+    <a href="/etf/blgr/total-return"><b class="pos">+0.5%</b><small>YTD</small></a>
+    <a href="/etf/blgr/total-return"><b class="pos">+4.9%</b><small>1 Year</small></a>
+    <a href="/etf/blgr/total-return"><b class="">n/a</b><small>5Y / yr</small></a>
+    <a href="/etf/blgr/growth-of-10k"><b>$11,753</b><small>$10k at launch</small></a>
+    <a href="/etf/blgr/drawdown"><b class="neg">-14%</b><small>Max drawdown</small></a>
   </div>
-  <p class="price-note" data-price-note>Price as of 2026-11-18. Quotes may be delayed up to 20 minutes.</p>
+</section>
 
-  <div class="etf-signup" data-variant="featured" data-color="#002D22" data-accent="#c9a94e" data-source="growthetfs"></div>
-<script src="/email-signup.js" defer></script>
+<div class="card"><h2>BLGR key numbers</h2><p class="sub">Tap any box for the full breakdown.</p><div class="kn"><a href="/etf/blgr/total-return"><small>Total return (since launch)</small><b class="pos">+18%</b><span>12.2% a year since Jun 2025</span></a><a href="/etf/blgr/growth-of-10k"><small>Growth of $10,000</small><b class="">$11,753</b><span>invested at launch, Jun 2025</span></a><a href="/etf/blgr/vs-spy"><small>vs S&P 500 (1 yr)</small><b class="neg">-5.8%</b><span>SPY +10.7% over the same year</span></a><a href="/etf/blgr/vs-qqq"><small>vs Nasdaq-100 (1 yr)</small><b class="neg">-5.2%</b><span>QQQ +10.1% over the same year</span></a><a href="/etf/blgr/drawdown"><small>Max drawdown</small><b class="neg">-14.1%</b><span>Oct 2025 to Mar 2026</span></a><a href="/etf/blgr/risk"><small>Volatility (1 yr)</small><b class="">18.3%</b><span>beta 1.26 vs the S&P 500</span></a><a href="/etf/blgr/52-week-range"><small>52-week position</small><b class="">47%</b><span>$25.75 to $33.78</span></a><a href="/etf/blgr/rank"><small>Rank by total return</small><b class="">#94 of 105</b><span>#83 by fund size</span></a></div></div>
 
-  <h2>BLGR at a glance</h2>
-  <table>
-    <tbody>
-      <tr><th scope="row">Ticker</th><td><strong>BLGR</strong></td></tr>
-      <tr><th scope="row">Fund name</th><td>Bluemonte Large Cap Growth ETF</td></tr>
-      <tr><th scope="row">Price</th><td data-live-price>$29.88</td></tr>
-      <tr><th scope="row">Total return</th><td class="pos">19%</td></tr>
-      <tr><th scope="row">Assets under management</th><td>$300.55M</td></tr>
-      <tr><th scope="row">Rank on this list</th><td>94th of 105</td></tr>
-    </tbody>
-  </table>
+<div class="card" id="perf"><h2>BLGR performance vs SPY and QQQ</h2><p class="sub">Growth of every dollar since Jun 2025, dividends reinvested.</p><div class="chart-top"><div class="rng"><button type="button" data-r="1m">1M</button><button type="button" data-r="6m">6M</button><button type="button" data-r="ytd">YTD</button><button type="button" data-r="1y">1Y</button><button type="button" data-r="3y">3Y</button><button type="button" data-r="5y">5Y</button><button type="button" data-r="10y">10Y</button><button type="button" data-r="max" class="on">Max</button></div><div class="cmp"><label><input type="checkbox" value="SPY" checked><i style="background:#c9a94e"></i>SPY</label><label><input type="checkbox" value="QQQ" checked><i style="background:#7c8bff"></i>QQQ</label></div></div>
+<div class="gchart" data-range="max" data-names='[&quot;BLGR&quot;,&quot;SPY&quot;,&quot;QQQ&quot;]' data-series='[[[20263,25.1418,25.255],[20265,25.5838,25.699],[20272,26.0666,26.184],[20279,26.3315,26.45],[20286,26.441,26.56],[20293,26.7705,26.891],[20300,26.9985,27.12],[20307,27.0582,27.18],[20314,27.4295,27.553],[20321,26.9517,27.073],[20328,27.4265,27.55],[20335,27.2573,27.38],[20342,27.9243,28.05],[20349,28.2,28.327],[20356,28.3723,28.5],[20363,28.7163,28.798],[20370,28.9477,29.03],[20377,28.5089,28.59],[20384,28.5787,28.66],[20391,29.9149,30],[20398,29.3166,29.4],[20405,29.3266,29.41],[20412,28.3952,28.476],[20419,29.1461,29.229],[20426,29.2767,29.36],[20433,29.4562,29.54],[20440,28.4192,28.5],[20447,29.5789,29.663],[20454,29.192,29.273],[20461,29.4881,29.57],[20468,29.1491,29.23],[20475,28.7831,28.863],[20482,29.5061,29.588],[20489,28.3014,28.38],[20496,28.5607,28.64],[20503,28.1917,28.27],[20510,28.6505,28.73],[20517,28.2576,28.336],[20524,28.1519,28.23],[20531,27.4279,27.504],[20538,27.0848,27.16],[20545,26.9517,27],[20552,27.91,27.96],[20559,29.4912,29.544],[20566,30.1101,30.164],[20573,30.0062,30.06],[20580,31.1582,31.214],[20587,31.7202,31.777],[20594,31.6034,31.66],[20601,31.9637,32.021],[20608,32.2592,32.317],[20615,30.5393,30.594],[20622,31.244,31.3],[20629,30.7749,30.83],[20636,31.6333,31.66],[20643,31.5513,31.578],[20650,32.0609,32.088],[20657,31.4514,31.478],[20664,30.1545,30.18],[20671,32.6025,32.63],[20678,32.6634,32.691],[20685,32.2907,32.318],[20692,32.1428,32.17],[20699,32.1828,32.21],[20706,32.1698,32.197],[20713,31.8631,31.89],[20720,32.8822,32.91],[20727,32.88,32.88],[20734,33.706,33.706],[20741,32.762,32.762],[20748,32.69,32.69],[20755,32.5,32.5],[20762,31.635,31.635],[20769,31.24,31.24],[20776,29.887,29.887],[20777,29.55,29.55]],[[20256,592.846,602.68],[20258,587.692,597.44],[20265,598.979,607.12],[20272,612.131,620.45],[20279,615.692,624.06],[20286,615.85,624.22],[20293,625.706,634.21],[20300,625.953,634.46],[20307,624.295,632.78],[20314,636.243,644.89],[20321,629.554,638.11],[20328,637.959,646.63],[20335,635.108,643.74],[20342,643.465,652.21],[20349,650.341,659.18],[20356,654.044,661.1],[20363,661.315,668.45],[20370,665.926,673.11],[20377,658.07,665.17],[20384,660.672,667.8],[20391,680.053,687.39],[20398,670.348,677.58],[20405,676.086,683.38],[20412,655.557,662.63],[20419,672.425,679.68],[20426,676.591,683.89],[20433,680.231,687.57],[20440,664.234,671.4],[20447,685.029,690.38],[20454,676.635,681.92],[20461,684.236,689.58],[20468,685.01,690.36],[20475,680.088,685.4],[20482,690.03,695.42],[20489,680.872,686.19],[20496,686.597,691.96],[20503,680.971,686.29],[20510,687.778,693.15],[20517,679.82,685.13],[20524,671.088,676.33],[20531,656.304,661.43],[20538,653.509,656.82],[20545,651.937,655.24],[20552,672.603,676.01],[20559,696.412,699.94],[20566,707.625,711.21],[20573,707.993,711.58],[20580,730.131,733.83],[20587,738.569,742.31],[20594,737.514,741.25],[20601,746.677,750.46],[20608,750.438,754.24],[20615,721.774,725.43],[20622,737.225,740.96],[20629,731.424,733.24],[20636,743.913,745.76],[20643,743.554,745.4],[20650,752.94,754.81],[20657,745.559,747.41],[20664,727.653,729.46],[20671,767.883,769.79],[20678,770.576,772.49],[20685,767.155,769.06],[20692,764.182,766.08],[20699,763.265,765.16],[20706,760.512,762.4],[20713,752.182,754.05],[20720,767.81,767.81],[20727,762.63,762.63],[20734,777.22,777.22],[20741,769.6,769.6],[20748,773.09,773.09],[20755,772.31,772.31],[20762,766.81,766.81],[20769,759.81,759.81],[20776,730.2,730.2],[20777,723.115,723.115]],[[20256,530.58,534.29],[20258,525.316,528.99],[20265,538.005,541.16],[20272,547.589,550.8],[20279,553.008,556.25],[20286,554.042,557.29],[20293,560.523,563.81],[20300,564.709,568.02],[20307,564.013,567.32],[20314,576.957,580.34],[20321,562.601,565.9],[20328,570.147,573.49],[20335,566.747,570.07],[20342,577.315,580.7],[20349,586.561,590],[20356,593.312,596.1],[20363,600.429,603.25],[20370,608.581,611.44],[20377,599.404,602.22],[20384,602.658,605.49],[20391,632.797,635.77],[20398,620.365,623.28],[20405,618.175,621.08],[20412,597.065,599.87],[20419,611.397,614.27],[20426,620.604,623.52],[20433,624.675,627.61],[20440,597.602,600.41],[20447,621.812,623.93],[20454,612.225,614.31],[20461,621.902,624.02],[20468,617.447,619.55],[20475,614.188,616.28],[20482,631.071,633.22],[20489,603.694,605.75],[20496,611.029,613.11],[20503,603.734,605.79],[20510,614.587,616.68],[20517,608.677,610.75],[20524,605.627,607.69],[20531,592.881,594.9],[20538,586.564,587.82],[20545,583.061,584.31],[20552,604.794,606.09],[20559,636.038,637.4],[20566,653.71,655.11],[20573,660.156,661.57],[20580,694.283,695.77],[20587,713.182,714.71],[20594,711.626,713.15],[20601,727.891,729.45],[20608,742.619,744.21],[20615,692.207,693.69],[20622,720.966,722.51],[20629,709.88,710.62],[20636,724.415,725.17],[20643,710.699,711.44],[20650,716.993,717.74],[20657,704.616,705.35],[20664,661.041,661.73],[20671,716.553,717.3],[20678,722.947,723.7],[20685,715.335,716.08],[20692,710.63,711.37],[20699,708.502,709.24],[20706,715.564,716.31],[20713,703.986,704.72],[20720,741.21,741.21],[20727,739.77,739.77],[20734,757.73,757.73],[20741,728.95,728.95],[20748,725.2,725.2],[20755,725.61,725.61],[20762,691.95,691.95],[20769,690.38,690.38],[20776,659.51,659.51],[20777,653.25,653.25]]]'></div><div class="legend-v"></div>
+<p class="note">Total return with dividends reinvested, from daily closing prices. Hover or tap the chart for exact values.</p></div>
 
-  <h2>How BLGR compares</h2>
-  <p>BLGR currently sits 94th out of 105 funds on the GrowthETFs list when sorted by total return. That is below the median for the list. For reference, the strongest performer on the list right now is TQQQ at 25403%.</p>
-  <p>BLGR holds $300.55M in assets, mid-sized by the standards of this list.</p>
-  <p>Judging by its fund name, BLGR is a large-cap strategy.</p>
+<div class="card"><h2>Trailing returns</h2><p class="sub">Total return including dividends, as of Nov 19, 2026.</p><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Period</th><th>BLGR</th><th>SPY</th><th>QQQ</th></tr></thead><tbody><tr><td>1 month</td><td class="neg"><b>-9.0%</b></td><td class="neg">-5.7%</td><td class="neg">-9.1%</td></tr><tr><td>3 months</td><td class="neg"><b>-8.5%</b></td><td class="neg">-5.7%</td><td class="neg">-8.7%</td></tr><tr><td>6 months</td><td class="neg"><b>-6.5%</b></td><td class="neg">-2.0%</td><td class="neg">-8.2%</td></tr><tr><td>Year to date</td><td class="pos"><b>+0.5%</b></td><td class="pos">+6.1%</td><td class="pos">+5.8%</td></tr><tr><td>1 year</td><td class="pos"><b>+4.9%</b></td><td class="pos">+10.7%</td><td class="pos">+10.1%</td></tr><tr><td>3 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+18.5%</td><td class="pos">+19.8%</td></tr><tr><td>5 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+10.5%</td><td class="pos">+10.9%</td></tr><tr><td>10 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+14.5%</td><td class="pos">+19.5%</td></tr></tbody></table></div><p class="note"><a href="/etf/blgr/vs-spy">Full BLGR vs SPY breakdown →</a> &nbsp; <a href="/etf/blgr/vs-qqq">BLGR vs QQQ →</a></p></div>
 
-  <h3>Reading these numbers</h3>
-  <p>The return figure above is backward-looking. A fund near the top of this list has already made
-  its move, which tells you about the period behind it and nothing about the period ahead.
-  Concentrated growth funds in particular tend to post the largest gains and the largest drawdowns,
-  often within the same year. Read the return alongside fund size rather than on its own, and check
-  the issuer's own fund page for holdings, fees and the full prospectus before acting on anything here.</p>
+<div class="card"><h2>Calendar-year returns</h2><p class="sub">0 of 0 full years were positive. Best: n/a. Worst: n/a.</p><div class="cy"><div style="background:rgba(22,163,74,0.12631836249763456)" title="2026 (partial year)"><small>2026*</small>+0.5%</div><div style="background:rgba(22,163,74,0.3317775734686092)" title="2025 (partial year)"><small>2025*</small>+16.9%</div></div><p class="note">* Partial year (fund launch year or year to date).</p><p class="note"><a href="/etf/blgr/calendar-returns">Year-by-year vs SPY and QQQ →</a></p></div>
 
-  <div class="cta-row">
-    <a class="cta cta-gold" href="https://growthetfs.com/">See the full ranked list &rarr;</a>
-    <a class="cta cta-outline" href="https://growthetfs.com/swipe.html">📈 Swipe growth ETFs</a>
-  </div>
+<div class="two">
+<div class="card"><h2>Drawdowns</h2><p class="sub">How far BLGR fell from each high. Worst: -14.1% (Oct 2025 to Mar 2026). Today: -12.5% from its high.</p><svg viewBox="0 0 760 150" preserveAspectRatio="none" style="width:100%;height:150px;display:block;background:#fff"><path d="M0 0 L0.0 0.0 L3.0 0.0 L13.3 0.0 L23.7 0.0 L34.0 0.0 L44.4 0.0 L54.7 0.0 L65.1 0.0 L75.4 0.0 L85.8 19.6 L96.1 0.1 L106.5 7.1 L116.8 0.0 L127.2 0.0 L137.5 0.0 L147.9 0.0 L158.2 0.0 L168.6 17.1 L178.9 14.4 L189.3 0.0 L199.6 22.6 L210.0 22.2 L220.3 57.3 L230.7 29.0 L241.0 24.1 L251.4 17.3 L261.7 56.4 L272.1 12.7 L282.4 27.3 L292.8 16.1 L303.1 28.9 L313.5 42.7 L323.8 15.4 L334.2 60.8 L344.5 51.0 L354.9 65.0 L365.2 47.7 L375.6 62.5 L385.9 66.5 L396.3 93.8 L406.6 106.7 L417.0 111.7 L427.3 75.6 L437.7 16.0 L448.0 0.0 L458.4 3.9 L468.7 0.0 L479.1 0.0 L489.4 4.2 L499.8 0.0 L510.1 0.0 L520.5 60.1 L530.8 35.5 L541.2 51.9 L551.5 21.9 L561.9 24.7 L572.2 6.9 L582.6 28.2 L592.9 73.6 L603.3 0.0 L613.6 0.0 L624.0 12.9 L634.3 18.0 L644.7 16.6 L655.0 17.0 L665.4 27.6 L675.7 0.0 L686.1 0.1 L696.4 0.0 L706.8 31.6 L717.1 34.0 L727.5 40.3 L737.8 69.3 L748.2 82.5 L758.5 127.8 L760.0 139.0 L760 0 Z" fill="rgba(220,38,38,.18)" stroke="#dc2626" stroke-width="1.2"/></svg><p class="note"><a href="/etf/blgr/drawdown">Drawdown breakdown →</a></p></div>
+<div class="card"><h2>52-week range</h2><p class="sub">BLGR is 47% of the way from its 52-week low to its high.</p><div class="r52"><i style="left:calc(47.3% - 2px)"></i></div><div class="r52-l"><span>Low $25.75<br>Mar 30, 2026</span><span style="text-align:right">High $33.78<br>Oct 6, 2026</span></div>
+<div class="kn" style="grid-template-columns:1fr 1fr;margin-top:14px"><a href="/etf/blgr/risk"><small>Volatility 1Y / 3Y</small><b>18% / 17%</b><span>annualized</span></a><a href="/etf/blgr/dividends"><small>Dividend yield</small><b>0.29%</b><span>Quarterly payer</span></a></div></div>
+</div>
 
-  <h2>Similar growth ETFs</h2>
-  <div class="related">
-      <a href="https://growthetfs.com/etf/grny-growth-etf.html">
-      <div class="r-sym">GRNY</div>
-      <div class="r-ret">24%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/bkcg-growth-etf.html">
-      <div class="r-sym">BKCG</div>
-      <div class="r-ret">23%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/agrw-growth-etf.html">
-      <div class="r-sym">AGRW</div>
-      <div class="r-ret">22%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/gflw-growth-etf.html">
-      <div class="r-sym">GFLW</div>
-      <div class="r-ret">16%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/grin-growth-etf.html">
-      <div class="r-sym">GRIN</div>
-      <div class="r-ret">16%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/tmfg-growth-etf.html">
-      <div class="r-sym">TMFG</div>
-      <div class="r-ret">15%</div>
-    </a>
-  </div>
+<div class="card"><h2>Explore BLGR</h2><p class="sub">Every number on this page has its own deep dive.</p><div class="bd"><a href="/etf/blgr/total-return">📈 BLGR Total Return</a><a href="/etf/blgr/growth-of-10k">🌱 BLGR Growth of $10,000</a><a href="/etf/blgr/vs-spy">⚔️ BLGR vs S&P 500 (SPY)</a><a href="/etf/blgr/vs-qqq">⚔️ BLGR vs Nasdaq-100 (QQQ)</a><a href="/etf/blgr/calendar-returns">🗓️ BLGR Calendar-Year Returns</a><a href="/etf/blgr/drawdown">📉 BLGR Max Drawdown</a><a href="/etf/blgr/risk">🎢 BLGR Volatility & Beta</a><a href="/etf/blgr/52-week-range">📏 BLGR 52-Week Range</a><a href="/etf/blgr/dividends">💵 BLGR Dividends & Yield</a><a href="/etf/blgr/rank">🏆 BLGR Rank vs Growth ETFs</a></div></div>
 
-  <h2>BLGR FAQ</h2>
-  <p class="faq-q">What is BLGR?</p>
-  <p>BLGR is Bluemonte Large Cap Growth ETF. It is one of 105 growth-focused ETFs tracked on the GrowthETFs.com curated list.</p>
-  <p class="faq-q">How large is BLGR?</p>
-  <p>Our data lists assets under management for BLGR as $300.55M. Fund size moves daily with investor flows and market performance, so treat this as a snapshot rather than a fixed figure.</p>
-  <p class="faq-q">Where does BLGR rank against other growth ETFs?</p>
-  <p>BLGR ranks 94th of 105 on our list by total return, at 19%.</p>
-  <p class="faq-q">Is BLGR a good investment?</p>
-  <p>We don&#39;t answer that. GrowthETFs.com is an informational and entertainment site and publishes no buy or sell signals. Whether any fund suits you depends on your own goals, time horizon and risk tolerance. Speak with a licensed financial advisor.</p>
+<div class="card"><h2>Similar-size growth ETFs</h2><p class="sub">Compare BLGR with funds of a similar size on our list.</p><div class="rel"><a href="/etf/numg-growth-etf.html"><b>NUMG</b><small>$303.05M AUM</small></a><a href="/etf/iwlg-growth-etf.html"><b>IWLG</b><small>$293.88M AUM</small></a><a href="/etf/rfg-growth-etf.html"><b>RFG</b><small>$307.85M AUM</small></a><a href="/etf/lrgg-growth-etf.html"><b>LRGG</b><small>$281.15M AUM</small></a><a href="/etf/cark-growth-etf.html"><b>CARK</b><small>$320.58M AUM</small></a><a href="/etf/tmfg-growth-etf.html"><b>TMFG</b><small>$332.56M AUM</small></a><a href="/etf/grin-growth-etf.html"><b>GRIN</b><small>$337.71M AUM</small></a><a href="/etf/lrge-growth-etf.html"><b>LRGE</b><small>$354.07M AUM</small></a></div></div>
 
-  <p class="fine"><strong>Disclaimer:</strong> GrowthETFs.com is for informational and educational
-purposes only. Nothing on this page constitutes investment advice or a recommendation to buy or sell any security.
-ETF data may be inaccurate or outdated and is sourced from public information. Investing carries risk, including
-loss of principal. We are not financial advisors. Always consult a licensed financial advisor before making
-investment decisions. <strong>This site is for entertainment purposes ONLY.</strong></p>
-</main>
+<div class="card faq"><h2>BLGR FAQ</h2><details><summary>What is the BLGR ETF?</summary><p>BLGR is the Bluemonte Large Cap Growth ETF. It is one of 105 growth ETFs tracked on GrowthETFs.com, with about $300.55M in assets.</p></details><details><summary>What is BLGR's total return?</summary><p>Since its first trading day in Jun 2025, BLGR has returned +18% with dividends reinvested, about 12.2% a year. Over the last 12 months it returned +4.9%.</p></details><details><summary>Has BLGR beaten the S&P 500?</summary><p>Over the last year BLGR returned +4.9% versus +10.7% for SPY. </p></details><details><summary>How much would $10,000 in BLGR be worth today?</summary><p>$10,000 invested in BLGR at launch (Jun 2025) would be worth about $11,753 today with dividends reinvested, versus $12,213 in SPY over the same period.</p></details><details><summary>What was BLGR's worst drawdown?</summary><p>BLGR's largest drop from a high was -14.1%, from Oct 29, 2025 to Mar 30, 2026. It got back to its old high by Apr 17, 2026.</p></details><details><summary>Does BLGR pay a dividend?</summary><p>Yes, small. BLGR paid $0.085 per share over the last 12 months, about a 0.29% yield, paid quarterly. Growth ETFs reinvest most of their return into price gains rather than paying it out.</p></details></div>
+<p class="note">Data: GrowthETFs.com list and Yahoo Finance daily prices as of Nov 19, 2026. Total return assumes dividends are reinvested. Past performance does not guarantee future results. Not financial advice.</p></main>
 <footer>
   <a href="https://growthetfs.com">GrowthETFs.com</a> &bull;
   <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &bull;
@@ -276,5 +284,25 @@ investment decisions. <strong>This site is for entertainment purposes ONLY.</str
   setInterval(load, 5 * 60 * 1000);
 })();
 </script>
+<script>(function(){document.querySelectorAll('.gchart').forEach(function(box){
+var D=JSON.parse(box.dataset.series),names=JSON.parse(box.dataset.names),cols=['#002D22','#c9a94e','#7c8bff'];var sel=box.dataset.range||'max',show={};names.forEach(function(n,i){show[n]=true});
+var svgNS='http://www.w3.org/2000/svg',svg=document.createElementNS(svgNS,'svg'),tip=document.createElement('div');tip.className='gtip';box.appendChild(svg);box.appendChild(tip);
+var card=box.closest('.card');var rb=card.querySelectorAll('.rng button');rb.forEach(function(b){b.onclick=function(){rb.forEach(function(x){x.classList.toggle('on',x===b)});sel=b.dataset.r;draw()}});
+card.querySelectorAll('.cmp input').forEach(function(c){c.onchange=function(){show[c.value]=c.checked;draw()}});
+var leg=card.querySelector('.legend-v');
+function from(){var last=D[0][D[0].length-1][0];var y=new Date(last*864e5).getUTCFullYear();return sel==='max'?0:sel==='ytd'?Date.UTC(y,0,1)/864e5:last-{'1m':30,'6m':182,'1y':365,'3y':1096,'5y':1826,'10y':3652}[sel]}
+function draw(){var W=box.clientWidth,H=box.clientHeight,pl=48,pr=10,pt=10,pb=24;svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
+var f=from();var start=Math.max(f,D[0][0][0]);var S=[];D.forEach(function(s,i){if(!show[names[i]])return;var pts=s.filter(function(p){return p[0]>=start});if(pts.length<2)return;var b=pts[0][1];S.push({i:i,n:names[i],p:pts.map(function(p){return[p[0],(p[1]/b-1)*100]})})});
+if(!S.length)return;var x0=start,x1=D[0][D[0].length-1][0],ys=[];S.forEach(function(s){s.p.forEach(function(p){ys.push(p[1])})});var y0=Math.min.apply(0,ys),y1=Math.max.apply(0,ys);var pad=(y1-y0)*.06||1;y0-=pad;y1+=pad;
+var X=function(v){return pl+(v-x0)/(x1-x0||1)*(W-pl-pr)},Y=function(v){return pt+(1-(v-y0)/(y1-y0))*(H-pt-pb)};
+for(var k=0;k<=4;k++){var v=y0+(y1-y0)*k/4,y=Y(v);var l=document.createElementNS(svgNS,'line');l.setAttribute('x1',pl);l.setAttribute('x2',W-pr);l.setAttribute('y1',y);l.setAttribute('y2',y);l.setAttribute('stroke','#e8ece6');svg.appendChild(l);var t=document.createElementNS(svgNS,'text');t.setAttribute('x',pl-6);t.setAttribute('y',y+4);t.setAttribute('text-anchor','end');t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.textContent=(v>=0?'+':'')+(Math.abs(v)>=1000?Math.round(v/100)/10+'k':Math.round(v))+'%';svg.appendChild(t)}
+var z=document.createElementNS(svgNS,'line');z.setAttribute('x1',pl);z.setAttribute('x2',W-pr);z.setAttribute('y1',Y(0));z.setAttribute('y2',Y(0));z.setAttribute('stroke','#9aa59f');z.setAttribute('stroke-dasharray','3 3');svg.appendChild(z);
+[0,.5,1].forEach(function(q){var v=x0+(x1-x0)*q,t=document.createElementNS(svgNS,'text');t.setAttribute('x',X(v));t.setAttribute('y',H-6);t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.setAttribute('text-anchor',q===0?'start':q===1?'end':'middle');t.textContent=new Date(v*864e5).toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'});svg.appendChild(t)});
+S.slice().reverse().forEach(function(s){var d='';s.p.forEach(function(p,j){d+=(j?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)});var pa=document.createElementNS(svgNS,'path');pa.setAttribute('d',d);pa.setAttribute('fill','none');pa.setAttribute('stroke',cols[s.i]);pa.setAttribute('stroke-width',s.i===0?2.4:1.6);pa.setAttribute('stroke-linejoin','round');svg.appendChild(pa)});
+if(leg)leg.innerHTML=S.map(function(s){var v=s.p[s.p.length-1][1];return'<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+cols[s.i]+';margin-right:6px"></i>'+s.n+' <b class="'+(v>=0?'pos':'neg')+'">'+(v>=0?'+':'')+v.toFixed(1)+'%</b></span>'}).join('');
+var vl=document.createElementNS(svgNS,'line');vl.setAttribute('stroke','#002D22');vl.setAttribute('stroke-width','1');vl.style.display='none';svg.appendChild(vl);
+svg.onmousemove=svg.ontouchmove=function(e){var r=svg.getBoundingClientRect(),cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;var xv=x0+(cx-pl)/(W-pl-pr)*(x1-x0);var html='',best=S[0].p.reduce(function(m,p){return Math.abs(p[0]-xv)<Math.abs(m[0]-xv)?p:m});html='<b>'+new Date(best[0]*864e5).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})+'</b>';S.forEach(function(s){var p=s.p.reduce(function(m,q){return Math.abs(q[0]-xv)<Math.abs(m[0]-xv)?q:m});html+='<br>'+s.n+': '+(p[1]>=0?'+':'')+p[1].toFixed(1)+'%'});tip.innerHTML=html;tip.style.display='block';var tx=Math.min(Math.max(cx+12,0),W-150);tip.style.left=tx+'px';tip.style.top='8px';vl.setAttribute('x1',X(best[0]));vl.setAttribute('x2',X(best[0]));vl.setAttribute('y1',pt);vl.setAttribute('y2',H-pb);vl.style.display=''};
+svg.onmouseleave=function(){tip.style.display='none';vl.style.display='none'}}
+draw();window.addEventListener('resize',draw)})})();</script>
 </body>
 </html>

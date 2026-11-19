@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MTRA ETF: Total Return, AUM &amp; Rank (2026) | Invesco International Growth Focus ETF</title>
-<meta name="description" content="MTRA ETF is the Invesco International Growth Focus ETF. Total return -1%, AUM $128.97M, ranked 104th of 105 growth ETFs on GrowthETFs.com. Free, updated daily.">
+<title>MTRA ETF: Performance, Total Return &amp; Risk vs SPY (2026) | Invesco International Growth Focus ETF</title>
+<meta name="description" content="MTRA total return -1% since Jun 2025 (-0.9%/yr), -2.3% over 1 year vs +10.7% for SPY. Charts, drawdowns, risk and rank among 105 growth ETFs.">
 <link rel="canonical" href="https://growthetfs.com/etf/mtra-growth-etf.html">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="MTRA ETF: Total Return, AUM &amp; Rank (2026) | Invesco International Growth Focus ETF">
@@ -105,7 +105,80 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
 @media(max-width:520px){
   table{font-size:13px}
   th,td{padding:9px 8px}
-}</style>
+}
+.gx{--g:#002D22;--g2:#003d2e;--gold:#c9a94e;--pos:#16a34a;--neg:#dc2626;--line:#e3e8e1;--mut:#5f6b66;--bg:#f2f4f0}
+.gx *{box-sizing:border-box}
+.gx .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 16px}
+.gx h2{font-size:1.25rem;color:var(--g);margin:0 0 4px;font-weight:900}
+.gx .sub{color:var(--mut);font-size:.88rem;margin:0 0 14px}
+.gx .pos{color:var(--pos)!important}.gx .neg{color:var(--neg)!important}
+.gx-hero{background:linear-gradient(135deg,#002D22,#00513c 70%,#0b6b50);color:#fff;border-radius:18px;padding:22px 24px;margin:6px 0 16px;display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:center;box-shadow:0 10px 30px rgba(0,45,34,.2)}
+.gx-hero .tk{display:flex;align-items:center;gap:12px}
+.gx-hero .sym{font-size:2.4rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+.gx-hero .nm{font-size:1rem;opacity:.9;margin-top:4px}
+.gx-hero .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.gx-hero .chips span{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.12)}
+.gx-hero .chips span.gold{background:var(--gold);color:#1f1600}
+.gx-hero .px{text-align:right}
+.gx-hero .px b{font-size:2.3rem;font-weight:900;display:block;line-height:1}
+.gx-hero .px small{opacity:.8;font-size:.78rem}
+.gx-hero .px .chg{display:inline-block;margin-top:6px;font-weight:800;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.12)}
+.gx-hero .mini{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.gx-hero .mini a{display:block;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px;text-align:center;transition:.15s}
+.gx-hero .mini a:hover{background:rgba(255,255,255,.16)}
+.gx-hero .mini b{display:block;font-size:1.15rem;font-weight:900}
+.gx-hero .mini b.pos{color:#7ff0b0!important}.gx-hero .mini b.neg{color:#ffaaa5!important}
+.gx-hero .mini small{font-size:.68rem;opacity:.8;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.kn{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kn a{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:#222;background:#f7f9f6;border:1px solid var(--line);border-radius:12px;padding:14px;transition:.15s;position:relative}
+.kn a:hover{border-color:var(--g);background:#fff;box-shadow:0 6px 18px rgba(0,45,34,.08);transform:translateY(-2px)}
+.kn a::after{content:"→";position:absolute;right:12px;top:12px;color:var(--gold);font-weight:900}
+.kn small{font-size:.7rem;color:var(--mut);font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.kn b{font-size:1.35rem;font-weight:900;color:var(--g)}
+.kn span{font-size:.76rem;color:var(--mut)}
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.rng{display:flex;gap:4px;flex-wrap:wrap}
+.rng button,.cmp label{font-family:inherit;font-size:.78rem;font-weight:800;border:1px solid var(--line);background:#fff;color:#444;border-radius:8px;padding:6px 10px;cursor:pointer}
+.rng button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.cmp{display:flex;gap:6px;flex-wrap:wrap}
+.cmp label{display:inline-flex;align-items:center;gap:6px}
+.cmp i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.gchart{position:relative;width:100%;height:300px}
+.gchart svg{width:100%;height:100%;display:block}
+.gtip{position:absolute;pointer-events:none;background:#002D22;color:#fff;font-size:.76rem;padding:8px 10px;border-radius:8px;white-space:nowrap;display:none;box-shadow:0 6px 16px rgba(0,0,0,.2);z-index:3}
+.legend-v{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:.86rem}
+.legend-v b{font-weight:900}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem}
+.tbl th,.tbl td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+.tbl tr.me td{background:#f4faf6;font-weight:800}
+.tbl-wrap{overflow-x:auto}
+.cy{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.cy div{border-radius:10px;padding:10px 4px;text-align:center;font-weight:900;font-size:.9rem}
+.cy div small{display:block;font-size:.68rem;font-weight:700;opacity:.75}
+.r52{position:relative;height:12px;border-radius:999px;background:linear-gradient(90deg,#fecaca,#fde68a,#bbf7d0);margin:18px 0 8px}
+.r52 i{position:absolute;top:-6px;width:4px;height:24px;background:var(--g);border-radius:2px}
+.r52-l{display:flex;justify-content:space-between;font-size:.8rem;color:var(--mut)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.rel a{display:block;text-decoration:none;color:#222;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;transition:.15s}
+.rel a:hover{border-color:var(--g);transform:translateY(-2px)}
+.rel b{display:block;font-size:1rem;color:var(--g)}
+.rel small{font-size:.76rem;color:var(--mut)}
+.bd{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.bd a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--g);font-weight:800;font-size:.88rem;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.bd a:hover{border-color:var(--gold);background:#fffdf5}
+.faq details{border-bottom:1px solid var(--line);padding:12px 0}
+.faq summary{font-weight:800;cursor:pointer;color:var(--g)}
+.faq p{margin:8px 0 0;color:#444;line-height:1.6;font-size:.94rem}
+.note{font-size:.76rem;color:var(--mut);margin-top:10px;line-height:1.5}
+.bigstat{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bigstat b{font-size:2.6rem;font-weight:900;color:var(--g);line-height:1}
+.prose p{line-height:1.7;color:#333;margin:0 0 12px}
+@media(max-width:820px){.gx-hero{grid-template-columns:1fr}.gx-hero .px{text-align:left}.gx-hero .mini{grid-template-columns:repeat(3,1fr)}.kn{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.gchart{height:240px}}
+@media(max-width:480px){.gx-hero .mini{grid-template-columns:repeat(2,1fr)}.gx-hero .sym{font-size:2rem}.gx .card{padding:16px}}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -125,99 +198,42 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
     <a href="https://topetfs.com/" class="site-pill">📰 TopETFs.com</a>
   </div>
 </div>
-<main class="wrap">
-  <div class="crumbs"><a href="https://growthetfs.com/">Home</a> &rsaquo; <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; MTRA</div>
-
-  <section class="hero">
-    <div class="ticker">MTRA</div>
-    <h1>Invesco International Growth Focus ETF</h1>
-    <div class="badges"><span class="badge">international</span></div>
-  </section>
-
-  <div class="focus-grid">
-    <div class="focus-box">
-      <div class="focus-val" data-live-price>$24.76</div>
-      <div class="focus-label">Price</div>
-    </div>
-    <div class="focus-box growth">
-      <div class="focus-val negative">-1%</div>
-      <div class="focus-label">Total Return</div>
-    </div>
-    <div class="focus-box">
-      <div class="focus-val">$128.97M</div>
-      <div class="focus-label">AUM</div>
-    </div>
+<main class="wrap gx"><div class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; MTRA</div>
+<section class="gx-hero">
+  <div><div class="tk"><img src="/etf-images/mtra.png" alt="" width="54" height="54" style="border-radius:12px;background:#fff" onerror="this.remove()"><div><div class="sym">MTRA</div><div class="nm">Invesco International Growth Focus ETF</div></div></div>
+  <div class="chips"><span class="gold">#104 of 105 by total return</span><span>$128.97M AUM</span><span>Since Jun 2025</span><span>0.73% yield</span></div></div>
+  <div class="px"><b data-live-price="MTRA">$24.67</b><span class="chg">+0.00% last session</span><br><small>Close as of Nov 19, 2026. Delayed quote.</small></div>
+  <div class="mini">
+    <a href="/etf/mtra/total-return"><b class="neg">-6.2%</b><small>YTD</small></a>
+    <a href="/etf/mtra/total-return"><b class="neg">-2.3%</b><small>1 Year</small></a>
+    <a href="/etf/mtra/total-return"><b class="">n/a</b><small>5Y / yr</small></a>
+    <a href="/etf/mtra/growth-of-10k"><b>$9,875</b><small>$10k at launch</small></a>
+    <a href="/etf/mtra/drawdown"><b class="neg">-16%</b><small>Max drawdown</small></a>
   </div>
-  <p class="price-note" data-price-note>Price as of 2026-11-18. Quotes may be delayed up to 20 minutes.</p>
+</section>
 
-  <div class="etf-signup" data-variant="featured" data-color="#002D22" data-accent="#c9a94e" data-source="growthetfs"></div>
-<script src="/email-signup.js" defer></script>
+<div class="card"><h2>MTRA key numbers</h2><p class="sub">Tap any box for the full breakdown.</p><div class="kn"><a href="/etf/mtra/total-return"><small>Total return (since launch)</small><b class="neg">-1%</b><span>-0.9% a year since Jun 2025</span></a><a href="/etf/mtra/growth-of-10k"><small>Growth of $10,000</small><b class="">$9,875</b><span>invested at launch, Jun 2025</span></a><a href="/etf/mtra/vs-spy"><small>vs S&P 500 (1 yr)</small><b class="neg">-13.0%</b><span>SPY +10.7% over the same year</span></a><a href="/etf/mtra/vs-qqq"><small>vs Nasdaq-100 (1 yr)</small><b class="neg">-12.3%</b><span>QQQ +10.1% over the same year</span></a><a href="/etf/mtra/drawdown"><small>Max drawdown</small><b class="neg">-15.8%</b><span>Jan 2026 to Mar 2026</span></a><a href="/etf/mtra/risk"><small>Volatility (1 yr)</small><b class="">20.1%</b><span>beta 1.14 vs the S&P 500</span></a><a href="/etf/mtra/52-week-range"><small>52-week position</small><b class="">31%</b><span>$23.33 to $27.70</span></a><a href="/etf/mtra/rank"><small>Rank by total return</small><b class="">#104 of 105</b><span>#98 by fund size</span></a></div></div>
 
-  <h2>MTRA at a glance</h2>
-  <table>
-    <tbody>
-      <tr><th scope="row">Ticker</th><td><strong>MTRA</strong></td></tr>
-      <tr><th scope="row">Fund name</th><td>Invesco International Growth Focus ETF</td></tr>
-      <tr><th scope="row">Price</th><td data-live-price>$24.76</td></tr>
-      <tr><th scope="row">Total return</th><td class="neg">-1%</td></tr>
-      <tr><th scope="row">Assets under management</th><td>$128.97M</td></tr>
-      <tr><th scope="row">Rank on this list</th><td>104th of 105</td></tr>
-    </tbody>
-  </table>
+<div class="card" id="perf"><h2>MTRA performance vs SPY and QQQ</h2><p class="sub">Growth of every dollar since Jun 2025, dividends reinvested.</p><div class="chart-top"><div class="rng"><button type="button" data-r="1m">1M</button><button type="button" data-r="6m">6M</button><button type="button" data-r="ytd">YTD</button><button type="button" data-r="1y">1Y</button><button type="button" data-r="3y">3Y</button><button type="button" data-r="5y">5Y</button><button type="button" data-r="10y">10Y</button><button type="button" data-r="max" class="on">Max</button></div><div class="cmp"><label><input type="checkbox" value="SPY" checked><i style="background:#c9a94e"></i>SPY</label><label><input type="checkbox" value="QQQ" checked><i style="background:#7c8bff"></i>QQQ</label></div></div>
+<div class="gchart" data-range="max" data-names='[&quot;MTRA&quot;,&quot;SPY&quot;,&quot;QQQ&quot;]' data-series='[[[20251,24.9807,25.153],[20258,24.4175,24.586],[20265,24.781,24.952],[20272,25.2478,25.422],[20279,25.37,25.545],[20286,24.9608,25.133],[20293,25.5934,25.77],[20300,24.8069,24.978],[20307,24.5675,24.737],[20314,25.0959,25.269],[20321,25.1406,25.314],[20328,24.9916,25.164],[20335,24.784,24.955],[20342,25.0959,25.269],[20349,25.5527,25.729],[20356,25.4594,25.635],[20363,25.946,26.125],[20370,26.2539,26.435],[20377,25.8228,26.001],[20384,26.2489,26.43],[20391,26.4475,26.63],[20398,25.8516,26.03],[20405,26.2271,26.408],[20412,25.2061,25.38],[20419,25.8159,25.994],[20426,26.0254,26.205],[20433,26.2092,26.39],[20440,25.799,25.977],[20447,26.32,26.32],[20454,26.204,26.204],[20461,27.084,27.084],[20468,27.386,27.386],[20475,27.098,27.098],[20482,27.387,27.387],[20489,26.384,26.384],[20496,26.693,26.693],[20503,26.512,26.512],[20510,26.418,26.418],[20517,25.442,25.442],[20524,24.949,24.949],[20531,24.371,24.371],[20538,24.172,24.172],[20545,24.445,24.445],[20552,25.37,25.37],[20559,25.918,25.918],[20566,25.771,25.771],[20573,25.018,25.018],[20580,26.694,26.694],[20587,26.162,26.162],[20594,25.816,25.816],[20601,26.586,26.586],[20608,27.06,27.06],[20615,25.545,25.545],[20622,26.874,26.874],[20629,26.746,26.746],[20636,27.052,27.052],[20643,26.643,26.643],[20650,26.92,26.92],[20657,26.39,26.39],[20664,25.728,25.728],[20671,27.146,27.146],[20678,27.416,27.416],[20685,27.022,27.022],[20692,27.383,27.383],[20699,26.686,26.686],[20706,26.594,26.594],[20713,25.946,25.946],[20720,26.453,26.453],[20727,26.387,26.387],[20734,26.22,26.22],[20741,25.733,25.733],[20748,25.811,25.811],[20755,25.568,25.568],[20762,25.833,25.833],[20769,25.9,25.9],[20776,24.669,24.669],[20777,24.6692,24.6692]],[[20244,586.206,595.93],[20251,591.548,601.36],[20258,587.692,597.44],[20265,598.979,607.12],[20272,612.131,620.45],[20279,615.692,624.06],[20286,615.85,624.22],[20293,625.706,634.21],[20300,625.953,634.46],[20307,624.295,632.78],[20314,636.243,644.89],[20321,629.554,638.11],[20328,637.959,646.63],[20335,635.108,643.74],[20342,643.465,652.21],[20349,650.341,659.18],[20356,654.044,661.1],[20363,661.315,668.45],[20370,665.926,673.11],[20377,658.07,665.17],[20384,660.672,667.8],[20391,680.053,687.39],[20398,670.348,677.58],[20405,676.086,683.38],[20412,655.557,662.63],[20419,672.425,679.68],[20426,676.591,683.89],[20433,680.231,687.57],[20440,664.234,671.4],[20447,685.029,690.38],[20454,676.635,681.92],[20461,684.236,689.58],[20468,685.01,690.36],[20475,680.088,685.4],[20482,690.03,695.42],[20489,680.872,686.19],[20496,686.597,691.96],[20503,680.971,686.29],[20510,687.778,693.15],[20517,679.82,685.13],[20524,671.088,676.33],[20531,656.304,661.43],[20538,653.509,656.82],[20545,651.937,655.24],[20552,672.603,676.01],[20559,696.412,699.94],[20566,707.625,711.21],[20573,707.993,711.58],[20580,730.131,733.83],[20587,738.569,742.31],[20594,737.514,741.25],[20601,746.677,750.46],[20608,750.438,754.24],[20615,721.774,725.43],[20622,737.225,740.96],[20629,731.424,733.24],[20636,743.913,745.76],[20643,743.554,745.4],[20650,752.94,754.81],[20657,745.559,747.41],[20664,727.653,729.46],[20671,767.883,769.79],[20678,770.576,772.49],[20685,767.155,769.06],[20692,764.182,766.08],[20699,763.265,765.16],[20706,760.512,762.4],[20713,752.182,754.05],[20720,767.81,767.81],[20727,762.63,762.63],[20734,777.22,777.22],[20741,769.6,769.6],[20748,773.09,773.09],[20755,772.31,772.31],[20762,766.81,766.81],[20769,759.81,759.81],[20776,730.2,730.2],[20777,723.115,723.115]],[[20244,525.098,528.77],[20251,528.713,532.41],[20258,525.316,528.99],[20265,538.005,541.16],[20272,547.589,550.8],[20279,553.008,556.25],[20286,554.042,557.29],[20293,560.523,563.81],[20300,564.709,568.02],[20307,564.013,567.32],[20314,576.957,580.34],[20321,562.601,565.9],[20328,570.147,573.49],[20335,566.747,570.07],[20342,577.315,580.7],[20349,586.561,590],[20356,593.312,596.1],[20363,600.429,603.25],[20370,608.581,611.44],[20377,599.404,602.22],[20384,602.658,605.49],[20391,632.797,635.77],[20398,620.365,623.28],[20405,618.175,621.08],[20412,597.065,599.87],[20419,611.397,614.27],[20426,620.604,623.52],[20433,624.675,627.61],[20440,597.602,600.41],[20447,621.812,623.93],[20454,612.225,614.31],[20461,621.902,624.02],[20468,617.447,619.55],[20475,614.188,616.28],[20482,631.071,633.22],[20489,603.694,605.75],[20496,611.029,613.11],[20503,603.734,605.79],[20510,614.587,616.68],[20517,608.677,610.75],[20524,605.627,607.69],[20531,592.881,594.9],[20538,586.564,587.82],[20545,583.061,584.31],[20552,604.794,606.09],[20559,636.038,637.4],[20566,653.71,655.11],[20573,660.156,661.57],[20580,694.283,695.77],[20587,713.182,714.71],[20594,711.626,713.15],[20601,727.891,729.45],[20608,742.619,744.21],[20615,692.207,693.69],[20622,720.966,722.51],[20629,709.88,710.62],[20636,724.415,725.17],[20643,710.699,711.44],[20650,716.993,717.74],[20657,704.616,705.35],[20664,661.041,661.73],[20671,716.553,717.3],[20678,722.947,723.7],[20685,715.335,716.08],[20692,710.63,711.37],[20699,708.502,709.24],[20706,715.564,716.31],[20713,703.986,704.72],[20720,741.21,741.21],[20727,739.77,739.77],[20734,757.73,757.73],[20741,728.95,728.95],[20748,725.2,725.2],[20755,725.61,725.61],[20762,691.95,691.95],[20769,690.38,690.38],[20776,659.51,659.51],[20777,653.25,653.25]]]'></div><div class="legend-v"></div>
+<p class="note">Total return with dividends reinvested, from daily closing prices. Hover or tap the chart for exact values.</p></div>
 
-  <h2>How MTRA compares</h2>
-  <p>MTRA currently sits 104th out of 105 funds on the GrowthETFs list when sorted by total return. That is below the median for the list. For reference, the strongest performer on the list right now is TQQQ at 25403%.</p>
-  <p>MTRA holds $128.97M in assets, mid-sized by the standards of this list.</p>
-  <p>Judging by its fund name, MTRA is a international strategy.</p>
+<div class="card"><h2>Trailing returns</h2><p class="sub">Total return including dividends, as of Nov 19, 2026.</p><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Period</th><th>MTRA</th><th>SPY</th><th>QQQ</th></tr></thead><tbody><tr><td>1 month</td><td class="neg"><b>-3.5%</b></td><td class="neg">-5.7%</td><td class="neg">-9.1%</td></tr><tr><td>3 months</td><td class="neg"><b>-8.7%</b></td><td class="neg">-5.7%</td><td class="neg">-8.7%</td></tr><tr><td>6 months</td><td class="neg"><b>-4.4%</b></td><td class="neg">-2.0%</td><td class="neg">-8.2%</td></tr><tr><td>Year to date</td><td class="neg"><b>-6.2%</b></td><td class="pos">+6.1%</td><td class="pos">+5.8%</td></tr><tr><td>1 year</td><td class="neg"><b>-2.3%</b></td><td class="pos">+10.7%</td><td class="pos">+10.1%</td></tr><tr><td>3 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+18.5%</td><td class="pos">+19.8%</td></tr><tr><td>5 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+10.5%</td><td class="pos">+10.9%</td></tr><tr><td>10 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+14.5%</td><td class="pos">+19.5%</td></tr></tbody></table></div><p class="note"><a href="/etf/mtra/vs-spy">Full MTRA vs SPY breakdown →</a> &nbsp; <a href="/etf/mtra/vs-qqq">MTRA vs QQQ →</a></p></div>
 
-  <h3>Reading these numbers</h3>
-  <p>The return figure above is backward-looking. A fund near the top of this list has already made
-  its move, which tells you about the period behind it and nothing about the period ahead.
-  Concentrated growth funds in particular tend to post the largest gains and the largest drawdowns,
-  often within the same year. Read the return alongside fund size rather than on its own, and check
-  the issuer's own fund page for holdings, fees and the full prospectus before acting on anything here.</p>
+<div class="card"><h2>Calendar-year returns</h2><p class="sub">0 of 0 full years were positive. Best: n/a. Worst: n/a.</p><div class="cy"><div style="background:rgba(220,38,38,0.19746487045129008)" title="2026 (partial year)"><small>2026*</small>-6.2%</div><div style="background:rgba(22,163,74,0.1859683507523867)" title="2025 (partial year)"><small>2025*</small>+5.3%</div></div><p class="note">* Partial year (fund launch year or year to date).</p><p class="note"><a href="/etf/mtra/calendar-returns">Year-by-year vs SPY and QQQ →</a></p></div>
 
-  <div class="cta-row">
-    <a class="cta cta-gold" href="https://growthetfs.com/">See the full ranked list &rarr;</a>
-    <a class="cta cta-outline" href="https://growthetfs.com/swipe.html">📈 Swipe growth ETFs</a>
-  </div>
+<div class="two">
+<div class="card"><h2>Drawdowns</h2><p class="sub">How far MTRA fell from each high. Worst: -15.8% (Jan 2026 to Mar 2026). Today: -10.9% from its high.</p><svg viewBox="0 0 760 150" preserveAspectRatio="none" style="width:100%;height:150px;display:block;background:#fff"><path d="M0 0 L0.0 0.0 L10.1 26.7 L20.2 9.5 L30.3 0.0 L40.5 0.0 L50.6 19.1 L60.7 0.0 L70.8 36.4 L80.9 47.5 L91.0 23.0 L101.1 21.0 L111.3 27.9 L121.4 37.5 L131.5 23.0 L141.6 1.9 L151.7 6.2 L161.8 0.0 L171.9 0.0 L182.1 19.4 L192.2 0.2 L202.3 0.0 L212.4 26.7 L222.5 9.9 L232.6 55.6 L242.7 28.3 L252.9 18.9 L263.0 10.7 L273.1 29.0 L283.2 5.7 L293.3 10.9 L303.4 0.0 L313.5 0.0 L323.7 12.5 L333.8 0.0 L343.9 43.4 L354.0 30.0 L364.1 37.8 L374.2 41.9 L384.3 84.1 L394.4 105.4 L404.6 130.4 L414.7 139.0 L424.8 127.2 L434.9 87.2 L445.0 63.5 L455.1 69.9 L465.2 102.5 L475.4 30.0 L485.5 53.0 L495.6 67.9 L505.7 34.6 L515.8 14.1 L525.9 79.7 L536.0 22.2 L546.2 27.7 L556.3 14.5 L566.4 32.2 L576.5 20.2 L586.6 43.1 L596.7 71.8 L606.8 10.4 L617.0 0.0 L627.1 17.0 L637.2 1.4 L647.3 31.5 L657.4 35.5 L667.5 63.5 L677.6 41.6 L687.8 44.5 L697.9 51.7 L708.0 72.7 L718.1 69.3 L728.2 79.8 L738.3 68.4 L748.4 65.5 L758.6 118.7 L760.0 118.7 L760 0 Z" fill="rgba(220,38,38,.18)" stroke="#dc2626" stroke-width="1.2"/></svg><p class="note"><a href="/etf/mtra/drawdown">Drawdown breakdown →</a></p></div>
+<div class="card"><h2>52-week range</h2><p class="sub">MTRA is 31% of the way from its 52-week low to its high.</p><div class="r52"><i style="left:calc(30.6% - 2px)"></i></div><div class="r52-l"><span>Low $23.33<br>Mar 27, 2026</span><span style="text-align:right">High $27.70<br>Jan 12, 2026</span></div>
+<div class="kn" style="grid-template-columns:1fr 1fr;margin-top:14px"><a href="/etf/mtra/risk"><small>Volatility 1Y / 3Y</small><b>20% / 18%</b><span>annualized</span></a><a href="/etf/mtra/dividends"><small>Dividend yield</small><b>0.73%</b><span>Annual payer</span></a></div></div>
+</div>
 
-  <h2>Similar growth ETFs</h2>
-  <div class="related">
-      <a href="https://growthetfs.com/etf/mfsg-growth-etf.html">
-      <div class="r-sym">MFSG</div>
-      <div class="r-ret">8%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/pow-growth-etf.html">
-      <div class="r-sym">POW</div>
-      <div class="r-ret">3%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/frty-growth-etf.html">
-      <div class="r-sym">FRTY</div>
-      <div class="r-ret">1%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/gqgu-growth-etf.html">
-      <div class="r-sym">GQGU</div>
-      <div class="r-ret">-10%</div>
-    </a>
-  </div>
+<div class="card"><h2>Explore MTRA</h2><p class="sub">Every number on this page has its own deep dive.</p><div class="bd"><a href="/etf/mtra/total-return">📈 MTRA Total Return</a><a href="/etf/mtra/growth-of-10k">🌱 MTRA Growth of $10,000</a><a href="/etf/mtra/vs-spy">⚔️ MTRA vs S&P 500 (SPY)</a><a href="/etf/mtra/vs-qqq">⚔️ MTRA vs Nasdaq-100 (QQQ)</a><a href="/etf/mtra/calendar-returns">🗓️ MTRA Calendar-Year Returns</a><a href="/etf/mtra/drawdown">📉 MTRA Max Drawdown</a><a href="/etf/mtra/risk">🎢 MTRA Volatility & Beta</a><a href="/etf/mtra/52-week-range">📏 MTRA 52-Week Range</a><a href="/etf/mtra/dividends">💵 MTRA Dividends & Yield</a><a href="/etf/mtra/rank">🏆 MTRA Rank vs Growth ETFs</a></div></div>
 
-  <h2>MTRA FAQ</h2>
-  <p class="faq-q">What is MTRA?</p>
-  <p>MTRA is Invesco International Growth Focus ETF. It is one of 105 growth-focused ETFs tracked on the GrowthETFs.com curated list.</p>
-  <p class="faq-q">How large is MTRA?</p>
-  <p>Our data lists assets under management for MTRA as $128.97M. Fund size moves daily with investor flows and market performance, so treat this as a snapshot rather than a fixed figure.</p>
-  <p class="faq-q">Where does MTRA rank against other growth ETFs?</p>
-  <p>MTRA ranks 104th of 105 on our list by total return, at -1%.</p>
-  <p class="faq-q">Is MTRA a good investment?</p>
-  <p>We don&#39;t answer that. GrowthETFs.com is an informational and entertainment site and publishes no buy or sell signals. Whether any fund suits you depends on your own goals, time horizon and risk tolerance. Speak with a licensed financial advisor.</p>
+<div class="card"><h2>Similar-size growth ETFs</h2><p class="sub">Compare MTRA with funds of a similar size on our list.</p><div class="rel"><a href="/etf/frty-growth-etf.html"><b>FRTY</b><small>$129.82M AUM</small></a><a href="/etf/bamg-growth-etf.html"><b>BAMG</b><small>$130.82M AUM</small></a><a href="/etf/pjfg-growth-etf.html"><b>PJFG</b><small>$133.88M AUM</small></a><a href="/etf/bul-growth-etf.html"><b>BUL</b><small>$134.30M AUM</small></a><a href="/etf/nbjp-growth-etf.html"><b>NBJP</b><small>$120.74M AUM</small></a><a href="/etf/bkcg-growth-etf.html"><b>BKCG</b><small>$118.79M AUM</small></a><a href="/etf/lgro-growth-etf.html"><b>LGRO</b><small>$139.16M AUM</small></a><a href="/etf/rzg-growth-etf.html"><b>RZG</b><small>$116.59M AUM</small></a></div></div>
 
-  <p class="fine"><strong>Disclaimer:</strong> GrowthETFs.com is for informational and educational
-purposes only. Nothing on this page constitutes investment advice or a recommendation to buy or sell any security.
-ETF data may be inaccurate or outdated and is sourced from public information. Investing carries risk, including
-loss of principal. We are not financial advisors. Always consult a licensed financial advisor before making
-investment decisions. <strong>This site is for entertainment purposes ONLY.</strong></p>
-</main>
+<div class="card faq"><h2>MTRA FAQ</h2><details><summary>What is the MTRA ETF?</summary><p>MTRA is the Invesco International Growth Focus ETF. It is one of 105 growth ETFs tracked on GrowthETFs.com, with about $128.97M in assets.</p></details><details><summary>What is MTRA's total return?</summary><p>Since its first trading day in Jun 2025, MTRA has returned -1% with dividends reinvested, about -0.9% a year. Over the last 12 months it returned -2.3%.</p></details><details><summary>Has MTRA beaten the S&P 500?</summary><p>Over the last year MTRA returned -2.3% versus +10.7% for SPY. </p></details><details><summary>How much would $10,000 in MTRA be worth today?</summary><p>$10,000 invested in MTRA at launch (Jun 2025) would be worth about $9,875 today with dividends reinvested, versus $12,224 in SPY over the same period.</p></details><details><summary>What was MTRA's worst drawdown?</summary><p>MTRA's largest drop from a high was -15.8%, from Jan 12, 2026 to Mar 27, 2026. It has not yet fully recovered that high.</p></details><details><summary>Does MTRA pay a dividend?</summary><p>Yes, small. MTRA paid $0.18 per share over the last 12 months, about a 0.73% yield, paid annual. Growth ETFs reinvest most of their return into price gains rather than paying it out.</p></details></div>
+<p class="note">Data: GrowthETFs.com list and Yahoo Finance daily prices as of Nov 19, 2026. Total return assumes dividends are reinvested. Past performance does not guarantee future results. Not financial advice.</p></main>
 <footer>
   <a href="https://growthetfs.com">GrowthETFs.com</a> &bull;
   <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &bull;
@@ -268,5 +284,25 @@ investment decisions. <strong>This site is for entertainment purposes ONLY.</str
   setInterval(load, 5 * 60 * 1000);
 })();
 </script>
+<script>(function(){document.querySelectorAll('.gchart').forEach(function(box){
+var D=JSON.parse(box.dataset.series),names=JSON.parse(box.dataset.names),cols=['#002D22','#c9a94e','#7c8bff'];var sel=box.dataset.range||'max',show={};names.forEach(function(n,i){show[n]=true});
+var svgNS='http://www.w3.org/2000/svg',svg=document.createElementNS(svgNS,'svg'),tip=document.createElement('div');tip.className='gtip';box.appendChild(svg);box.appendChild(tip);
+var card=box.closest('.card');var rb=card.querySelectorAll('.rng button');rb.forEach(function(b){b.onclick=function(){rb.forEach(function(x){x.classList.toggle('on',x===b)});sel=b.dataset.r;draw()}});
+card.querySelectorAll('.cmp input').forEach(function(c){c.onchange=function(){show[c.value]=c.checked;draw()}});
+var leg=card.querySelector('.legend-v');
+function from(){var last=D[0][D[0].length-1][0];var y=new Date(last*864e5).getUTCFullYear();return sel==='max'?0:sel==='ytd'?Date.UTC(y,0,1)/864e5:last-{'1m':30,'6m':182,'1y':365,'3y':1096,'5y':1826,'10y':3652}[sel]}
+function draw(){var W=box.clientWidth,H=box.clientHeight,pl=48,pr=10,pt=10,pb=24;svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
+var f=from();var start=Math.max(f,D[0][0][0]);var S=[];D.forEach(function(s,i){if(!show[names[i]])return;var pts=s.filter(function(p){return p[0]>=start});if(pts.length<2)return;var b=pts[0][1];S.push({i:i,n:names[i],p:pts.map(function(p){return[p[0],(p[1]/b-1)*100]})})});
+if(!S.length)return;var x0=start,x1=D[0][D[0].length-1][0],ys=[];S.forEach(function(s){s.p.forEach(function(p){ys.push(p[1])})});var y0=Math.min.apply(0,ys),y1=Math.max.apply(0,ys);var pad=(y1-y0)*.06||1;y0-=pad;y1+=pad;
+var X=function(v){return pl+(v-x0)/(x1-x0||1)*(W-pl-pr)},Y=function(v){return pt+(1-(v-y0)/(y1-y0))*(H-pt-pb)};
+for(var k=0;k<=4;k++){var v=y0+(y1-y0)*k/4,y=Y(v);var l=document.createElementNS(svgNS,'line');l.setAttribute('x1',pl);l.setAttribute('x2',W-pr);l.setAttribute('y1',y);l.setAttribute('y2',y);l.setAttribute('stroke','#e8ece6');svg.appendChild(l);var t=document.createElementNS(svgNS,'text');t.setAttribute('x',pl-6);t.setAttribute('y',y+4);t.setAttribute('text-anchor','end');t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.textContent=(v>=0?'+':'')+(Math.abs(v)>=1000?Math.round(v/100)/10+'k':Math.round(v))+'%';svg.appendChild(t)}
+var z=document.createElementNS(svgNS,'line');z.setAttribute('x1',pl);z.setAttribute('x2',W-pr);z.setAttribute('y1',Y(0));z.setAttribute('y2',Y(0));z.setAttribute('stroke','#9aa59f');z.setAttribute('stroke-dasharray','3 3');svg.appendChild(z);
+[0,.5,1].forEach(function(q){var v=x0+(x1-x0)*q,t=document.createElementNS(svgNS,'text');t.setAttribute('x',X(v));t.setAttribute('y',H-6);t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.setAttribute('text-anchor',q===0?'start':q===1?'end':'middle');t.textContent=new Date(v*864e5).toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'});svg.appendChild(t)});
+S.slice().reverse().forEach(function(s){var d='';s.p.forEach(function(p,j){d+=(j?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)});var pa=document.createElementNS(svgNS,'path');pa.setAttribute('d',d);pa.setAttribute('fill','none');pa.setAttribute('stroke',cols[s.i]);pa.setAttribute('stroke-width',s.i===0?2.4:1.6);pa.setAttribute('stroke-linejoin','round');svg.appendChild(pa)});
+if(leg)leg.innerHTML=S.map(function(s){var v=s.p[s.p.length-1][1];return'<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+cols[s.i]+';margin-right:6px"></i>'+s.n+' <b class="'+(v>=0?'pos':'neg')+'">'+(v>=0?'+':'')+v.toFixed(1)+'%</b></span>'}).join('');
+var vl=document.createElementNS(svgNS,'line');vl.setAttribute('stroke','#002D22');vl.setAttribute('stroke-width','1');vl.style.display='none';svg.appendChild(vl);
+svg.onmousemove=svg.ontouchmove=function(e){var r=svg.getBoundingClientRect(),cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;var xv=x0+(cx-pl)/(W-pl-pr)*(x1-x0);var html='',best=S[0].p.reduce(function(m,p){return Math.abs(p[0]-xv)<Math.abs(m[0]-xv)?p:m});html='<b>'+new Date(best[0]*864e5).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})+'</b>';S.forEach(function(s){var p=s.p.reduce(function(m,q){return Math.abs(q[0]-xv)<Math.abs(m[0]-xv)?q:m});html+='<br>'+s.n+': '+(p[1]>=0?'+':'')+p[1].toFixed(1)+'%'});tip.innerHTML=html;tip.style.display='block';var tx=Math.min(Math.max(cx+12,0),W-150);tip.style.left=tx+'px';tip.style.top='8px';vl.setAttribute('x1',X(best[0]));vl.setAttribute('x2',X(best[0]));vl.setAttribute('y1',pt);vl.setAttribute('y2',H-pb);vl.style.display=''};
+svg.onmouseleave=function(){tip.style.display='none';vl.style.display='none'}}
+draw();window.addEventListener('resize',draw)})})();</script>
 </body>
 </html>

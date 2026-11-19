@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BAMG ETF: Total Return, AUM &amp; Rank (2026) | Brookstone Growth Stock ETF</title>
-<meta name="description" content="BAMG ETF is the Brookstone Growth Stock ETF. Total return 71%, AUM $130.82M, ranked 70th of 105 growth ETFs on GrowthETFs.com. Free, updated daily.">
+<title>BAMG ETF: Performance, Total Return &amp; Risk vs SPY (2026) | Brookstone Growth Stock ETF</title>
+<meta name="description" content="BAMG total return +70% since Sep 2023 (18.3%/yr), +9.9% over 1 year vs +10.7% for SPY. Charts, drawdowns, risk and rank among 105 growth ETFs.">
 <link rel="canonical" href="https://growthetfs.com/etf/bamg-growth-etf.html">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="BAMG ETF: Total Return, AUM &amp; Rank (2026) | Brookstone Growth Stock ETF">
@@ -105,7 +105,80 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
 @media(max-width:520px){
   table{font-size:13px}
   th,td{padding:9px 8px}
-}</style>
+}
+.gx{--g:#002D22;--g2:#003d2e;--gold:#c9a94e;--pos:#16a34a;--neg:#dc2626;--line:#e3e8e1;--mut:#5f6b66;--bg:#f2f4f0}
+.gx *{box-sizing:border-box}
+.gx .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 16px}
+.gx h2{font-size:1.25rem;color:var(--g);margin:0 0 4px;font-weight:900}
+.gx .sub{color:var(--mut);font-size:.88rem;margin:0 0 14px}
+.gx .pos{color:var(--pos)!important}.gx .neg{color:var(--neg)!important}
+.gx-hero{background:linear-gradient(135deg,#002D22,#00513c 70%,#0b6b50);color:#fff;border-radius:18px;padding:22px 24px;margin:6px 0 16px;display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:center;box-shadow:0 10px 30px rgba(0,45,34,.2)}
+.gx-hero .tk{display:flex;align-items:center;gap:12px}
+.gx-hero .sym{font-size:2.4rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+.gx-hero .nm{font-size:1rem;opacity:.9;margin-top:4px}
+.gx-hero .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.gx-hero .chips span{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.12)}
+.gx-hero .chips span.gold{background:var(--gold);color:#1f1600}
+.gx-hero .px{text-align:right}
+.gx-hero .px b{font-size:2.3rem;font-weight:900;display:block;line-height:1}
+.gx-hero .px small{opacity:.8;font-size:.78rem}
+.gx-hero .px .chg{display:inline-block;margin-top:6px;font-weight:800;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.12)}
+.gx-hero .mini{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.gx-hero .mini a{display:block;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px;text-align:center;transition:.15s}
+.gx-hero .mini a:hover{background:rgba(255,255,255,.16)}
+.gx-hero .mini b{display:block;font-size:1.15rem;font-weight:900}
+.gx-hero .mini b.pos{color:#7ff0b0!important}.gx-hero .mini b.neg{color:#ffaaa5!important}
+.gx-hero .mini small{font-size:.68rem;opacity:.8;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.kn{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kn a{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:#222;background:#f7f9f6;border:1px solid var(--line);border-radius:12px;padding:14px;transition:.15s;position:relative}
+.kn a:hover{border-color:var(--g);background:#fff;box-shadow:0 6px 18px rgba(0,45,34,.08);transform:translateY(-2px)}
+.kn a::after{content:"→";position:absolute;right:12px;top:12px;color:var(--gold);font-weight:900}
+.kn small{font-size:.7rem;color:var(--mut);font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.kn b{font-size:1.35rem;font-weight:900;color:var(--g)}
+.kn span{font-size:.76rem;color:var(--mut)}
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.rng{display:flex;gap:4px;flex-wrap:wrap}
+.rng button,.cmp label{font-family:inherit;font-size:.78rem;font-weight:800;border:1px solid var(--line);background:#fff;color:#444;border-radius:8px;padding:6px 10px;cursor:pointer}
+.rng button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.cmp{display:flex;gap:6px;flex-wrap:wrap}
+.cmp label{display:inline-flex;align-items:center;gap:6px}
+.cmp i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.gchart{position:relative;width:100%;height:300px}
+.gchart svg{width:100%;height:100%;display:block}
+.gtip{position:absolute;pointer-events:none;background:#002D22;color:#fff;font-size:.76rem;padding:8px 10px;border-radius:8px;white-space:nowrap;display:none;box-shadow:0 6px 16px rgba(0,0,0,.2);z-index:3}
+.legend-v{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:.86rem}
+.legend-v b{font-weight:900}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem}
+.tbl th,.tbl td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+.tbl tr.me td{background:#f4faf6;font-weight:800}
+.tbl-wrap{overflow-x:auto}
+.cy{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.cy div{border-radius:10px;padding:10px 4px;text-align:center;font-weight:900;font-size:.9rem}
+.cy div small{display:block;font-size:.68rem;font-weight:700;opacity:.75}
+.r52{position:relative;height:12px;border-radius:999px;background:linear-gradient(90deg,#fecaca,#fde68a,#bbf7d0);margin:18px 0 8px}
+.r52 i{position:absolute;top:-6px;width:4px;height:24px;background:var(--g);border-radius:2px}
+.r52-l{display:flex;justify-content:space-between;font-size:.8rem;color:var(--mut)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.rel a{display:block;text-decoration:none;color:#222;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;transition:.15s}
+.rel a:hover{border-color:var(--g);transform:translateY(-2px)}
+.rel b{display:block;font-size:1rem;color:var(--g)}
+.rel small{font-size:.76rem;color:var(--mut)}
+.bd{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.bd a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--g);font-weight:800;font-size:.88rem;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.bd a:hover{border-color:var(--gold);background:#fffdf5}
+.faq details{border-bottom:1px solid var(--line);padding:12px 0}
+.faq summary{font-weight:800;cursor:pointer;color:var(--g)}
+.faq p{margin:8px 0 0;color:#444;line-height:1.6;font-size:.94rem}
+.note{font-size:.76rem;color:var(--mut);margin-top:10px;line-height:1.5}
+.bigstat{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bigstat b{font-size:2.6rem;font-weight:900;color:var(--g);line-height:1}
+.prose p{line-height:1.7;color:#333;margin:0 0 12px}
+@media(max-width:820px){.gx-hero{grid-template-columns:1fr}.gx-hero .px{text-align:left}.gx-hero .mini{grid-template-columns:repeat(3,1fr)}.kn{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.gchart{height:240px}}
+@media(max-width:480px){.gx-hero .mini{grid-template-columns:repeat(2,1fr)}.gx-hero .sym{font-size:2rem}.gx .card{padding:16px}}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -125,107 +198,42 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
     <a href="https://topetfs.com/" class="site-pill">📰 TopETFs.com</a>
   </div>
 </div>
-<main class="wrap">
-  <div class="crumbs"><a href="https://growthetfs.com/">Home</a> &rsaquo; <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; BAMG</div>
-
-  <section class="hero">
-    <div class="ticker">BAMG</div>
-    <h1>Brookstone Growth Stock ETF</h1>
-    
-  </section>
-
-  <div class="focus-grid">
-    <div class="focus-box">
-      <div class="focus-val" data-live-price>$42.37</div>
-      <div class="focus-label">Price</div>
-    </div>
-    <div class="focus-box growth">
-      <div class="focus-val ">71%</div>
-      <div class="focus-label">Total Return</div>
-    </div>
-    <div class="focus-box">
-      <div class="focus-val">$130.82M</div>
-      <div class="focus-label">AUM</div>
-    </div>
+<main class="wrap gx"><div class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; BAMG</div>
+<section class="gx-hero">
+  <div><div class="tk"><img src="/etf-images/bamg.png" alt="" width="54" height="54" style="border-radius:12px;background:#fff" onerror="this.remove()"><div><div class="sym">BAMG</div><div class="nm">Brookstone Growth Stock ETF</div></div></div>
+  <div class="chips"><span class="gold">#70 of 105 by total return</span><span>$130.82M AUM</span><span>Since Sep 2023</span><span>0.01% yield</span></div></div>
+  <div class="px"><b data-live-price="BAMG">$42.42</b><span class="chg">-0.35% last session</span><br><small>Close as of Nov 19, 2026. Delayed quote.</small></div>
+  <div class="mini">
+    <a href="/etf/bamg/total-return"><b class="pos">+4.8%</b><small>YTD</small></a>
+    <a href="/etf/bamg/total-return"><b class="pos">+9.9%</b><small>1 Year</small></a>
+    <a href="/etf/bamg/total-return"><b class="">n/a</b><small>5Y / yr</small></a>
+    <a href="/etf/bamg/growth-of-10k"><b>$16,971</b><small>$10k at launch</small></a>
+    <a href="/etf/bamg/drawdown"><b class="neg">-21%</b><small>Max drawdown</small></a>
   </div>
-  <p class="price-note" data-price-note>Price as of 2026-11-18. Quotes may be delayed up to 20 minutes.</p>
+</section>
 
-  <div class="etf-signup" data-variant="featured" data-color="#002D22" data-accent="#c9a94e" data-source="growthetfs"></div>
-<script src="/email-signup.js" defer></script>
+<div class="card"><h2>BAMG key numbers</h2><p class="sub">Tap any box for the full breakdown.</p><div class="kn"><a href="/etf/bamg/total-return"><small>Total return (since launch)</small><b class="pos">+70%</b><span>18.3% a year since Sep 2023</span></a><a href="/etf/bamg/growth-of-10k"><small>Growth of $10,000</small><b class="">$16,971</b><span>invested at launch, Sep 2023</span></a><a href="/etf/bamg/vs-spy"><small>vs S&P 500 (1 yr)</small><b class="neg">-0.9%</b><span>SPY +10.7% over the same year</span></a><a href="/etf/bamg/vs-qqq"><small>vs Nasdaq-100 (1 yr)</small><b class="neg">-0.2%</b><span>QQQ +10.1% over the same year</span></a><a href="/etf/bamg/drawdown"><small>Max drawdown</small><b class="neg">-21.0%</b><span>Feb 2025 to Apr 2025</span></a><a href="/etf/bamg/risk"><small>Volatility (1 yr)</small><b class="">17.3%</b><span>beta 1.06 vs the S&P 500</span></a><a href="/etf/bamg/52-week-range"><small>52-week position</small><b class="">66%</b><span>$35.42 to $46.02</span></a><a href="/etf/bamg/rank"><small>Rank by total return</small><b class="">#70 of 105</b><span>#96 by fund size</span></a></div></div>
 
-  <h2>BAMG at a glance</h2>
-  <table>
-    <tbody>
-      <tr><th scope="row">Ticker</th><td><strong>BAMG</strong></td></tr>
-      <tr><th scope="row">Fund name</th><td>Brookstone Growth Stock ETF</td></tr>
-      <tr><th scope="row">Price</th><td data-live-price>$42.37</td></tr>
-      <tr><th scope="row">Total return</th><td class="pos">71%</td></tr>
-      <tr><th scope="row">Assets under management</th><td>$130.82M</td></tr>
-      <tr><th scope="row">Rank on this list</th><td>70th of 105</td></tr>
-    </tbody>
-  </table>
+<div class="card" id="perf"><h2>BAMG performance vs SPY and QQQ</h2><p class="sub">Growth of every dollar since Sep 2023, dividends reinvested.</p><div class="chart-top"><div class="rng"><button type="button" data-r="1m">1M</button><button type="button" data-r="6m">6M</button><button type="button" data-r="ytd">YTD</button><button type="button" data-r="1y">1Y</button><button type="button" data-r="3y">3Y</button><button type="button" data-r="5y">5Y</button><button type="button" data-r="10y">10Y</button><button type="button" data-r="max" class="on">Max</button></div><div class="cmp"><label><input type="checkbox" value="SPY" checked><i style="background:#c9a94e"></i>SPY</label><label><input type="checkbox" value="QQQ" checked><i style="background:#7c8bff"></i>QQQ</label></div></div>
+<div class="gchart" data-range="max" data-names='[&quot;BAMG&quot;,&quot;SPY&quot;,&quot;QQQ&quot;]' data-series='[[[19629,24.9951,25.332],[19635,24.7297,25.063],[19642,25.3059,25.647],[19649,24.8609,25.196],[19656,23.9699,24.293],[19663,24.0932,24.418],[19670,25.0345,25.372],[19677,25.7321,26.079],[19684,25.9403,26.29],[19691,26.1022,26.442],[19698,26.2443,26.586],[19705,27.2799,27.635],[19712,27.2266,27.581],[19719,27.7499,28.089],[19726,27.1877,27.52],[19733,27.7706,28.11],[19740,27.573,27.91],[19747,28.4029,28.75],[19754,28.0571,28.4],[19761,29.0352,29.39],[19768,29.4007,29.76],[19775,28.7586,29.11],[19782,29.4402,29.8],[19789,29.129,29.485],[19796,29.46,29.82],[19803,29.6082,29.97],[19810,29.6674,30.03],[19817,29.3908,29.75],[19824,29.1942,29.551],[19831,28.4493,28.797],[19838,28.4523,28.8],[19845,28.314,28.66],[19852,29.2822,29.64],[19859,29.8354,30.2],[19866,29.9342,30.3],[19873,29.5983,29.96],[19880,29.9046,30.27],[19887,30.2503,30.62],[19893,30.6455,31.02],[19901,30.6653,31.04],[19908,31.2215,31.603],[19915,31.5821,31.968],[19922,31.2778,31.66],[19929,30.2207,30.59],[19936,31.0407,31.42],[19943,29.5884,29.95],[19950,31.1493,31.53],[19957,32.1274,32.52],[19964,31.7994,32.188],[19971,31.4921,31.87],[19978,31.8972,32.28],[19985,31.9565,32.34],[19992,32.6284,33.02],[19999,32.668,33.06],[20006,33.1423,33.54],[20013,33.2707,33.67],[20020,32.9051,33.3],[20027,33.1324,33.53],[20034,33.8735,34.28],[20041,34.6166,35.032],[20048,34.2016,34.612],[20055,34.7628,35.18],[20062,35.8453,36.26],[20069,35.9046,36.32],[20076,34.4613,34.86],[20082,35.2818,35.69],[20089,34.2869,34.29],[20097,34.5469,34.55],[20104,34.7869,34.79],[20111,35.5768,35.58],[20118,35.5468,35.55],[20125,35.3868,35.39],[20132,35.3318,35.335],[20139,35.9528,35.956],[20146,34.4649,34.468],[20153,33.957,33.96],[20160,32.1671,32.17],[20167,32.5771,32.58],[20174,32.7621,32.765],[20181,32.3171,32.32],[20188,31.3162,31.319],[20195,30.2073,30.21],[20202,30.7473,30.75],[20209,32.2371,32.24],[20216,32.8171,32.82],[20223,34.3569,34.36],[20230,33.884,33.887],[20237,34.5269,34.53],[20244,34.7179,34.721],[20251,35.1639,35.167],[20258,34.9429,34.946],[20265,35.5768,35.58],[20272,36.4967,36.5],[20279,36.8867,36.89],[20286,36.6067,36.61],[20293,37.1717,37.175],[20300,37.1867,37.19],[20307,36.9267,36.93],[20314,36.4717,36.475],[20321,36.0968,36.1],[20328,36.5667,36.57],[20335,36.6787,36.682],[20342,36.8467,36.85],[20349,37.7266,37.73],[20356,37.9966,38],[20363,38.3776,38.381],[20370,38.5466,38.55],[20377,37.9966,38],[20384,38.6765,38.68],[20391,39.5765,39.58],[20398,39.6165,39.62],[20405,40.0364,40.04],[20412,38.7495,38.753],[20419,39.8464,39.85],[20426,40.2464,40.25],[20433,40.4064,40.41],[20440,39.5925,39.596],[20447,40.7474,40.751],[20454,40.1264,40.13],[20461,40.6524,40.656],[20468,40.2264,40.23],[20475,39.7015,39.705],[20482,40.2364,40.24],[20489,38.8365,38.84],[20496,38.8265,38.83],[20503,38.5536,38.557],[20510,38.8265,38.83],[20517,38.9865,38.99],[20524,38.5826,38.586],[20531,37.9066,37.91],[20538,37.0797,37.083],[20545,36.9667,36.97],[20552,38.3966,38.4],[20559,39.7414,39.745],[20566,40.3864,40.39],[20573,40.1214,40.125],[20580,41.9463,41.95],[20587,42.4162,42.42],[20594,42.2462,42.25],[20601,43.5041,43.508],[20608,44.437,44.441],[20615,42.3362,42.34],[20622,43.9261,43.93],[20629,43.6251,43.629],[20636,44.736,44.74],[20643,44.366,44.37],[20650,44.286,44.29],[20657,43.8261,43.83],[20664,42.1792,42.183],[20671,44.829,44.833],[20678,45.016,45.02],[20685,44.668,44.672],[20692,44.579,44.583],[20699,44.156,44.156],[20706,44.26,44.26],[20713,43.56,43.56],[20720,45.028,45.028],[20727,44.9,44.9],[20734,45.92,45.92],[20741,44.86,44.86],[20748,44.86,44.86],[20755,44.986,44.986],[20762,44.37,44.37],[20769,44.365,44.365],[20776,42.568,42.568],[20777,42.42,42.42]],[[19622,416.033,431.39],[19628,410.883,426.05],[19635,409.543,424.66],[19642,420.788,436.32],[19649,414.895,430.21],[19656,402.686,417.55],[19663,407.614,422.66],[19670,421.685,437.25],[19677,433.672,449.68],[19684,438.822,455.02],[19691,438.427,454.61],[19698,438.571,454.76],[19705,453.751,470.5],[19712,453.422,468.26],[19719,461.41,476.51],[19726,453.935,468.79],[19733,461.459,476.56],[19740,457.324,472.29],[19747,470.009,485.39],[19754,467.579,482.88],[19761,482.316,498.1],[19768,482.771,498.57],[19775,481.454,497.21],[19782,490.218,506.26],[19789,493.597,509.75],[19796,499.62,515.97],[19803,505.553,520.48],[19810,508.166,523.17],[19817,504.514,519.41],[19824,499.375,514.12],[19831,486.195,500.55],[19838,490.915,505.41],[19845,486,500.35],[19852,502.357,517.19],[19859,514.586,529.78],[19866,514.635,529.83],[19873,511.012,526.1],[19880,519.336,534.67],[19887,525.834,541.36],[19893,532.76,548.49],[19901,531.575,545.51],[19908,537.373,551.46],[19915,546.981,561.32],[19922,542.713,556.94],[19929,527.404,541.23],[19936,536.739,550.81],[19943,505.41,518.66],[19950,529.86,543.75],[19957,546.299,560.62],[19964,544.038,558.3],[19971,536.876,550.95],[19978,540.257,554.42],[19985,547.059,561.4],[19992,557.182,570.04],[19999,556.028,568.86],[20006,564.122,577.14],[20013,569.165,582.3],[20020,564.952,577.99],[20027,566.927,580.01],[20034,577.708,591.04],[20041,583.719,597.19],[20048,577.18,590.5],[20055,585.322,598.83],[20062,593.953,607.66],[20069,593.758,607.46],[20076,573.055,586.28],[20082,589.715,601.3],[20089,574.788,586.08],[20097,578.132,589.49],[20104,581.359,592.78],[20111,594.756,606.44],[20118,590.215,601.81],[20125,592.578,604.22],[20132,591.735,603.36],[20139,601.121,612.93],[20146,583.085,594.54],[20153,571.826,583.06],[20160,548.102,558.87],[20167,556.203,567.13],[20174,559.312,568.59],[20181,555.309,564.52],[20188,539.668,548.62],[20195,517.083,525.66],[20202,526.684,535.42],[20209,545.492,554.54],[20216,551.994,561.15],[20223,578.002,587.59],[20230,573.35,582.86],[20237,578.14,587.73],[20244,586.206,595.93],[20251,591.548,601.36],[20258,587.692,597.44],[20265,598.979,607.12],[20272,612.131,620.45],[20279,615.692,624.06],[20286,615.85,624.22],[20293,625.706,634.21],[20300,625.953,634.46],[20307,624.295,632.78],[20314,636.243,644.89],[20321,629.554,638.11],[20328,637.959,646.63],[20335,635.108,643.74],[20342,643.465,652.21],[20349,650.341,659.18],[20356,654.044,661.1],[20363,661.315,668.45],[20370,665.926,673.11],[20377,658.07,665.17],[20384,660.672,667.8],[20391,680.053,687.39],[20398,670.348,677.58],[20405,676.086,683.38],[20412,655.557,662.63],[20419,672.425,679.68],[20426,676.591,683.89],[20433,680.231,687.57],[20440,664.234,671.4],[20447,685.029,690.38],[20454,676.635,681.92],[20461,684.236,689.58],[20468,685.01,690.36],[20475,680.088,685.4],[20482,690.03,695.42],[20489,680.872,686.19],[20496,686.597,691.96],[20503,680.971,686.29],[20510,687.778,693.15],[20517,679.82,685.13],[20524,671.088,676.33],[20531,656.304,661.43],[20538,653.509,656.82],[20545,651.937,655.24],[20552,672.603,676.01],[20559,696.412,699.94],[20566,707.625,711.21],[20573,707.993,711.58],[20580,730.131,733.83],[20587,738.569,742.31],[20594,737.514,741.25],[20601,746.677,750.46],[20608,750.438,754.24],[20615,721.774,725.43],[20622,737.225,740.96],[20629,731.424,733.24],[20636,743.913,745.76],[20643,743.554,745.4],[20650,752.94,754.81],[20657,745.559,747.41],[20664,727.653,729.46],[20671,767.883,769.79],[20678,770.576,772.49],[20685,767.155,769.06],[20692,764.182,766.08],[20699,763.265,765.16],[20706,760.512,762.4],[20713,752.182,754.05],[20720,767.81,767.81],[20727,762.63,762.63],[20734,777.22,777.22],[20741,769.6,769.6],[20748,773.09,773.09],[20755,772.31,772.31],[20762,766.81,766.81],[20769,759.81,759.81],[20776,730.2,730.2],[20777,723.115,723.115]],[[19622,351.861,357.86],[19628,349.089,355.04],[19635,353.72,359.75],[19642,364.997,371.22],[19649,357.279,363.37],[19656,344.467,350.34],[19663,350.976,356.96],[19670,366.688,372.94],[19677,379.156,385.62],[19684,383.521,390.06],[19691,383.276,389.81],[19698,378.595,385.05],[19705,396.972,403.74],[19712,397.115,403.08],[19719,405.623,411.5],[19726,392.642,398.33],[19733,402.666,408.5],[19740,401.395,407.21],[19747,419.749,425.83],[19754,411.015,416.97],[19761,425.821,431.99],[19768,427.033,433.22],[19775,419.532,425.61],[19782,429.054,435.27],[19789,432.524,438.79],[19796,433.963,440.25],[19803,438.011,443.77],[19810,439.057,444.83],[19817,436.363,442.1],[19824,432.681,438.37],[19831,420.314,425.84],[19838,420.975,426.51],[19845,416.05,421.52],[19852,434.349,440.06],[19859,447.023,452.9],[19866,449.796,455.71],[19873,450.517,456.44],[19880,457.515,463.53],[19887,467.997,474.15],[19893,478.913,485.21],[19901,474.89,480.37],[19908,485.438,491.04],[19915,497.222,502.96],[19922,476.274,481.77],[19929,458.093,463.38],[19936,465.696,471.07],[19943,429.81,434.77],[19950,457.451,462.73],[19957,476.995,482.5],[19964,465.973,471.35],[19971,455.355,460.61],[19978,463.274,468.62],[19985,466.061,471.44],[19992,480.952,485.82],[19999,477.121,481.95],[20006,488.209,493.15],[20013,485.991,490.91],[20020,483.467,488.36],[20027,491.407,496.38],[20034,500.514,505.58],[20041,507.118,512.25],[20048,498.129,503.17],[20055,500.237,505.3],[20062,518.017,523.26],[20069,524.61,529.92],[20076,511.295,516.47],[20082,525.496,529.96],[20089,506.924,511.23],[20097,510.93,515.27],[20104,512.348,516.7],[20111,527.033,531.51],[20118,516.443,520.83],[20125,522.412,526.85],[20132,523.85,528.3],[20139,534.976,539.52],[20146,510.226,514.56],[20153,497.782,502.01],[20160,472.903,476.92],[20167,476.839,480.89],[20174,481.016,484.38],[20181,472.843,476.15],[20188,462.764,466],[20195,441.095,444.18],[20202,451.403,454.56],[20209,472.168,475.47],[20216,479.944,483.3],[20223,515.078,518.68],[20230,509.477,513.04],[20237,515.306,518.91],[20244,525.098,528.77],[20251,528.713,532.41],[20258,525.316,528.99],[20265,538.005,541.16],[20272,547.589,550.8],[20279,553.008,556.25],[20286,554.042,557.29],[20293,560.523,563.81],[20300,564.709,568.02],[20307,564.013,567.32],[20314,576.957,580.34],[20321,562.601,565.9],[20328,570.147,573.49],[20335,566.747,570.07],[20342,577.315,580.7],[20349,586.561,590],[20356,593.312,596.1],[20363,600.429,603.25],[20370,608.581,611.44],[20377,599.404,602.22],[20384,602.658,605.49],[20391,632.797,635.77],[20398,620.365,623.28],[20405,618.175,621.08],[20412,597.065,599.87],[20419,611.397,614.27],[20426,620.604,623.52],[20433,624.675,627.61],[20440,597.602,600.41],[20447,621.812,623.93],[20454,612.225,614.31],[20461,621.902,624.02],[20468,617.447,619.55],[20475,614.188,616.28],[20482,631.071,633.22],[20489,603.694,605.75],[20496,611.029,613.11],[20503,603.734,605.79],[20510,614.587,616.68],[20517,608.677,610.75],[20524,605.627,607.69],[20531,592.881,594.9],[20538,586.564,587.82],[20545,583.061,584.31],[20552,604.794,606.09],[20559,636.038,637.4],[20566,653.71,655.11],[20573,660.156,661.57],[20580,694.283,695.77],[20587,713.182,714.71],[20594,711.626,713.15],[20601,727.891,729.45],[20608,742.619,744.21],[20615,692.207,693.69],[20622,720.966,722.51],[20629,709.88,710.62],[20636,724.415,725.17],[20643,710.699,711.44],[20650,716.993,717.74],[20657,704.616,705.35],[20664,661.041,661.73],[20671,716.553,717.3],[20678,722.947,723.7],[20685,715.335,716.08],[20692,710.63,711.37],[20699,708.502,709.24],[20706,715.564,716.31],[20713,703.986,704.72],[20720,741.21,741.21],[20727,739.77,739.77],[20734,757.73,757.73],[20741,728.95,728.95],[20748,725.2,725.2],[20755,725.61,725.61],[20762,691.95,691.95],[20769,690.38,690.38],[20776,659.51,659.51],[20777,653.25,653.25]]]'></div><div class="legend-v"></div>
+<p class="note">Total return with dividends reinvested, from daily closing prices. Hover or tap the chart for exact values.</p></div>
 
-  <h2>How BAMG compares</h2>
-  <p>BAMG currently sits 70th out of 105 funds on the GrowthETFs list when sorted by total return. That is below the median for the list. For reference, the strongest performer on the list right now is TQQQ at 25403%.</p>
-  <p>BAMG holds $130.82M in assets, mid-sized by the standards of this list.</p>
-  <p>BAMG sits on the broad growth side of this list rather than targeting a single sector or market-cap band.</p>
+<div class="card"><h2>Trailing returns</h2><p class="sub">Total return including dividends, as of Nov 19, 2026.</p><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Period</th><th>BAMG</th><th>SPY</th><th>QQQ</th></tr></thead><tbody><tr><td>1 month</td><td class="neg"><b>-4.8%</b></td><td class="neg">-5.7%</td><td class="neg">-9.1%</td></tr><tr><td>3 months</td><td class="neg"><b>-5.0%</b></td><td class="neg">-5.7%</td><td class="neg">-8.7%</td></tr><tr><td>6 months</td><td class="pos"><b>+0.4%</b></td><td class="neg">-2.0%</td><td class="neg">-8.2%</td></tr><tr><td>Year to date</td><td class="pos"><b>+4.8%</b></td><td class="pos">+6.1%</td><td class="pos">+5.8%</td></tr><tr><td>1 year</td><td class="pos"><b>+9.9%</b></td><td class="pos">+10.7%</td><td class="pos">+10.1%</td></tr><tr><td>3 yr (annual)</td><td class="pos"><b>+18.1%</b></td><td class="pos">+18.5%</td><td class="pos">+19.8%</td></tr><tr><td>5 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+10.5%</td><td class="pos">+10.9%</td></tr><tr><td>10 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+14.5%</td><td class="pos">+19.5%</td></tr></tbody></table></div><p class="note"><a href="/etf/bamg/vs-spy">Full BAMG vs SPY breakdown →</a> &nbsp; <a href="/etf/bamg/vs-qqq">BAMG vs QQQ →</a></p></div>
 
-  <h3>Reading these numbers</h3>
-  <p>The return figure above is backward-looking. A fund near the top of this list has already made
-  its move, which tells you about the period behind it and nothing about the period ahead.
-  Concentrated growth funds in particular tend to post the largest gains and the largest drawdowns,
-  often within the same year. Read the return alongside fund size rather than on its own, and check
-  the issuer's own fund page for holdings, fees and the full prospectus before acting on anything here.</p>
+<div class="card"><h2>Calendar-year returns</h2><p class="sub">2 of 2 full years were positive. Best: 2024 (+24.2%). Worst: 2025 (+17.9%).</p><div class="cy"><div style="background:rgba(22,163,74,0.18012016658097585)" title="2026 (partial year)"><small>2026*</small>+4.8%</div><div style="background:rgba(22,163,74,0.34317651856166687)" title="2025"><small>2025</small>+17.9%</div><div style="background:rgba(22,163,74,0.4226339753221327)" title="2024"><small>2024</small>+24.2%</div><div style="background:rgba(22,163,74,0.252678609937352)" title="2023 (partial year)"><small>2023*</small>+10.6%</div></div><p class="note">* Partial year (fund launch year or year to date).</p><p class="note"><a href="/etf/bamg/calendar-returns">Year-by-year vs SPY and QQQ →</a></p></div>
 
-  <div class="cta-row">
-    <a class="cta cta-gold" href="https://growthetfs.com/">See the full ranked list &rarr;</a>
-    <a class="cta cta-outline" href="https://growthetfs.com/swipe.html">📈 Swipe growth ETFs</a>
-  </div>
+<div class="two">
+<div class="card"><h2>Drawdowns</h2><p class="sub">How far BAMG fell from each high. Worst: -21.0% (Feb 2025 to Apr 2025). Today: -7.8% from its high.</p><svg viewBox="0 0 760 150" preserveAspectRatio="none" style="width:100%;height:150px;display:block;background:#fff"><path d="M0 0 L0.0 0.0 L4.0 9.2 L8.6 0.0 L13.2 15.3 L17.9 45.9 L22.5 41.7 L27.1 9.3 L31.8 0.0 L36.4 0.0 L41.0 0.0 L45.7 0.0 L50.3 0.0 L54.9 1.7 L59.6 0.0 L64.2 17.6 L68.9 0.0 L73.5 6.2 L78.1 0.0 L82.8 10.6 L87.4 0.0 L92.0 0.0 L96.7 19.0 L101.3 0.0 L105.9 9.2 L110.6 0.0 L115.2 0.0 L119.8 0.0 L124.5 8.1 L129.1 13.9 L133.7 35.7 L138.4 35.6 L143.0 39.7 L147.6 11.3 L152.3 0.0 L156.9 0.0 L161.5 9.8 L166.2 0.9 L170.8 0.0 L174.8 0.0 L180.1 0.0 L184.7 0.0 L189.3 0.0 L194.0 8.4 L198.6 37.5 L203.2 14.9 L207.9 54.9 L212.5 11.9 L217.1 0.0 L221.8 8.9 L226.4 17.2 L231.0 6.2 L235.7 4.6 L240.3 0.0 L244.9 0.0 L249.6 0.0 L254.2 0.0 L258.9 9.6 L263.5 3.6 L268.1 0.0 L272.8 0.0 L277.4 10.4 L282.0 0.0 L286.7 0.0 L291.3 0.0 L295.9 35.0 L299.9 15.1 L304.5 39.2 L309.8 32.9 L314.5 27.1 L319.1 7.9 L323.7 8.7 L328.4 12.5 L333.0 13.9 L337.6 0.0 L342.3 36.0 L346.9 48.3 L351.5 91.6 L356.2 81.7 L360.8 77.2 L365.4 88.0 L370.1 112.2 L374.7 139.0 L379.3 126.0 L384.0 89.9 L388.6 75.9 L393.2 38.6 L397.9 50.1 L402.5 34.5 L407.1 29.9 L411.8 19.1 L416.4 24.4 L421.0 9.1 L425.7 0.0 L430.3 0.0 L434.9 6.6 L439.6 0.0 L444.2 0.0 L448.9 6.1 L453.5 16.7 L458.1 25.5 L462.8 14.5 L467.4 11.9 L472.0 8.0 L476.7 0.0 L481.3 0.0 L485.9 0.0 L490.6 0.0 L495.2 12.4 L499.8 0.0 L504.5 0.0 L509.1 0.0 L513.7 0.0 L518.4 28.0 L523.0 4.1 L527.6 0.0 L532.3 0.0 L536.9 17.5 L541.5 0.0 L546.2 13.3 L550.8 2.0 L555.4 11.1 L560.1 22.3 L564.7 10.9 L569.3 40.8 L574.0 41.0 L578.6 46.8 L583.2 41.0 L587.9 37.6 L592.5 46.2 L597.1 60.7 L601.8 78.3 L606.4 80.7 L611.0 50.2 L615.7 21.5 L620.3 7.7 L624.9 13.4 L629.6 0.0 L634.2 0.0 L638.9 3.5 L643.5 0.0 L648.1 0.0 L652.8 41.1 L657.4 10.0 L662.0 15.9 L666.7 0.0 L671.3 7.2 L675.9 8.8 L680.6 17.7 L685.2 49.7 L689.8 0.0 L694.5 0.0 L699.1 6.7 L703.7 8.4 L708.4 16.6 L713.0 14.6 L717.6 28.1 L722.3 0.0 L726.9 2.5 L731.5 0.0 L736.2 20.1 L740.8 20.1 L745.4 17.7 L750.1 29.4 L754.7 29.5 L759.3 63.5 L760.0 66.3 L760 0 Z" fill="rgba(220,38,38,.18)" stroke="#dc2626" stroke-width="1.2"/></svg><p class="note"><a href="/etf/bamg/drawdown">Drawdown breakdown →</a></p></div>
+<div class="card"><h2>52-week range</h2><p class="sub">BAMG is 66% of the way from its 52-week low to its high.</p><div class="r52"><i style="left:calc(66.0% - 2px)"></i></div><div class="r52-l"><span>Low $35.42<br>Mar 30, 2026</span><span style="text-align:right">High $46.02<br>Oct 6, 2026</span></div>
+<div class="kn" style="grid-template-columns:1fr 1fr;margin-top:14px"><a href="/etf/bamg/risk"><small>Volatility 1Y / 3Y</small><b>17% / 17%</b><span>annualized</span></a><a href="/etf/bamg/dividends"><small>Dividend yield</small><b>0.01%</b><span>Annual payer</span></a></div></div>
+</div>
 
-  <h2>Similar growth ETFs</h2>
-  <div class="related">
-      <a href="https://growthetfs.com/etf/jgro-growth-etf.html">
-      <div class="r-sym">JGRO</div>
-      <div class="r-ret">75%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/cneq-growth-etf.html">
-      <div class="r-sym">CNEQ</div>
-      <div class="r-ret">73%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/winn-growth-etf.html">
-      <div class="r-sym">WINN</div>
-      <div class="r-ret">71%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/ffog-growth-etf.html">
-      <div class="r-sym">FFOG</div>
-      <div class="r-ret">70%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/tgrw-growth-etf.html">
-      <div class="r-sym">TGRW</div>
-      <div class="r-ret">69%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/atfv-growth-etf.html">
-      <div class="r-sym">ATFV</div>
-      <div class="r-ret">68%</div>
-    </a>
-  </div>
+<div class="card"><h2>Explore BAMG</h2><p class="sub">Every number on this page has its own deep dive.</p><div class="bd"><a href="/etf/bamg/total-return">📈 BAMG Total Return</a><a href="/etf/bamg/growth-of-10k">🌱 BAMG Growth of $10,000</a><a href="/etf/bamg/vs-spy">⚔️ BAMG vs S&P 500 (SPY)</a><a href="/etf/bamg/vs-qqq">⚔️ BAMG vs Nasdaq-100 (QQQ)</a><a href="/etf/bamg/calendar-returns">🗓️ BAMG Calendar-Year Returns</a><a href="/etf/bamg/drawdown">📉 BAMG Max Drawdown</a><a href="/etf/bamg/risk">🎢 BAMG Volatility & Beta</a><a href="/etf/bamg/52-week-range">📏 BAMG 52-Week Range</a><a href="/etf/bamg/dividends">💵 BAMG Dividends & Yield</a><a href="/etf/bamg/rank">🏆 BAMG Rank vs Growth ETFs</a></div></div>
 
-  <h2>BAMG FAQ</h2>
-  <p class="faq-q">What is BAMG?</p>
-  <p>BAMG is Brookstone Growth Stock ETF. It is one of 105 growth-focused ETFs tracked on the GrowthETFs.com curated list.</p>
-  <p class="faq-q">How large is BAMG?</p>
-  <p>Our data lists assets under management for BAMG as $130.82M. Fund size moves daily with investor flows and market performance, so treat this as a snapshot rather than a fixed figure.</p>
-  <p class="faq-q">Where does BAMG rank against other growth ETFs?</p>
-  <p>BAMG ranks 70th of 105 on our list by total return, at 71%.</p>
-  <p class="faq-q">Is BAMG a good investment?</p>
-  <p>We don&#39;t answer that. GrowthETFs.com is an informational and entertainment site and publishes no buy or sell signals. Whether any fund suits you depends on your own goals, time horizon and risk tolerance. Speak with a licensed financial advisor.</p>
+<div class="card"><h2>Similar-size growth ETFs</h2><p class="sub">Compare BAMG with funds of a similar size on our list.</p><div class="rel"><a href="/etf/frty-growth-etf.html"><b>FRTY</b><small>$129.82M AUM</small></a><a href="/etf/mtra-growth-etf.html"><b>MTRA</b><small>$128.97M AUM</small></a><a href="/etf/pjfg-growth-etf.html"><b>PJFG</b><small>$133.88M AUM</small></a><a href="/etf/bul-growth-etf.html"><b>BUL</b><small>$134.30M AUM</small></a><a href="/etf/lgro-growth-etf.html"><b>LGRO</b><small>$139.16M AUM</small></a><a href="/etf/nbjp-growth-etf.html"><b>NBJP</b><small>$120.74M AUM</small></a><a href="/etf/bkcg-growth-etf.html"><b>BKCG</b><small>$118.79M AUM</small></a><a href="/etf/stxg-growth-etf.html"><b>STXG</b><small>$143.80M AUM</small></a></div></div>
 
-  <p class="fine"><strong>Disclaimer:</strong> GrowthETFs.com is for informational and educational
-purposes only. Nothing on this page constitutes investment advice or a recommendation to buy or sell any security.
-ETF data may be inaccurate or outdated and is sourced from public information. Investing carries risk, including
-loss of principal. We are not financial advisors. Always consult a licensed financial advisor before making
-investment decisions. <strong>This site is for entertainment purposes ONLY.</strong></p>
-</main>
+<div class="card faq"><h2>BAMG FAQ</h2><details><summary>What is the BAMG ETF?</summary><p>BAMG is the Brookstone Growth Stock ETF. It is one of 105 growth ETFs tracked on GrowthETFs.com, with about $130.82M in assets.</p></details><details><summary>What is BAMG's total return?</summary><p>Since its first trading day in Sep 2023, BAMG has returned +70% with dividends reinvested, about 18.3% a year. Over the last 12 months it returned +9.9%.</p></details><details><summary>Has BAMG beaten the S&P 500?</summary><p>Over the last year BAMG returned +9.9% versus +10.7% for SPY. </p></details><details><summary>How much would $10,000 in BAMG be worth today?</summary><p>$10,000 invested in BAMG at launch (Sep 2023) would be worth about $16,971 today with dividends reinvested, versus $17,498 in SPY over the same period.</p></details><details><summary>What was BAMG's worst drawdown?</summary><p>BAMG's largest drop from a high was -21.0%, from Feb 19, 2025 to Apr 8, 2025. It got back to its old high by Jun 27, 2025.</p></details><details><summary>Does BAMG pay a dividend?</summary><p>Yes, small. BAMG paid $0.004 per share over the last 12 months, about a 0.01% yield, paid annual. Growth ETFs reinvest most of their return into price gains rather than paying it out.</p></details></div>
+<p class="note">Data: GrowthETFs.com list and Yahoo Finance daily prices as of Nov 19, 2026. Total return assumes dividends are reinvested. Past performance does not guarantee future results. Not financial advice.</p></main>
 <footer>
   <a href="https://growthetfs.com">GrowthETFs.com</a> &bull;
   <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &bull;
@@ -276,5 +284,25 @@ investment decisions. <strong>This site is for entertainment purposes ONLY.</str
   setInterval(load, 5 * 60 * 1000);
 })();
 </script>
+<script>(function(){document.querySelectorAll('.gchart').forEach(function(box){
+var D=JSON.parse(box.dataset.series),names=JSON.parse(box.dataset.names),cols=['#002D22','#c9a94e','#7c8bff'];var sel=box.dataset.range||'max',show={};names.forEach(function(n,i){show[n]=true});
+var svgNS='http://www.w3.org/2000/svg',svg=document.createElementNS(svgNS,'svg'),tip=document.createElement('div');tip.className='gtip';box.appendChild(svg);box.appendChild(tip);
+var card=box.closest('.card');var rb=card.querySelectorAll('.rng button');rb.forEach(function(b){b.onclick=function(){rb.forEach(function(x){x.classList.toggle('on',x===b)});sel=b.dataset.r;draw()}});
+card.querySelectorAll('.cmp input').forEach(function(c){c.onchange=function(){show[c.value]=c.checked;draw()}});
+var leg=card.querySelector('.legend-v');
+function from(){var last=D[0][D[0].length-1][0];var y=new Date(last*864e5).getUTCFullYear();return sel==='max'?0:sel==='ytd'?Date.UTC(y,0,1)/864e5:last-{'1m':30,'6m':182,'1y':365,'3y':1096,'5y':1826,'10y':3652}[sel]}
+function draw(){var W=box.clientWidth,H=box.clientHeight,pl=48,pr=10,pt=10,pb=24;svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
+var f=from();var start=Math.max(f,D[0][0][0]);var S=[];D.forEach(function(s,i){if(!show[names[i]])return;var pts=s.filter(function(p){return p[0]>=start});if(pts.length<2)return;var b=pts[0][1];S.push({i:i,n:names[i],p:pts.map(function(p){return[p[0],(p[1]/b-1)*100]})})});
+if(!S.length)return;var x0=start,x1=D[0][D[0].length-1][0],ys=[];S.forEach(function(s){s.p.forEach(function(p){ys.push(p[1])})});var y0=Math.min.apply(0,ys),y1=Math.max.apply(0,ys);var pad=(y1-y0)*.06||1;y0-=pad;y1+=pad;
+var X=function(v){return pl+(v-x0)/(x1-x0||1)*(W-pl-pr)},Y=function(v){return pt+(1-(v-y0)/(y1-y0))*(H-pt-pb)};
+for(var k=0;k<=4;k++){var v=y0+(y1-y0)*k/4,y=Y(v);var l=document.createElementNS(svgNS,'line');l.setAttribute('x1',pl);l.setAttribute('x2',W-pr);l.setAttribute('y1',y);l.setAttribute('y2',y);l.setAttribute('stroke','#e8ece6');svg.appendChild(l);var t=document.createElementNS(svgNS,'text');t.setAttribute('x',pl-6);t.setAttribute('y',y+4);t.setAttribute('text-anchor','end');t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.textContent=(v>=0?'+':'')+(Math.abs(v)>=1000?Math.round(v/100)/10+'k':Math.round(v))+'%';svg.appendChild(t)}
+var z=document.createElementNS(svgNS,'line');z.setAttribute('x1',pl);z.setAttribute('x2',W-pr);z.setAttribute('y1',Y(0));z.setAttribute('y2',Y(0));z.setAttribute('stroke','#9aa59f');z.setAttribute('stroke-dasharray','3 3');svg.appendChild(z);
+[0,.5,1].forEach(function(q){var v=x0+(x1-x0)*q,t=document.createElementNS(svgNS,'text');t.setAttribute('x',X(v));t.setAttribute('y',H-6);t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.setAttribute('text-anchor',q===0?'start':q===1?'end':'middle');t.textContent=new Date(v*864e5).toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'});svg.appendChild(t)});
+S.slice().reverse().forEach(function(s){var d='';s.p.forEach(function(p,j){d+=(j?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)});var pa=document.createElementNS(svgNS,'path');pa.setAttribute('d',d);pa.setAttribute('fill','none');pa.setAttribute('stroke',cols[s.i]);pa.setAttribute('stroke-width',s.i===0?2.4:1.6);pa.setAttribute('stroke-linejoin','round');svg.appendChild(pa)});
+if(leg)leg.innerHTML=S.map(function(s){var v=s.p[s.p.length-1][1];return'<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+cols[s.i]+';margin-right:6px"></i>'+s.n+' <b class="'+(v>=0?'pos':'neg')+'">'+(v>=0?'+':'')+v.toFixed(1)+'%</b></span>'}).join('');
+var vl=document.createElementNS(svgNS,'line');vl.setAttribute('stroke','#002D22');vl.setAttribute('stroke-width','1');vl.style.display='none';svg.appendChild(vl);
+svg.onmousemove=svg.ontouchmove=function(e){var r=svg.getBoundingClientRect(),cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;var xv=x0+(cx-pl)/(W-pl-pr)*(x1-x0);var html='',best=S[0].p.reduce(function(m,p){return Math.abs(p[0]-xv)<Math.abs(m[0]-xv)?p:m});html='<b>'+new Date(best[0]*864e5).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})+'</b>';S.forEach(function(s){var p=s.p.reduce(function(m,q){return Math.abs(q[0]-xv)<Math.abs(m[0]-xv)?q:m});html+='<br>'+s.n+': '+(p[1]>=0?'+':'')+p[1].toFixed(1)+'%'});tip.innerHTML=html;tip.style.display='block';var tx=Math.min(Math.max(cx+12,0),W-150);tip.style.left=tx+'px';tip.style.top='8px';vl.setAttribute('x1',X(best[0]));vl.setAttribute('x2',X(best[0]));vl.setAttribute('y1',pt);vl.setAttribute('y2',H-pb);vl.style.display=''};
+svg.onmouseleave=function(){tip.style.display='none';vl.style.display='none'}}
+draw();window.addEventListener('resize',draw)})})();</script>
 </body>
 </html>

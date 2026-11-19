@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PJFG ETF: Total Return, AUM &amp; Rank (2026) | PGIM Jennison Focused Growth ETF</title>
-<meta name="description" content="PJFG ETF is the PGIM Jennison Focused Growth ETF. Total return 117%, AUM $133.88M, ranked 56th of 105 growth ETFs on GrowthETFs.com. Free, updated daily.">
+<title>PJFG ETF: Performance, Total Return &amp; Risk vs SPY (2026) | PGIM Jennison Focused Growth ETF</title>
+<meta name="description" content="PJFG total return +117% since Dec 2022 (21.8%/yr), +0.5% over 1 year vs +10.7% for SPY. Charts, drawdowns, risk and rank among 105 growth ETFs.">
 <link rel="canonical" href="https://growthetfs.com/etf/pjfg-growth-etf.html">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="PJFG ETF: Total Return, AUM &amp; Rank (2026) | PGIM Jennison Focused Growth ETF">
@@ -105,7 +105,80 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
 @media(max-width:520px){
   table{font-size:13px}
   th,td{padding:9px 8px}
-}</style>
+}
+.gx{--g:#002D22;--g2:#003d2e;--gold:#c9a94e;--pos:#16a34a;--neg:#dc2626;--line:#e3e8e1;--mut:#5f6b66;--bg:#f2f4f0}
+.gx *{box-sizing:border-box}
+.gx .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 16px}
+.gx h2{font-size:1.25rem;color:var(--g);margin:0 0 4px;font-weight:900}
+.gx .sub{color:var(--mut);font-size:.88rem;margin:0 0 14px}
+.gx .pos{color:var(--pos)!important}.gx .neg{color:var(--neg)!important}
+.gx-hero{background:linear-gradient(135deg,#002D22,#00513c 70%,#0b6b50);color:#fff;border-radius:18px;padding:22px 24px;margin:6px 0 16px;display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:center;box-shadow:0 10px 30px rgba(0,45,34,.2)}
+.gx-hero .tk{display:flex;align-items:center;gap:12px}
+.gx-hero .sym{font-size:2.4rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+.gx-hero .nm{font-size:1rem;opacity:.9;margin-top:4px}
+.gx-hero .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.gx-hero .chips span{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.12)}
+.gx-hero .chips span.gold{background:var(--gold);color:#1f1600}
+.gx-hero .px{text-align:right}
+.gx-hero .px b{font-size:2.3rem;font-weight:900;display:block;line-height:1}
+.gx-hero .px small{opacity:.8;font-size:.78rem}
+.gx-hero .px .chg{display:inline-block;margin-top:6px;font-weight:800;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.12)}
+.gx-hero .mini{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.gx-hero .mini a{display:block;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px;text-align:center;transition:.15s}
+.gx-hero .mini a:hover{background:rgba(255,255,255,.16)}
+.gx-hero .mini b{display:block;font-size:1.15rem;font-weight:900}
+.gx-hero .mini b.pos{color:#7ff0b0!important}.gx-hero .mini b.neg{color:#ffaaa5!important}
+.gx-hero .mini small{font-size:.68rem;opacity:.8;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.kn{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kn a{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:#222;background:#f7f9f6;border:1px solid var(--line);border-radius:12px;padding:14px;transition:.15s;position:relative}
+.kn a:hover{border-color:var(--g);background:#fff;box-shadow:0 6px 18px rgba(0,45,34,.08);transform:translateY(-2px)}
+.kn a::after{content:"→";position:absolute;right:12px;top:12px;color:var(--gold);font-weight:900}
+.kn small{font-size:.7rem;color:var(--mut);font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.kn b{font-size:1.35rem;font-weight:900;color:var(--g)}
+.kn span{font-size:.76rem;color:var(--mut)}
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.rng{display:flex;gap:4px;flex-wrap:wrap}
+.rng button,.cmp label{font-family:inherit;font-size:.78rem;font-weight:800;border:1px solid var(--line);background:#fff;color:#444;border-radius:8px;padding:6px 10px;cursor:pointer}
+.rng button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.cmp{display:flex;gap:6px;flex-wrap:wrap}
+.cmp label{display:inline-flex;align-items:center;gap:6px}
+.cmp i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.gchart{position:relative;width:100%;height:300px}
+.gchart svg{width:100%;height:100%;display:block}
+.gtip{position:absolute;pointer-events:none;background:#002D22;color:#fff;font-size:.76rem;padding:8px 10px;border-radius:8px;white-space:nowrap;display:none;box-shadow:0 6px 16px rgba(0,0,0,.2);z-index:3}
+.legend-v{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:.86rem}
+.legend-v b{font-weight:900}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem}
+.tbl th,.tbl td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+.tbl tr.me td{background:#f4faf6;font-weight:800}
+.tbl-wrap{overflow-x:auto}
+.cy{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.cy div{border-radius:10px;padding:10px 4px;text-align:center;font-weight:900;font-size:.9rem}
+.cy div small{display:block;font-size:.68rem;font-weight:700;opacity:.75}
+.r52{position:relative;height:12px;border-radius:999px;background:linear-gradient(90deg,#fecaca,#fde68a,#bbf7d0);margin:18px 0 8px}
+.r52 i{position:absolute;top:-6px;width:4px;height:24px;background:var(--g);border-radius:2px}
+.r52-l{display:flex;justify-content:space-between;font-size:.8rem;color:var(--mut)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.rel a{display:block;text-decoration:none;color:#222;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;transition:.15s}
+.rel a:hover{border-color:var(--g);transform:translateY(-2px)}
+.rel b{display:block;font-size:1rem;color:var(--g)}
+.rel small{font-size:.76rem;color:var(--mut)}
+.bd{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.bd a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--g);font-weight:800;font-size:.88rem;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.bd a:hover{border-color:var(--gold);background:#fffdf5}
+.faq details{border-bottom:1px solid var(--line);padding:12px 0}
+.faq summary{font-weight:800;cursor:pointer;color:var(--g)}
+.faq p{margin:8px 0 0;color:#444;line-height:1.6;font-size:.94rem}
+.note{font-size:.76rem;color:var(--mut);margin-top:10px;line-height:1.5}
+.bigstat{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bigstat b{font-size:2.6rem;font-weight:900;color:var(--g);line-height:1}
+.prose p{line-height:1.7;color:#333;margin:0 0 12px}
+@media(max-width:820px){.gx-hero{grid-template-columns:1fr}.gx-hero .px{text-align:left}.gx-hero .mini{grid-template-columns:repeat(3,1fr)}.kn{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.gchart{height:240px}}
+@media(max-width:480px){.gx-hero .mini{grid-template-columns:repeat(2,1fr)}.gx-hero .sym{font-size:2rem}.gx .card{padding:16px}}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -125,107 +198,42 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
     <a href="https://topetfs.com/" class="site-pill">📰 TopETFs.com</a>
   </div>
 </div>
-<main class="wrap">
-  <div class="crumbs"><a href="https://growthetfs.com/">Home</a> &rsaquo; <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; PJFG</div>
-
-  <section class="hero">
-    <div class="ticker">PJFG</div>
-    <h1>PGIM Jennison Focused Growth ETF</h1>
-    
-  </section>
-
-  <div class="focus-grid">
-    <div class="focus-box">
-      <div class="focus-val" data-live-price>$109.16</div>
-      <div class="focus-label">Price</div>
-    </div>
-    <div class="focus-box growth">
-      <div class="focus-val ">117%</div>
-      <div class="focus-label">Total Return</div>
-    </div>
-    <div class="focus-box">
-      <div class="focus-val">$133.88M</div>
-      <div class="focus-label">AUM</div>
-    </div>
+<main class="wrap gx"><div class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; PJFG</div>
+<section class="gx-hero">
+  <div><div class="tk"><img src="/etf-images/pjfg.png" alt="" width="54" height="54" style="border-radius:12px;background:#fff" onerror="this.remove()"><div><div class="sym">PJFG</div><div class="nm">PGIM Jennison Focused Growth ETF</div></div></div>
+  <div class="chips"><span class="gold">#56 of 105 by total return</span><span>$133.88M AUM</span><span>Since Dec 2022</span></div></div>
+  <div class="px"><b data-live-price="PJFG">$109.07</b><span class="chg">-0.98% last session</span><br><small>Close as of Nov 19, 2026. Delayed quote.</small></div>
+  <div class="mini">
+    <a href="/etf/pjfg/total-return"><b class="neg">-2.6%</b><small>YTD</small></a>
+    <a href="/etf/pjfg/total-return"><b class="pos">+0.5%</b><small>1 Year</small></a>
+    <a href="/etf/pjfg/total-return"><b class="">n/a</b><small>5Y / yr</small></a>
+    <a href="/etf/pjfg/growth-of-10k"><b>$21,716</b><small>$10k at launch</small></a>
+    <a href="/etf/pjfg/drawdown"><b class="neg">-24%</b><small>Max drawdown</small></a>
   </div>
-  <p class="price-note" data-price-note>Price as of 2026-11-18. Quotes may be delayed up to 20 minutes.</p>
+</section>
 
-  <div class="etf-signup" data-variant="featured" data-color="#002D22" data-accent="#c9a94e" data-source="growthetfs"></div>
-<script src="/email-signup.js" defer></script>
+<div class="card"><h2>PJFG key numbers</h2><p class="sub">Tap any box for the full breakdown.</p><div class="kn"><a href="/etf/pjfg/total-return"><small>Total return (since launch)</small><b class="pos">+117%</b><span>21.8% a year since Dec 2022</span></a><a href="/etf/pjfg/growth-of-10k"><small>Growth of $10,000</small><b class="">$21,716</b><span>invested at launch, Dec 2022</span></a><a href="/etf/pjfg/vs-spy"><small>vs S&P 500 (1 yr)</small><b class="neg">-10.2%</b><span>SPY +10.7% over the same year</span></a><a href="/etf/pjfg/vs-qqq"><small>vs Nasdaq-100 (1 yr)</small><b class="neg">-9.5%</b><span>QQQ +10.1% over the same year</span></a><a href="/etf/pjfg/drawdown"><small>Max drawdown</small><b class="neg">-24.2%</b><span>Feb 2025 to Apr 2025</span></a><a href="/etf/pjfg/risk"><small>Volatility (1 yr)</small><b class="">20.1%</b><span>beta 1.28 vs the S&P 500</span></a><a href="/etf/pjfg/52-week-range"><small>52-week position</small><b class="">50%</b><span>$93.90 to $124.40</span></a><a href="/etf/pjfg/rank"><small>Rank by total return</small><b class="">#56 of 105</b><span>#95 by fund size</span></a></div></div>
 
-  <h2>PJFG at a glance</h2>
-  <table>
-    <tbody>
-      <tr><th scope="row">Ticker</th><td><strong>PJFG</strong></td></tr>
-      <tr><th scope="row">Fund name</th><td>PGIM Jennison Focused Growth ETF</td></tr>
-      <tr><th scope="row">Price</th><td data-live-price>$109.16</td></tr>
-      <tr><th scope="row">Total return</th><td class="pos">117%</td></tr>
-      <tr><th scope="row">Assets under management</th><td>$133.88M</td></tr>
-      <tr><th scope="row">Rank on this list</th><td>56th of 105</td></tr>
-    </tbody>
-  </table>
+<div class="card" id="perf"><h2>PJFG performance vs SPY and QQQ</h2><p class="sub">Growth of every dollar since Dec 2022, dividends reinvested.</p><div class="chart-top"><div class="rng"><button type="button" data-r="1m">1M</button><button type="button" data-r="6m">6M</button><button type="button" data-r="ytd">YTD</button><button type="button" data-r="1y">1Y</button><button type="button" data-r="3y">3Y</button><button type="button" data-r="5y">5Y</button><button type="button" data-r="10y">10Y</button><button type="button" data-r="max" class="on">Max</button></div><div class="cmp"><label><input type="checkbox" value="SPY" checked><i style="background:#c9a94e"></i>SPY</label><label><input type="checkbox" value="QQQ" checked><i style="background:#7c8bff"></i>QQQ</label></div></div>
+<div class="gchart" data-range="max" data-names='[&quot;PJFG&quot;,&quot;SPY&quot;,&quot;QQQ&quot;]' data-series='[[[19341,50.227,50.227],[19348,47.95,47.95],[19355,45.94,45.94],[19362,46.961,46.961],[19369,49.078,49.078],[19376,49.833,49.833],[19383,51.351,51.351],[19390,53.371,53.371],[19397,53.218,53.218],[19404,54.19,54.19],[19411,51.9,51.9],[19418,51.468,51.468],[19425,52.224,52.224],[19432,52.019,52.019],[19439,54.01,54.01],[19446,55.082,55.082],[19453,56.033,56.033],[19460,55.835,55.835],[19467,56.867,56.867],[19474,55.853,55.853],[19481,56.816,56.816],[19488,58.308,58.308],[19495,58.932,58.932],[19502,58.3,58.3],[19509,60.818,60.818],[19516,60.956,60.956],[19523,63.873,63.873],[19530,63.403,63.403],[19537,63.59,63.59],[19544,64.717,64.717],[19551,64.671,64.671],[19558,67.083,67.083],[19565,65.089,65.089],[19572,64.284,64.284],[19579,64.328,64.328],[19586,63.486,63.486],[19593,64.341,64.341],[19600,65.533,65.533],[19607,65.465,65.465],[19614,65.725,65.725],[19621,63.748,63.748],[19628,61.734,61.734],[19635,62.78,62.78],[19642,65.12,65.12],[19649,63.303,63.303],[19656,61.47,61.47],[19663,62.987,62.987],[19670,66.14,66.14],[19677,68.041,68.041],[19684,69.371,69.371],[19691,69.54,69.54],[19698,68.457,68.457],[19705,71.338,71.338],[19712,71.517,71.517],[19719,72.711,72.711],[19726,70.413,70.413],[19733,73.101,73.101],[19740,73.136,73.136],[19747,76.412,76.412],[19754,75.72,75.72],[19761,80.11,80.11],[19768,80.9,80.9],[19775,78.511,78.511],[19782,81.078,81.078],[19789,82.141,82.141],[19796,82.441,82.441],[19803,82.886,82.886],[19810,82.353,82.353],[19817,81.74,81.74],[19824,81.16,81.16],[19831,79.003,79.003],[19838,78.35,78.35],[19845,77.869,77.869],[19852,81.532,81.532],[19859,83.36,83.36],[19866,83.42,83.42],[19873,84.687,84.687],[19880,85.955,85.955],[19887,88.156,88.156],[19893,89.815,89.815],[19901,89.661,89.661],[19908,90.946,90.946],[19915,93.27,93.27],[19922,87.876,87.876],[19929,84.435,84.435],[19936,85.445,85.445],[19943,79.564,79.564],[19950,85.983,85.983],[19957,89.463,89.463],[19964,87.522,87.522],[19971,85.52,85.52],[19978,87.203,87.203],[19985,88,88],[19992,90.6,90.6],[19999,88.727,88.727],[20006,91.401,91.401],[20013,91.036,91.036],[20020,90.96,90.96],[20027,92.775,92.775],[20034,93.695,93.695],[20041,95.257,95.257],[20048,93.765,93.765],[20055,94.274,94.274],[20062,98.272,98.272],[20069,99.253,99.253],[20076,96.643,96.643],[20082,98.778,98.778],[20089,95.113,95.113],[20097,96.297,96.297],[20104,96.234,96.234],[20111,99.337,99.337],[20118,98.062,98.062],[20125,99.291,99.291],[20132,99.845,99.845],[20139,100.076,100.076],[20146,95.494,95.494],[20153,92.651,92.651],[20160,87.17,87.17],[20167,87.686,87.686],[20174,88.375,88.375],[20181,86.578,86.578],[20188,85.585,85.585],[20195,81.358,81.358],[20202,83.885,83.885],[20209,88.569,88.569],[20216,90.444,90.444],[20223,96.729,96.729],[20230,95.843,95.843],[20237,97.199,97.199],[20244,99.539,99.539],[20251,100.023,100.023],[20258,98.957,98.957],[20265,101.271,101.271],[20272,102.891,102.891],[20279,104.501,104.501],[20286,104.305,104.305],[20293,104.92,104.92],[20300,105.606,105.606],[20307,105.466,105.466],[20314,106.205,106.205],[20321,104.482,104.482],[20328,106.215,106.215],[20335,105.894,105.894],[20342,108.14,108.14],[20349,109.277,109.277],[20356,109.743,109.743],[20363,110.838,110.838],[20370,112.019,112.019],[20377,109.774,109.774],[20384,110.141,110.141],[20391,115.922,115.922],[20398,113.545,113.545],[20405,113.314,113.314],[20412,109.24,109.24],[20419,111.41,111.41],[20426,112.334,112.334],[20433,112.411,112.411],[20440,108.05,108.05],[20447,112.649,112.649],[20454,111.224,111.224],[20461,112.148,112.148],[20468,110.03,110.03],[20475,107.798,107.798],[20482,110.255,110.255],[20489,104.219,104.219],[20496,105.157,105.157],[20503,103.861,103.861],[20510,105.112,105.112],[20517,104.317,104.317],[20524,104.12,104.12],[20531,100.71,100.71],[20538,99.017,99.017],[20545,98.504,98.504],[20552,101.657,101.657],[20559,108.193,108.193],[20566,110.406,110.406],[20573,109.724,109.724],[20580,113.934,113.934],[20587,115.624,115.624],[20594,115.799,115.799],[20601,117.672,117.672],[20608,118.609,118.609],[20615,112.14,112.14],[20622,114.592,114.592],[20629,112.211,112.211],[20636,116.166,116.166],[20643,116.209,116.209],[20650,118.062,118.062],[20657,114.936,114.936],[20664,109.894,109.894],[20671,119.18,119.18],[20678,119.26,119.26],[20685,117.751,117.751],[20692,116.639,116.639],[20699,116.341,116.341],[20706,116.91,116.91],[20713,115.922,115.922],[20720,120.627,120.627],[20727,120.853,120.853],[20734,124.185,124.185],[20741,120.469,120.469],[20748,119.745,119.745],[20755,118.919,118.919],[20762,115.337,115.337],[20769,114.792,114.792],[20776,110.152,110.152],[20777,109.075,109.075]],[[19334,373.288,393.16],[19341,379.213,399.4],[19348,368.392,386.23],[19355,359.264,376.66],[19362,366.036,383.76],[19369,377.253,395.52],[19376,373.409,391.49],[19383,381.86,400.35],[19390,391.827,410.8],[19397,391.684,410.65],[19404,394.861,413.98],[19411,380.134,398.54],[19418,376.509,394.74],[19425,380.496,398.92],[19432,371.301,389.28],[19439,375.428,392.11],[19446,384.275,401.35],[19453,390.259,407.6],[19460,390.69,408.05],[19467,396.521,414.14],[19474,387.157,404.36],[19481,390.661,408.02],[19488,395.286,412.85],[19495,397.564,415.23],[19502,393.6,411.09],[19509,400.073,417.85],[19516,408.403,426.55],[19523,418.581,437.18],[19530,417.983,434.94],[19537,419.376,436.39],[19544,425.853,443.13],[19551,428.631,446.02],[19558,437.453,455.2],[19565,437.751,455.51],[19572,432.58,450.13],[19579,428.371,445.75],[19586,422.499,439.64],[19593,425.757,443.03],[19600,433.426,451.01],[19607,428.823,446.22],[19614,429.102,446.51],[19621,423.025,438.64],[19628,410.883,426.05],[19635,409.543,424.66],[19642,420.788,436.32],[19649,414.895,430.21],[19656,402.686,417.55],[19663,407.614,422.66],[19670,421.685,437.25],[19677,433.672,449.68],[19684,438.822,455.02],[19691,438.427,454.61],[19698,438.571,454.76],[19705,453.751,470.5],[19712,453.422,468.26],[19719,461.41,476.51],[19726,453.935,468.79],[19733,461.459,476.56],[19740,457.324,472.29],[19747,470.009,485.39],[19754,467.579,482.88],[19761,482.316,498.1],[19768,482.771,498.57],[19775,481.454,497.21],[19782,490.218,506.26],[19789,493.597,509.75],[19796,499.62,515.97],[19803,505.553,520.48],[19810,508.166,523.17],[19817,504.514,519.41],[19824,499.375,514.12],[19831,486.195,500.55],[19838,490.915,505.41],[19845,486,500.35],[19852,502.357,517.19],[19859,514.586,529.78],[19866,514.635,529.83],[19873,511.012,526.1],[19880,519.336,534.67],[19887,525.834,541.36],[19893,532.76,548.49],[19901,531.575,545.51],[19908,537.373,551.46],[19915,546.981,561.32],[19922,542.713,556.94],[19929,527.404,541.23],[19936,536.739,550.81],[19943,505.41,518.66],[19950,529.86,543.75],[19957,546.299,560.62],[19964,544.038,558.3],[19971,536.876,550.95],[19978,540.257,554.42],[19985,547.059,561.4],[19992,557.182,570.04],[19999,556.028,568.86],[20006,564.122,577.14],[20013,569.165,582.3],[20020,564.952,577.99],[20027,566.927,580.01],[20034,577.708,591.04],[20041,583.719,597.19],[20048,577.18,590.5],[20055,585.322,598.83],[20062,593.953,607.66],[20069,593.758,607.46],[20076,573.055,586.28],[20082,589.715,601.3],[20089,574.788,586.08],[20097,578.132,589.49],[20104,581.359,592.78],[20111,594.756,606.44],[20118,590.215,601.81],[20125,592.578,604.22],[20132,591.735,603.36],[20139,601.121,612.93],[20146,583.085,594.54],[20153,571.826,583.06],[20160,548.102,558.87],[20167,556.203,567.13],[20174,559.312,568.59],[20181,555.309,564.52],[20188,539.668,548.62],[20195,517.083,525.66],[20202,526.684,535.42],[20209,545.492,554.54],[20216,551.994,561.15],[20223,578.002,587.59],[20230,573.35,582.86],[20237,578.14,587.73],[20244,586.206,595.93],[20251,591.548,601.36],[20258,587.692,597.44],[20265,598.979,607.12],[20272,612.131,620.45],[20279,615.692,624.06],[20286,615.85,624.22],[20293,625.706,634.21],[20300,625.953,634.46],[20307,624.295,632.78],[20314,636.243,644.89],[20321,629.554,638.11],[20328,637.959,646.63],[20335,635.108,643.74],[20342,643.465,652.21],[20349,650.341,659.18],[20356,654.044,661.1],[20363,661.315,668.45],[20370,665.926,673.11],[20377,658.07,665.17],[20384,660.672,667.8],[20391,680.053,687.39],[20398,670.348,677.58],[20405,676.086,683.38],[20412,655.557,662.63],[20419,672.425,679.68],[20426,676.591,683.89],[20433,680.231,687.57],[20440,664.234,671.4],[20447,685.029,690.38],[20454,676.635,681.92],[20461,684.236,689.58],[20468,685.01,690.36],[20475,680.088,685.4],[20482,690.03,695.42],[20489,680.872,686.19],[20496,686.597,691.96],[20503,680.971,686.29],[20510,687.778,693.15],[20517,679.82,685.13],[20524,671.088,676.33],[20531,656.304,661.43],[20538,653.509,656.82],[20545,651.937,655.24],[20552,672.603,676.01],[20559,696.412,699.94],[20566,707.625,711.21],[20573,707.993,711.58],[20580,730.131,733.83],[20587,738.569,742.31],[20594,737.514,741.25],[20601,746.677,750.46],[20608,750.438,754.24],[20615,721.774,725.43],[20622,737.225,740.96],[20629,731.424,733.24],[20636,743.913,745.76],[20643,743.554,745.4],[20650,752.94,754.81],[20657,745.559,747.41],[20664,727.653,729.46],[20671,767.883,769.79],[20678,770.576,772.49],[20685,767.155,769.06],[20692,764.182,766.08],[20699,763.265,765.16],[20706,760.512,762.4],[20713,752.182,754.05],[20720,767.81,767.81],[20727,762.63,762.63],[20734,777.22,777.22],[20741,769.6,769.6],[20748,773.09,773.09],[20755,772.31,772.31],[20762,766.81,766.81],[20769,759.81,759.81],[20776,730.2,730.2],[20777,723.115,723.115]],[[19334,273.97,280.53],[19341,279.811,286.51],[19348,267.695,273.45],[19355,254.626,260.1],[19362,260.148,265.74],[19369,271.709,277.55],[19376,272.032,277.88],[19383,281.675,287.73],[19390,294.587,300.92],[19397,297.965,304.37],[19404,302.595,309.1],[19411,288.058,294.25],[19418,285.072,291.2],[19425,291.552,297.82],[19432,292.639,298.93],[19439,300.142,306.12],[19446,306.613,312.72],[19453,309.75,315.92],[19460,306.927,313.04],[19467,312.486,318.71],[19474,305.779,311.87],[19481,311.094,317.29],[19488,318.79,325.14],[19495,324.654,331.12],[19502,325.173,331.65],[19509,341.194,347.99],[19516,342.008,348.82],[19523,358.754,365.9],[19530,355.319,361.9],[19537,357.911,364.54],[19544,363.547,370.28],[19551,366.041,372.82],[19558,378.637,385.65],[19565,370.655,377.52],[19572,367.582,374.39],[19579,361.22,367.91],[19586,355.948,362.54],[19593,362.398,369.11],[19600,370.007,376.86],[19607,367.926,374.74],[19614,367.405,374.21],[19621,358.429,364.54],[19628,349.089,355.04],[19635,353.72,359.75],[19642,364.997,371.22],[19649,357.279,363.37],[19656,344.467,350.34],[19663,350.976,356.96],[19670,366.688,372.94],[19677,379.156,385.62],[19684,383.521,390.06],[19691,383.276,389.81],[19698,378.595,385.05],[19705,396.972,403.74],[19712,397.115,403.08],[19719,405.623,411.5],[19726,392.642,398.33],[19733,402.666,408.5],[19740,401.395,407.21],[19747,419.749,425.83],[19754,411.015,416.97],[19761,425.821,431.99],[19768,427.033,433.22],[19775,419.532,425.61],[19782,429.054,435.27],[19789,432.524,438.79],[19796,433.963,440.25],[19803,438.011,443.77],[19810,439.057,444.83],[19817,436.363,442.1],[19824,432.681,438.37],[19831,420.314,425.84],[19838,420.975,426.51],[19845,416.05,421.52],[19852,434.349,440.06],[19859,447.023,452.9],[19866,449.796,455.71],[19873,450.517,456.44],[19880,457.515,463.53],[19887,467.997,474.15],[19893,478.913,485.21],[19901,474.89,480.37],[19908,485.438,491.04],[19915,497.222,502.96],[19922,476.274,481.77],[19929,458.093,463.38],[19936,465.696,471.07],[19943,429.81,434.77],[19950,457.451,462.73],[19957,476.995,482.5],[19964,465.973,471.35],[19971,455.355,460.61],[19978,463.274,468.62],[19985,466.061,471.44],[19992,480.952,485.82],[19999,477.121,481.95],[20006,488.209,493.15],[20013,485.991,490.91],[20020,483.467,488.36],[20027,491.407,496.38],[20034,500.514,505.58],[20041,507.118,512.25],[20048,498.129,503.17],[20055,500.237,505.3],[20062,518.017,523.26],[20069,524.61,529.92],[20076,511.295,516.47],[20082,525.496,529.96],[20089,506.924,511.23],[20097,510.93,515.27],[20104,512.348,516.7],[20111,527.033,531.51],[20118,516.443,520.83],[20125,522.412,526.85],[20132,523.85,528.3],[20139,534.976,539.52],[20146,510.226,514.56],[20153,497.782,502.01],[20160,472.903,476.92],[20167,476.839,480.89],[20174,481.016,484.38],[20181,472.843,476.15],[20188,462.764,466],[20195,441.095,444.18],[20202,451.403,454.56],[20209,472.168,475.47],[20216,479.944,483.3],[20223,515.078,518.68],[20230,509.477,513.04],[20237,515.306,518.91],[20244,525.098,528.77],[20251,528.713,532.41],[20258,525.316,528.99],[20265,538.005,541.16],[20272,547.589,550.8],[20279,553.008,556.25],[20286,554.042,557.29],[20293,560.523,563.81],[20300,564.709,568.02],[20307,564.013,567.32],[20314,576.957,580.34],[20321,562.601,565.9],[20328,570.147,573.49],[20335,566.747,570.07],[20342,577.315,580.7],[20349,586.561,590],[20356,593.312,596.1],[20363,600.429,603.25],[20370,608.581,611.44],[20377,599.404,602.22],[20384,602.658,605.49],[20391,632.797,635.77],[20398,620.365,623.28],[20405,618.175,621.08],[20412,597.065,599.87],[20419,611.397,614.27],[20426,620.604,623.52],[20433,624.675,627.61],[20440,597.602,600.41],[20447,621.812,623.93],[20454,612.225,614.31],[20461,621.902,624.02],[20468,617.447,619.55],[20475,614.188,616.28],[20482,631.071,633.22],[20489,603.694,605.75],[20496,611.029,613.11],[20503,603.734,605.79],[20510,614.587,616.68],[20517,608.677,610.75],[20524,605.627,607.69],[20531,592.881,594.9],[20538,586.564,587.82],[20545,583.061,584.31],[20552,604.794,606.09],[20559,636.038,637.4],[20566,653.71,655.11],[20573,660.156,661.57],[20580,694.283,695.77],[20587,713.182,714.71],[20594,711.626,713.15],[20601,727.891,729.45],[20608,742.619,744.21],[20615,692.207,693.69],[20622,720.966,722.51],[20629,709.88,710.62],[20636,724.415,725.17],[20643,710.699,711.44],[20650,716.993,717.74],[20657,704.616,705.35],[20664,661.041,661.73],[20671,716.553,717.3],[20678,722.947,723.7],[20685,715.335,716.08],[20692,710.63,711.37],[20699,708.502,709.24],[20706,715.564,716.31],[20713,703.986,704.72],[20720,741.21,741.21],[20727,739.77,739.77],[20734,757.73,757.73],[20741,728.95,728.95],[20748,725.2,725.2],[20755,725.61,725.61],[20762,691.95,691.95],[20769,690.38,690.38],[20776,659.51,659.51],[20777,653.25,653.25]]]'></div><div class="legend-v"></div>
+<p class="note">Total return with dividends reinvested, from daily closing prices. Hover or tap the chart for exact values.</p></div>
 
-  <h2>How PJFG compares</h2>
-  <p>PJFG currently sits 56th out of 105 funds on the GrowthETFs list when sorted by total return. That is below the median for the list. For reference, the strongest performer on the list right now is TQQQ at 25403%.</p>
-  <p>PJFG holds $133.88M in assets, mid-sized by the standards of this list.</p>
-  <p>PJFG sits on the broad growth side of this list rather than targeting a single sector or market-cap band.</p>
+<div class="card"><h2>Trailing returns</h2><p class="sub">Total return including dividends, as of Nov 19, 2026.</p><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Period</th><th>PJFG</th><th>SPY</th><th>QQQ</th></tr></thead><tbody><tr><td>1 month</td><td class="neg"><b>-8.2%</b></td><td class="neg">-5.7%</td><td class="neg">-9.1%</td></tr><tr><td>3 months</td><td class="neg"><b>-7.4%</b></td><td class="neg">-5.7%</td><td class="neg">-8.7%</td></tr><tr><td>6 months</td><td class="neg"><b>-5.8%</b></td><td class="neg">-2.0%</td><td class="neg">-8.2%</td></tr><tr><td>Year to date</td><td class="neg"><b>-2.6%</b></td><td class="pos">+6.1%</td><td class="pos">+5.8%</td></tr><tr><td>1 year</td><td class="pos"><b>+0.5%</b></td><td class="pos">+10.7%</td><td class="pos">+10.1%</td></tr><tr><td>3 yr (annual)</td><td class="pos"><b>+16.9%</b></td><td class="pos">+18.5%</td><td class="pos">+19.8%</td></tr><tr><td>5 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+10.5%</td><td class="pos">+10.9%</td></tr><tr><td>10 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+14.5%</td><td class="pos">+19.5%</td></tr></tbody></table></div><p class="note"><a href="/etf/pjfg/vs-spy">Full PJFG vs SPY breakdown →</a> &nbsp; <a href="/etf/pjfg/vs-qqq">PJFG vs QQQ →</a></p></div>
 
-  <h3>Reading these numbers</h3>
-  <p>The return figure above is backward-looking. A fund near the top of this list has already made
-  its move, which tells you about the period behind it and nothing about the period ahead.
-  Concentrated growth funds in particular tend to post the largest gains and the largest drawdowns,
-  often within the same year. Read the return alongside fund size rather than on its own, and check
-  the issuer's own fund page for holdings, fees and the full prospectus before acting on anything here.</p>
+<div class="card"><h2>Calendar-year returns</h2><p class="sub">3 of 3 full years were positive. Best: 2023 (+54.2%). Worst: 2025 (+16.3%).</p><div class="cy"><div style="background:rgba(220,38,38,0.1525255327100868)" title="2026 (partial year)"><small>2026*</small>-2.6%</div><div style="background:rgba(22,163,74,0.32336068337018703)" title="2025"><small>2025</small>+16.3%</div><div style="background:rgba(22,163,74,0.5357500992478905)" title="2024"><small>2024</small>+33.3%</div><div style="background:rgba(22,163,74,0.62)" title="2023"><small>2023</small>+54.2%</div><div style="background:rgba(220,38,38,0.20367012344088764)" title="2022 (partial year)"><small>2022*</small>-6.7%</div></div><p class="note">* Partial year (fund launch year or year to date).</p><p class="note"><a href="/etf/pjfg/calendar-returns">Year-by-year vs SPY and QQQ →</a></p></div>
 
-  <div class="cta-row">
-    <a class="cta cta-gold" href="https://growthetfs.com/">See the full ranked list &rarr;</a>
-    <a class="cta cta-outline" href="https://growthetfs.com/swipe.html">📈 Swipe growth ETFs</a>
-  </div>
+<div class="two">
+<div class="card"><h2>Drawdowns</h2><p class="sub">How far PJFG fell from each high. Worst: -24.2% (Feb 2025 to Apr 2025). Today: -12.3% from its high.</p><svg viewBox="0 0 760 150" preserveAspectRatio="none" style="width:100%;height:150px;display:block;background:#fff"><path d="M0 0 L0.0 0.0 L3.7 33.7 L7.4 63.5 L11.1 48.3 L14.8 17.0 L18.5 5.8 L22.2 0.0 L25.9 0.0 L29.6 2.1 L33.3 0.0 L37.0 31.4 L40.8 37.3 L44.5 27.0 L48.2 29.8 L51.9 2.5 L55.6 0.0 L59.3 0.0 L63.0 2.6 L66.7 0.0 L70.4 13.3 L74.1 0.7 L77.8 0.0 L81.5 0.0 L85.2 8.0 L88.9 0.0 L92.6 0.0 L96.3 0.0 L100.0 5.5 L103.7 3.3 L107.4 0.0 L111.1 0.5 L114.8 0.0 L118.6 22.1 L122.3 31.0 L126.0 30.5 L129.7 39.9 L133.4 30.4 L137.1 17.2 L140.8 17.9 L144.5 15.0 L148.2 37.0 L151.9 59.3 L155.6 47.7 L159.3 21.8 L163.0 41.9 L166.7 62.2 L170.4 45.4 L174.1 10.5 L177.8 0.0 L181.5 0.0 L185.2 0.0 L188.9 11.6 L192.6 0.0 L196.4 0.0 L200.1 0.0 L203.8 23.5 L207.5 0.0 L211.2 0.0 L214.9 0.0 L218.6 6.7 L222.3 0.0 L226.0 0.0 L229.7 22.0 L233.4 0.0 L237.1 0.0 L240.8 0.0 L244.5 0.0 L248.2 4.8 L251.9 10.3 L255.6 15.5 L259.3 34.8 L263.0 40.7 L266.7 45.0 L270.4 12.1 L274.2 0.0 L277.9 0.0 L281.6 0.0 L285.3 0.0 L289.0 0.0 L292.1 0.0 L296.4 1.3 L300.1 0.0 L303.8 0.0 L307.5 43.0 L311.2 70.4 L314.9 62.4 L318.6 109.2 L322.3 58.1 L326.0 30.3 L329.7 45.8 L333.4 61.8 L337.1 48.4 L340.8 42.0 L344.5 21.3 L348.2 36.2 L351.9 14.9 L355.7 17.8 L359.4 18.4 L363.1 3.9 L366.8 0.0 L370.5 0.0 L374.2 11.6 L377.9 7.7 L381.6 0.0 L385.3 0.0 L389.0 19.5 L392.2 3.6 L395.9 31.0 L400.1 22.1 L403.8 22.6 L407.5 0.0 L411.2 9.5 L414.9 0.3 L418.6 0.0 L422.3 0.0 L426.0 34.0 L429.7 55.2 L433.5 95.9 L437.2 92.0 L440.9 86.9 L444.6 100.3 L448.3 107.6 L452.0 139.0 L455.7 120.3 L459.4 85.5 L463.1 71.6 L466.8 24.9 L470.5 31.4 L474.2 21.4 L477.9 4.0 L481.6 0.4 L485.3 8.3 L489.0 0.0 L492.7 0.0 L496.4 0.0 L500.1 1.4 L503.8 0.0 L507.5 0.0 L511.3 1.0 L515.0 0.0 L518.7 12.1 L522.4 0.0 L526.1 2.2 L529.8 0.0 L533.5 0.0 L537.2 0.0 L540.9 0.0 L544.6 0.0 L548.3 14.9 L552.0 12.5 L555.7 0.0 L559.4 15.2 L563.1 16.7 L566.8 42.9 L570.5 28.9 L574.2 23.0 L577.9 22.5 L581.6 50.5 L585.3 21.0 L589.1 30.1 L592.8 24.2 L596.5 37.8 L600.2 52.1 L603.9 36.3 L607.6 75.1 L611.3 69.0 L615.0 77.3 L618.7 69.3 L622.4 74.4 L626.1 75.7 L629.8 97.6 L633.5 108.4 L637.2 111.7 L640.9 91.5 L644.6 49.6 L648.3 35.4 L652.0 39.7 L655.7 12.7 L659.4 1.9 L663.1 0.8 L666.9 0.0 L670.6 0.0 L674.3 40.5 L678.0 25.2 L681.7 40.1 L685.4 15.3 L689.1 15.0 L692.8 3.4 L696.5 23.0 L700.2 54.6 L703.9 0.0 L707.6 0.0 L711.3 9.4 L715.0 16.3 L718.7 18.2 L722.4 14.6 L726.1 20.8 L729.8 0.0 L733.5 0.0 L737.2 0.0 L740.9 22.2 L744.7 26.6 L748.4 31.5 L752.1 53.0 L755.8 56.2 L759.5 84.0 L760.0 90.5 L760 0 Z" fill="rgba(220,38,38,.18)" stroke="#dc2626" stroke-width="1.2"/></svg><p class="note"><a href="/etf/pjfg/drawdown">Drawdown breakdown →</a></p></div>
+<div class="card"><h2>52-week range</h2><p class="sub">PJFG is 50% of the way from its 52-week low to its high.</p><div class="r52"><i style="left:calc(49.7% - 2px)"></i></div><div class="r52-l"><span>Low $93.90<br>Mar 30, 2026</span><span style="text-align:right">High $124.40<br>Oct 6, 2026</span></div>
+<div class="kn" style="grid-template-columns:1fr 1fr;margin-top:14px"><a href="/etf/pjfg/risk"><small>Volatility 1Y / 3Y</small><b>20% / 21%</b><span>annualized</span></a><a href="/etf/pjfg/dividends"><small>Dividend yield</small><b>0.00%</b><span>None payer</span></a></div></div>
+</div>
 
-  <h2>Similar growth ETFs</h2>
-  <div class="related">
-      <a href="https://growthetfs.com/etf/bul-growth-etf.html">
-      <div class="r-sym">BUL</div>
-      <div class="r-ret">156%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/qgrw-growth-etf.html">
-      <div class="r-sym">QGRW</div>
-      <div class="r-ret">155%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/aotg-growth-etf.html">
-      <div class="r-sym">AOTG</div>
-      <div class="r-ret">123%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/numg-growth-etf.html">
-      <div class="r-sym">NUMG</div>
-      <div class="r-ret">112%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/stxg-growth-etf.html">
-      <div class="r-sym">STXG</div>
-      <div class="r-ret">107%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/iwlg-growth-etf.html">
-      <div class="r-sym">IWLG</div>
-      <div class="r-ret">105%</div>
-    </a>
-  </div>
+<div class="card"><h2>Explore PJFG</h2><p class="sub">Every number on this page has its own deep dive.</p><div class="bd"><a href="/etf/pjfg/total-return">📈 PJFG Total Return</a><a href="/etf/pjfg/growth-of-10k">🌱 PJFG Growth of $10,000</a><a href="/etf/pjfg/vs-spy">⚔️ PJFG vs S&P 500 (SPY)</a><a href="/etf/pjfg/vs-qqq">⚔️ PJFG vs Nasdaq-100 (QQQ)</a><a href="/etf/pjfg/calendar-returns">🗓️ PJFG Calendar-Year Returns</a><a href="/etf/pjfg/drawdown">📉 PJFG Max Drawdown</a><a href="/etf/pjfg/risk">🎢 PJFG Volatility & Beta</a><a href="/etf/pjfg/52-week-range">📏 PJFG 52-Week Range</a><a href="/etf/pjfg/dividends">💵 PJFG Dividends & Yield</a><a href="/etf/pjfg/rank">🏆 PJFG Rank vs Growth ETFs</a></div></div>
 
-  <h2>PJFG FAQ</h2>
-  <p class="faq-q">What is PJFG?</p>
-  <p>PJFG is PGIM Jennison Focused Growth ETF. It is one of 105 growth-focused ETFs tracked on the GrowthETFs.com curated list.</p>
-  <p class="faq-q">How large is PJFG?</p>
-  <p>Our data lists assets under management for PJFG as $133.88M. Fund size moves daily with investor flows and market performance, so treat this as a snapshot rather than a fixed figure.</p>
-  <p class="faq-q">Where does PJFG rank against other growth ETFs?</p>
-  <p>PJFG ranks 56th of 105 on our list by total return, at 117%.</p>
-  <p class="faq-q">Is PJFG a good investment?</p>
-  <p>We don&#39;t answer that. GrowthETFs.com is an informational and entertainment site and publishes no buy or sell signals. Whether any fund suits you depends on your own goals, time horizon and risk tolerance. Speak with a licensed financial advisor.</p>
+<div class="card"><h2>Similar-size growth ETFs</h2><p class="sub">Compare PJFG with funds of a similar size on our list.</p><div class="rel"><a href="/etf/bul-growth-etf.html"><b>BUL</b><small>$134.30M AUM</small></a><a href="/etf/bamg-growth-etf.html"><b>BAMG</b><small>$130.82M AUM</small></a><a href="/etf/frty-growth-etf.html"><b>FRTY</b><small>$129.82M AUM</small></a><a href="/etf/mtra-growth-etf.html"><b>MTRA</b><small>$128.97M AUM</small></a><a href="/etf/lgro-growth-etf.html"><b>LGRO</b><small>$139.16M AUM</small></a><a href="/etf/stxg-growth-etf.html"><b>STXG</b><small>$143.80M AUM</small></a><a href="/etf/nbjp-growth-etf.html"><b>NBJP</b><small>$120.74M AUM</small></a><a href="/etf/upsd-growth-etf.html"><b>UPSD</b><small>$147.43M AUM</small></a></div></div>
 
-  <p class="fine"><strong>Disclaimer:</strong> GrowthETFs.com is for informational and educational
-purposes only. Nothing on this page constitutes investment advice or a recommendation to buy or sell any security.
-ETF data may be inaccurate or outdated and is sourced from public information. Investing carries risk, including
-loss of principal. We are not financial advisors. Always consult a licensed financial advisor before making
-investment decisions. <strong>This site is for entertainment purposes ONLY.</strong></p>
-</main>
+<div class="card faq"><h2>PJFG FAQ</h2><details><summary>What is the PJFG ETF?</summary><p>PJFG is the PGIM Jennison Focused Growth ETF. It is one of 105 growth ETFs tracked on GrowthETFs.com, with about $133.88M in assets.</p></details><details><summary>What is PJFG's total return?</summary><p>Since its first trading day in Dec 2022, PJFG has returned +117% with dividends reinvested, about 21.8% a year. Over the last 12 months it returned +0.5%.</p></details><details><summary>Has PJFG beaten the S&P 500?</summary><p>Over the last year PJFG returned +0.5% versus +10.7% for SPY. </p></details><details><summary>How much would $10,000 in PJFG be worth today?</summary><p>$10,000 invested in PJFG at launch (Dec 2022) would be worth about $21,716 today with dividends reinvested, versus $19,069 in SPY over the same period.</p></details><details><summary>What was PJFG's worst drawdown?</summary><p>PJFG's largest drop from a high was -24.2%, from Feb 14, 2025 to Apr 8, 2025. It got back to its old high by Jun 24, 2025.</p></details><details><summary>Does PJFG pay a dividend?</summary><p>PJFG has not paid a dividend in the last 12 months. Like most growth ETFs, its return comes almost entirely from price gains.</p></details></div>
+<p class="note">Data: GrowthETFs.com list and Yahoo Finance daily prices as of Nov 19, 2026. Total return assumes dividends are reinvested. Past performance does not guarantee future results. Not financial advice.</p></main>
 <footer>
   <a href="https://growthetfs.com">GrowthETFs.com</a> &bull;
   <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &bull;
@@ -276,5 +284,25 @@ investment decisions. <strong>This site is for entertainment purposes ONLY.</str
   setInterval(load, 5 * 60 * 1000);
 })();
 </script>
+<script>(function(){document.querySelectorAll('.gchart').forEach(function(box){
+var D=JSON.parse(box.dataset.series),names=JSON.parse(box.dataset.names),cols=['#002D22','#c9a94e','#7c8bff'];var sel=box.dataset.range||'max',show={};names.forEach(function(n,i){show[n]=true});
+var svgNS='http://www.w3.org/2000/svg',svg=document.createElementNS(svgNS,'svg'),tip=document.createElement('div');tip.className='gtip';box.appendChild(svg);box.appendChild(tip);
+var card=box.closest('.card');var rb=card.querySelectorAll('.rng button');rb.forEach(function(b){b.onclick=function(){rb.forEach(function(x){x.classList.toggle('on',x===b)});sel=b.dataset.r;draw()}});
+card.querySelectorAll('.cmp input').forEach(function(c){c.onchange=function(){show[c.value]=c.checked;draw()}});
+var leg=card.querySelector('.legend-v');
+function from(){var last=D[0][D[0].length-1][0];var y=new Date(last*864e5).getUTCFullYear();return sel==='max'?0:sel==='ytd'?Date.UTC(y,0,1)/864e5:last-{'1m':30,'6m':182,'1y':365,'3y':1096,'5y':1826,'10y':3652}[sel]}
+function draw(){var W=box.clientWidth,H=box.clientHeight,pl=48,pr=10,pt=10,pb=24;svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
+var f=from();var start=Math.max(f,D[0][0][0]);var S=[];D.forEach(function(s,i){if(!show[names[i]])return;var pts=s.filter(function(p){return p[0]>=start});if(pts.length<2)return;var b=pts[0][1];S.push({i:i,n:names[i],p:pts.map(function(p){return[p[0],(p[1]/b-1)*100]})})});
+if(!S.length)return;var x0=start,x1=D[0][D[0].length-1][0],ys=[];S.forEach(function(s){s.p.forEach(function(p){ys.push(p[1])})});var y0=Math.min.apply(0,ys),y1=Math.max.apply(0,ys);var pad=(y1-y0)*.06||1;y0-=pad;y1+=pad;
+var X=function(v){return pl+(v-x0)/(x1-x0||1)*(W-pl-pr)},Y=function(v){return pt+(1-(v-y0)/(y1-y0))*(H-pt-pb)};
+for(var k=0;k<=4;k++){var v=y0+(y1-y0)*k/4,y=Y(v);var l=document.createElementNS(svgNS,'line');l.setAttribute('x1',pl);l.setAttribute('x2',W-pr);l.setAttribute('y1',y);l.setAttribute('y2',y);l.setAttribute('stroke','#e8ece6');svg.appendChild(l);var t=document.createElementNS(svgNS,'text');t.setAttribute('x',pl-6);t.setAttribute('y',y+4);t.setAttribute('text-anchor','end');t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.textContent=(v>=0?'+':'')+(Math.abs(v)>=1000?Math.round(v/100)/10+'k':Math.round(v))+'%';svg.appendChild(t)}
+var z=document.createElementNS(svgNS,'line');z.setAttribute('x1',pl);z.setAttribute('x2',W-pr);z.setAttribute('y1',Y(0));z.setAttribute('y2',Y(0));z.setAttribute('stroke','#9aa59f');z.setAttribute('stroke-dasharray','3 3');svg.appendChild(z);
+[0,.5,1].forEach(function(q){var v=x0+(x1-x0)*q,t=document.createElementNS(svgNS,'text');t.setAttribute('x',X(v));t.setAttribute('y',H-6);t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.setAttribute('text-anchor',q===0?'start':q===1?'end':'middle');t.textContent=new Date(v*864e5).toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'});svg.appendChild(t)});
+S.slice().reverse().forEach(function(s){var d='';s.p.forEach(function(p,j){d+=(j?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)});var pa=document.createElementNS(svgNS,'path');pa.setAttribute('d',d);pa.setAttribute('fill','none');pa.setAttribute('stroke',cols[s.i]);pa.setAttribute('stroke-width',s.i===0?2.4:1.6);pa.setAttribute('stroke-linejoin','round');svg.appendChild(pa)});
+if(leg)leg.innerHTML=S.map(function(s){var v=s.p[s.p.length-1][1];return'<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+cols[s.i]+';margin-right:6px"></i>'+s.n+' <b class="'+(v>=0?'pos':'neg')+'">'+(v>=0?'+':'')+v.toFixed(1)+'%</b></span>'}).join('');
+var vl=document.createElementNS(svgNS,'line');vl.setAttribute('stroke','#002D22');vl.setAttribute('stroke-width','1');vl.style.display='none';svg.appendChild(vl);
+svg.onmousemove=svg.ontouchmove=function(e){var r=svg.getBoundingClientRect(),cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;var xv=x0+(cx-pl)/(W-pl-pr)*(x1-x0);var html='',best=S[0].p.reduce(function(m,p){return Math.abs(p[0]-xv)<Math.abs(m[0]-xv)?p:m});html='<b>'+new Date(best[0]*864e5).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})+'</b>';S.forEach(function(s){var p=s.p.reduce(function(m,q){return Math.abs(q[0]-xv)<Math.abs(m[0]-xv)?q:m});html+='<br>'+s.n+': '+(p[1]>=0?'+':'')+p[1].toFixed(1)+'%'});tip.innerHTML=html;tip.style.display='block';var tx=Math.min(Math.max(cx+12,0),W-150);tip.style.left=tx+'px';tip.style.top='8px';vl.setAttribute('x1',X(best[0]));vl.setAttribute('x2',X(best[0]));vl.setAttribute('y1',pt);vl.setAttribute('y2',H-pb);vl.style.display=''};
+svg.onmouseleave=function(){tip.style.display='none';vl.style.display='none'}}
+draw();window.addEventListener('resize',draw)})})();</script>
 </body>
 </html>

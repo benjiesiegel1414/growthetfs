@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WINN ETF: Total Return, AUM &amp; Rank (2026) | Harbor Long-Term Growers ETF</title>
-<meta name="description" content="WINN ETF is the Harbor Long-Term Growers ETF. Total return 71%, AUM $1.18B, ranked 69th of 105 growth ETFs on GrowthETFs.com. Free, updated daily.">
+<title>WINN ETF: Performance, Total Return &amp; Risk vs SPY (2026) | Harbor Long-Term Growers ETF</title>
+<meta name="description" content="WINN total return +70% since Feb 2022 (11.7%/yr), +3.2% over 1 year vs +10.7% for SPY. Charts, drawdowns, risk and rank among 105 growth ETFs.">
 <link rel="canonical" href="https://growthetfs.com/etf/winn-growth-etf.html">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="WINN ETF: Total Return, AUM &amp; Rank (2026) | Harbor Long-Term Growers ETF">
@@ -105,7 +105,80 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
 @media(max-width:520px){
   table{font-size:13px}
   th,td{padding:9px 8px}
-}</style>
+}
+.gx{--g:#002D22;--g2:#003d2e;--gold:#c9a94e;--pos:#16a34a;--neg:#dc2626;--line:#e3e8e1;--mut:#5f6b66;--bg:#f2f4f0}
+.gx *{box-sizing:border-box}
+.gx .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 16px}
+.gx h2{font-size:1.25rem;color:var(--g);margin:0 0 4px;font-weight:900}
+.gx .sub{color:var(--mut);font-size:.88rem;margin:0 0 14px}
+.gx .pos{color:var(--pos)!important}.gx .neg{color:var(--neg)!important}
+.gx-hero{background:linear-gradient(135deg,#002D22,#00513c 70%,#0b6b50);color:#fff;border-radius:18px;padding:22px 24px;margin:6px 0 16px;display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:center;box-shadow:0 10px 30px rgba(0,45,34,.2)}
+.gx-hero .tk{display:flex;align-items:center;gap:12px}
+.gx-hero .sym{font-size:2.4rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+.gx-hero .nm{font-size:1rem;opacity:.9;margin-top:4px}
+.gx-hero .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.gx-hero .chips span{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.12)}
+.gx-hero .chips span.gold{background:var(--gold);color:#1f1600}
+.gx-hero .px{text-align:right}
+.gx-hero .px b{font-size:2.3rem;font-weight:900;display:block;line-height:1}
+.gx-hero .px small{opacity:.8;font-size:.78rem}
+.gx-hero .px .chg{display:inline-block;margin-top:6px;font-weight:800;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.12)}
+.gx-hero .mini{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.gx-hero .mini a{display:block;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px;text-align:center;transition:.15s}
+.gx-hero .mini a:hover{background:rgba(255,255,255,.16)}
+.gx-hero .mini b{display:block;font-size:1.15rem;font-weight:900}
+.gx-hero .mini b.pos{color:#7ff0b0!important}.gx-hero .mini b.neg{color:#ffaaa5!important}
+.gx-hero .mini small{font-size:.68rem;opacity:.8;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.kn{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kn a{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:#222;background:#f7f9f6;border:1px solid var(--line);border-radius:12px;padding:14px;transition:.15s;position:relative}
+.kn a:hover{border-color:var(--g);background:#fff;box-shadow:0 6px 18px rgba(0,45,34,.08);transform:translateY(-2px)}
+.kn a::after{content:"→";position:absolute;right:12px;top:12px;color:var(--gold);font-weight:900}
+.kn small{font-size:.7rem;color:var(--mut);font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.kn b{font-size:1.35rem;font-weight:900;color:var(--g)}
+.kn span{font-size:.76rem;color:var(--mut)}
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.rng{display:flex;gap:4px;flex-wrap:wrap}
+.rng button,.cmp label{font-family:inherit;font-size:.78rem;font-weight:800;border:1px solid var(--line);background:#fff;color:#444;border-radius:8px;padding:6px 10px;cursor:pointer}
+.rng button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.cmp{display:flex;gap:6px;flex-wrap:wrap}
+.cmp label{display:inline-flex;align-items:center;gap:6px}
+.cmp i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.gchart{position:relative;width:100%;height:300px}
+.gchart svg{width:100%;height:100%;display:block}
+.gtip{position:absolute;pointer-events:none;background:#002D22;color:#fff;font-size:.76rem;padding:8px 10px;border-radius:8px;white-space:nowrap;display:none;box-shadow:0 6px 16px rgba(0,0,0,.2);z-index:3}
+.legend-v{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:.86rem}
+.legend-v b{font-weight:900}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem}
+.tbl th,.tbl td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+.tbl tr.me td{background:#f4faf6;font-weight:800}
+.tbl-wrap{overflow-x:auto}
+.cy{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.cy div{border-radius:10px;padding:10px 4px;text-align:center;font-weight:900;font-size:.9rem}
+.cy div small{display:block;font-size:.68rem;font-weight:700;opacity:.75}
+.r52{position:relative;height:12px;border-radius:999px;background:linear-gradient(90deg,#fecaca,#fde68a,#bbf7d0);margin:18px 0 8px}
+.r52 i{position:absolute;top:-6px;width:4px;height:24px;background:var(--g);border-radius:2px}
+.r52-l{display:flex;justify-content:space-between;font-size:.8rem;color:var(--mut)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.rel a{display:block;text-decoration:none;color:#222;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;transition:.15s}
+.rel a:hover{border-color:var(--g);transform:translateY(-2px)}
+.rel b{display:block;font-size:1rem;color:var(--g)}
+.rel small{font-size:.76rem;color:var(--mut)}
+.bd{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.bd a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--g);font-weight:800;font-size:.88rem;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.bd a:hover{border-color:var(--gold);background:#fffdf5}
+.faq details{border-bottom:1px solid var(--line);padding:12px 0}
+.faq summary{font-weight:800;cursor:pointer;color:var(--g)}
+.faq p{margin:8px 0 0;color:#444;line-height:1.6;font-size:.94rem}
+.note{font-size:.76rem;color:var(--mut);margin-top:10px;line-height:1.5}
+.bigstat{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bigstat b{font-size:2.6rem;font-weight:900;color:var(--g);line-height:1}
+.prose p{line-height:1.7;color:#333;margin:0 0 12px}
+@media(max-width:820px){.gx-hero{grid-template-columns:1fr}.gx-hero .px{text-align:left}.gx-hero .mini{grid-template-columns:repeat(3,1fr)}.kn{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.gchart{height:240px}}
+@media(max-width:480px){.gx-hero .mini{grid-template-columns:repeat(2,1fr)}.gx-hero .sym{font-size:2rem}.gx .card{padding:16px}}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -125,107 +198,42 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
     <a href="https://topetfs.com/" class="site-pill">📰 TopETFs.com</a>
   </div>
 </div>
-<main class="wrap">
-  <div class="crumbs"><a href="https://growthetfs.com/">Home</a> &rsaquo; <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; WINN</div>
-
-  <section class="hero">
-    <div class="ticker">WINN</div>
-    <h1>Harbor Long-Term Growers ETF</h1>
-    
-  </section>
-
-  <div class="focus-grid">
-    <div class="focus-box">
-      <div class="focus-val" data-live-price>$31.74</div>
-      <div class="focus-label">Price</div>
-    </div>
-    <div class="focus-box growth">
-      <div class="focus-val ">71%</div>
-      <div class="focus-label">Total Return</div>
-    </div>
-    <div class="focus-box">
-      <div class="focus-val">$1.18B</div>
-      <div class="focus-label">AUM</div>
-    </div>
+<main class="wrap gx"><div class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; WINN</div>
+<section class="gx-hero">
+  <div><div class="tk"><img src="/etf-images/winn.png" alt="" width="54" height="54" style="border-radius:12px;background:#fff" onerror="this.remove()"><div><div class="sym">WINN</div><div class="nm">Harbor Long-Term Growers ETF</div></div></div>
+  <div class="chips"><span class="gold">#69 of 105 by total return</span><span>$1.18B AUM</span><span>Since Feb 2022</span></div></div>
+  <div class="px"><b data-live-price="WINN">$31.44</b><span class="chg">-0.95% last session</span><br><small>Close as of Nov 19, 2026. Delayed quote.</small></div>
+  <div class="mini">
+    <a href="/etf/winn/total-return"><b class="pos">+0.4%</b><small>YTD</small></a>
+    <a href="/etf/winn/total-return"><b class="pos">+3.2%</b><small>1 Year</small></a>
+    <a href="/etf/winn/total-return"><b class="">n/a</b><small>5Y / yr</small></a>
+    <a href="/etf/winn/growth-of-10k"><b>$17,004</b><small>$10k at launch</small></a>
+    <a href="/etf/winn/drawdown"><b class="neg">-32%</b><small>Max drawdown</small></a>
   </div>
-  <p class="price-note" data-price-note>Price as of 2026-11-18. Quotes may be delayed up to 20 minutes.</p>
+</section>
 
-  <div class="etf-signup" data-variant="featured" data-color="#002D22" data-accent="#c9a94e" data-source="growthetfs"></div>
-<script src="/email-signup.js" defer></script>
+<div class="card"><h2>WINN key numbers</h2><p class="sub">Tap any box for the full breakdown.</p><div class="kn"><a href="/etf/winn/total-return"><small>Total return (since launch)</small><b class="pos">+70%</b><span>11.7% a year since Feb 2022</span></a><a href="/etf/winn/growth-of-10k"><small>Growth of $10,000</small><b class="">$17,004</b><span>invested at launch, Feb 2022</span></a><a href="/etf/winn/vs-spy"><small>vs S&P 500 (1 yr)</small><b class="neg">-7.5%</b><span>SPY +10.7% over the same year</span></a><a href="/etf/winn/vs-qqq"><small>vs Nasdaq-100 (1 yr)</small><b class="neg">-6.8%</b><span>QQQ +10.1% over the same year</span></a><a href="/etf/winn/drawdown"><small>Max drawdown</small><b class="neg">-32.1%</b><span>Mar 2022 to Dec 2022</span></a><a href="/etf/winn/risk"><small>Volatility (1 yr)</small><b class="">19.0%</b><span>beta 1.24 vs the S&P 500</span></a><a href="/etf/winn/52-week-range"><small>52-week position</small><b class="">55%</b><span>$26.76 to $35.31</span></a><a href="/etf/winn/rank"><small>Rank by total return</small><b class="">#69 of 105</b><span>#52 by fund size</span></a></div></div>
 
-  <h2>WINN at a glance</h2>
-  <table>
-    <tbody>
-      <tr><th scope="row">Ticker</th><td><strong>WINN</strong></td></tr>
-      <tr><th scope="row">Fund name</th><td>Harbor Long-Term Growers ETF</td></tr>
-      <tr><th scope="row">Price</th><td data-live-price>$31.74</td></tr>
-      <tr><th scope="row">Total return</th><td class="pos">71%</td></tr>
-      <tr><th scope="row">Assets under management</th><td>$1.18B</td></tr>
-      <tr><th scope="row">Rank on this list</th><td>69th of 105</td></tr>
-    </tbody>
-  </table>
+<div class="card" id="perf"><h2>WINN performance vs SPY and QQQ</h2><p class="sub">Growth of every dollar since Feb 2022, dividends reinvested.</p><div class="chart-top"><div class="rng"><button type="button" data-r="1m">1M</button><button type="button" data-r="6m">6M</button><button type="button" data-r="ytd">YTD</button><button type="button" data-r="1y">1Y</button><button type="button" data-r="3y">3Y</button><button type="button" data-r="5y">5Y</button><button type="button" data-r="10y">10Y</button><button type="button" data-r="max" class="on">Max</button></div><div class="cmp"><label><input type="checkbox" value="SPY" checked><i style="background:#c9a94e"></i>SPY</label><label><input type="checkbox" value="QQQ" checked><i style="background:#7c8bff"></i>QQQ</label></div></div>
+<div class="gchart" data-range="max" data-names='[&quot;WINN&quot;,&quot;SPY&quot;,&quot;QQQ&quot;]' data-series='[[[19027,18.4894,18.512],[19033,19.5042,19.528],[19040,18.9539,18.977],[19047,17.223,17.244],[19054,18.2737,18.296],[19061,17.3029,17.324],[19068,17.6315,17.653],[19075,18.5104,18.533],[19082,19.3244,19.348],[19089,18.5174,18.54],[19096,18.2138,18.236],[19103,17.8982,17.92],[19110,16.4789,16.499],[19117,16.9034,16.924],[19124,14.5522,14.57],[19131,14.4973,14.515],[19138,14.4873,14.505],[19145,15.2893,15.308],[19152,15.5221,15.541],[19159,14.1627,14.18],[19166,14.1977,14.215],[19173,14.3635,14.381],[19180,14.6321,14.65],[19187,14.4224,14.44],[19194,15.2264,15.245],[19201,15.4491,15.468],[19208,16.3231,16.343],[19215,16.5898,16.61],[19222,16.7216,16.742],[19229,16.0514,16.071],[19236,15.2654,15.284],[19243,15.3213,15.34],[19250,15.3762,15.395],[19257,14.712,14.73],[19264,14.4873,14.505],[19271,14.5472,14.565],[19278,13.6204,13.637],[19285,13.9759,13.993],[19292,14.4164,14.434],[19299,13.8101,13.827],[19306,13.4436,13.46],[19313,14.5532,14.571],[19320,14.6122,14.63],[19327,14.9418,14.96],[19334,14.2416,14.259],[19341,14.5043,14.522],[19348,13.8412,13.85],[19355,13.2916,13.3],[19362,13.5314,13.54],[19369,14.1311,14.14],[19376,14.251,14.26],[19383,14.6407,14.65],[19390,15.3003,15.31],[19397,15.4202,15.43],[19404,15.73,15.74],[19411,15.0005,15.01],[19418,14.8706,14.88],[19425,15.1104,15.12],[19432,14.9206,14.93],[19439,15.3933,15.403],[19446,15.6791,15.689],[19453,15.8899,15.9],[19460,15.813,15.823],[19467,16.2197,16.23],[19474,15.876,15.886],[19481,16.1927,16.203],[19488,16.5795,16.59],[19495,16.8124,16.823],[19502,16.7094,16.72],[19509,17.32,17.331],[19516,17.411,17.422],[19523,18.1915,18.203],[19530,18.1185,18.13],[19537,18.2285,18.24],[19544,18.5383,18.55],[19551,18.5872,18.599],[19558,19.2178,19.23],[19565,18.8081,18.82],[19572,18.5782,18.59],[19579,18.3474,18.359],[19586,18.1485,18.16],[19593,18.4583,18.47],[19600,18.8181,18.83],[19607,18.7381,18.75],[19614,18.7981,18.81],[19621,18.2484,18.26],[19628,17.6488,17.66],[19635,17.8887,17.9],[19642,18.5882,18.6],[19649,18.1185,18.13],[19656,17.5689,17.58],[19663,17.9486,17.96],[19670,18.908,18.92],[19677,19.4477,19.46],[19684,19.7875,19.8],[19691,19.8374,19.85],[19698,19.5776,19.59],[19705,20.3871,20.4],[19712,20.537,20.55],[19719,20.79,20.79],[19726,20.12,20.12],[19733,20.9,20.9],[19740,20.91,20.91],[19747,21.83,21.83],[19754,21.53,21.53],[19761,22.72,22.72],[19768,23.05,23.05],[19775,22.43,22.43],[19782,23.138,23.138],[19789,23.3,23.3],[19796,23.41,23.41],[19803,23.6,23.6],[19810,23.51,23.51],[19817,23.369,23.369],[19824,23.17,23.17],[19831,22.5,22.5],[19838,22.39,22.39],[19845,22.24,22.24],[19852,23.25,23.25],[19859,23.83,23.83],[19866,23.83,23.83],[19873,24.07,24.07],[19880,24.38,24.38],[19887,24.97,24.97],[19893,25.47,25.47],[19901,25.41,25.41],[19908,25.81,25.81],[19915,26.38,26.38],[19922,25.16,25.16],[19929,24.24,24.24],[19936,24.48,24.48],[19943,22.77,22.77],[19950,24.4,24.4],[19957,25.37,25.37],[19964,24.85,24.85],[19971,24.31,24.31],[19978,24.78,24.78],[19985,24.99,24.99],[19992,25.75,25.75],[19999,25.33,25.33],[20006,26,26],[20013,25.97,25.97],[20020,25.9,25.9],[20027,26.34,26.34],[20034,26.71,26.71],[20041,27.1,27.1],[20048,26.74,26.74],[20055,26.92,26.92],[20062,27.97,27.97],[20069,28.147,28.147],[20076,27.31,27.31],[20082,28.23,28.23],[20089,27.21,27.21],[20097,27.49,27.49],[20104,27.421,27.421],[20111,28.33,28.33],[20118,27.9,27.9],[20125,28.28,28.28],[20132,28.38,28.38],[20139,28.49,28.49],[20146,27.216,27.216],[20153,26.5,26.5],[20160,24.94,24.94],[20167,25.11,25.11],[20174,25.22,25.22],[20181,24.84,24.84],[20188,24.35,24.35],[20195,23.1,23.1],[20202,23.948,23.948],[20209,25.15,25.15],[20216,25.55,25.55],[20223,27.36,27.36],[20230,27.2,27.2],[20237,27.33,27.33],[20244,27.9,27.9],[20251,28.11,28.11],[20258,27.75,27.75],[20265,28.44,28.44],[20272,28.95,28.95],[20279,29.38,29.38],[20286,29.32,29.32],[20293,29.57,29.57],[20300,29.83,29.83],[20307,29.95,29.95],[20314,30.245,30.245],[20321,29.79,29.79],[20328,30.28,30.28],[20335,30.1,30.1],[20342,30.695,30.695],[20349,30.85,30.85],[20356,30.98,30.98],[20363,31.33,31.33],[20370,31.68,31.68],[20377,31.08,31.08],[20384,31.19,31.19],[20391,32.66,32.66],[20398,31.89,31.89],[20405,31.81,31.81],[20412,30.66,30.66],[20419,31.32,31.32],[20426,31.52,31.52],[20433,31.525,31.525],[20440,30.31,30.31],[20447,31.53,31.53],[20454,31.104,31.104],[20461,31.442,31.442],[20468,30.93,30.93],[20475,30.326,30.326],[20482,31.09,31.09],[20489,29.55,29.55],[20496,29.856,29.856],[20503,29.479,29.479],[20510,29.75,29.75],[20517,29.51,29.51],[20524,29.4,29.4],[20531,28.54,28.54],[20538,28.15,28.15],[20545,28.04,28.04],[20552,29.06,29.06],[20559,30.84,30.84],[20566,31.53,31.53],[20573,31.25,31.25],[20580,32.31,32.31],[20587,32.57,32.57],[20594,32.64,32.64],[20601,32.97,32.97],[20608,33.38,33.38],[20615,31.46,31.46],[20622,32.23,32.23],[20629,31.68,31.68],[20636,32.51,32.51],[20643,32.68,32.68],[20650,33.33,33.33],[20657,32.49,32.49],[20664,31.36,31.36],[20671,33.84,33.84],[20678,34.05,34.05],[20685,33.56,33.56],[20692,33.29,33.29],[20699,33.27,33.27],[20706,33.3,33.3],[20713,33.07,33.07],[20720,34.31,34.31],[20727,34.31,34.31],[20734,35.235,35.235],[20741,34.43,34.43],[20748,34.3,34.3],[20755,34.16,34.16],[20762,33.28,33.28],[20769,33.01,33.01],[20776,31.74,31.74],[20777,31.44,31.44]],[[19020,404.757,431.24],[19026,429.263,457.35],[19033,429.442,457.54],[19040,419.174,446.6],[19047,396.037,421.95],[19054,410.998,437.89],[19061,401.162,427.41],[19068,408.868,435.62],[19075,417.84,443.8],[19082,431.868,458.7],[19089,420.4,446.52],[19096,417.378,443.31],[19103,418.696,444.71],[19110,392.861,417.27],[19117,403.962,429.06],[19124,369.776,392.75],[19131,368.938,391.86],[19138,374.126,397.37],[19145,385.631,409.59],[19152,387.165,411.22],[19159,357.018,379.2],[19166,354.012,374.39],[19173,359.639,380.34],[19180,362.39,383.25],[19187,358.211,378.83],[19194,373.283,394.77],[19201,379.212,401.04],[19208,391.892,414.45],[19215,397.13,419.99],[19222,403.428,426.65],[19229,391.155,413.67],[19236,373.671,395.18],[19243,376.129,397.78],[19250,373.122,394.6],[19257,358.315,377.39],[19264,351.802,370.53],[19271,358.03,377.09],[19278,338.538,356.56],[19285,349.874,368.5],[19292,362.711,382.02],[19299,355.922,374.87],[19306,355.22,374.13],[19313,375.462,395.45],[19320,382.08,402.42],[19327,387.074,407.68],[19334,373.288,393.16],[19341,379.213,399.4],[19348,368.392,386.23],[19355,359.264,376.66],[19362,366.036,383.76],[19369,377.253,395.52],[19376,373.409,391.49],[19383,381.86,400.35],[19390,391.827,410.8],[19397,391.684,410.65],[19404,394.861,413.98],[19411,380.134,398.54],[19418,376.509,394.74],[19425,380.496,398.92],[19432,371.301,389.28],[19439,375.428,392.11],[19446,384.275,401.35],[19453,390.259,407.6],[19460,390.69,408.05],[19467,396.521,414.14],[19474,387.157,404.36],[19481,390.661,408.02],[19488,395.286,412.85],[19495,397.564,415.23],[19502,393.6,411.09],[19509,400.073,417.85],[19516,408.403,426.55],[19523,418.581,437.18],[19530,417.983,434.94],[19537,419.376,436.39],[19544,425.853,443.13],[19551,428.631,446.02],[19558,437.453,455.2],[19565,437.751,455.51],[19572,432.58,450.13],[19579,428.371,445.75],[19586,422.499,439.64],[19593,425.757,443.03],[19600,433.426,451.01],[19607,428.823,446.22],[19614,429.102,446.51],[19621,423.025,438.64],[19628,410.883,426.05],[19635,409.543,424.66],[19642,420.788,436.32],[19649,414.895,430.21],[19656,402.686,417.55],[19663,407.614,422.66],[19670,421.685,437.25],[19677,433.672,449.68],[19684,438.822,455.02],[19691,438.427,454.61],[19698,438.571,454.76],[19705,453.751,470.5],[19712,453.422,468.26],[19719,461.41,476.51],[19726,453.935,468.79],[19733,461.459,476.56],[19740,457.324,472.29],[19747,470.009,485.39],[19754,467.579,482.88],[19761,482.316,498.1],[19768,482.771,498.57],[19775,481.454,497.21],[19782,490.218,506.26],[19789,493.597,509.75],[19796,499.62,515.97],[19803,505.553,520.48],[19810,508.166,523.17],[19817,504.514,519.41],[19824,499.375,514.12],[19831,486.195,500.55],[19838,490.915,505.41],[19845,486,500.35],[19852,502.357,517.19],[19859,514.586,529.78],[19866,514.635,529.83],[19873,511.012,526.1],[19880,519.336,534.67],[19887,525.834,541.36],[19893,532.76,548.49],[19901,531.575,545.51],[19908,537.373,551.46],[19915,546.981,561.32],[19922,542.713,556.94],[19929,527.404,541.23],[19936,536.739,550.81],[19943,505.41,518.66],[19950,529.86,543.75],[19957,546.299,560.62],[19964,544.038,558.3],[19971,536.876,550.95],[19978,540.257,554.42],[19985,547.059,561.4],[19992,557.182,570.04],[19999,556.028,568.86],[20006,564.122,577.14],[20013,569.165,582.3],[20020,564.952,577.99],[20027,566.927,580.01],[20034,577.708,591.04],[20041,583.719,597.19],[20048,577.18,590.5],[20055,585.322,598.83],[20062,593.953,607.66],[20069,593.758,607.46],[20076,573.055,586.28],[20082,589.715,601.3],[20089,574.788,586.08],[20097,578.132,589.49],[20104,581.359,592.78],[20111,594.756,606.44],[20118,590.215,601.81],[20125,592.578,604.22],[20132,591.735,603.36],[20139,601.121,612.93],[20146,583.085,594.54],[20153,571.826,583.06],[20160,548.102,558.87],[20167,556.203,567.13],[20174,559.312,568.59],[20181,555.309,564.52],[20188,539.668,548.62],[20195,517.083,525.66],[20202,526.684,535.42],[20209,545.492,554.54],[20216,551.994,561.15],[20223,578.002,587.59],[20230,573.35,582.86],[20237,578.14,587.73],[20244,586.206,595.93],[20251,591.548,601.36],[20258,587.692,597.44],[20265,598.979,607.12],[20272,612.131,620.45],[20279,615.692,624.06],[20286,615.85,624.22],[20293,625.706,634.21],[20300,625.953,634.46],[20307,624.295,632.78],[20314,636.243,644.89],[20321,629.554,638.11],[20328,637.959,646.63],[20335,635.108,643.74],[20342,643.465,652.21],[20349,650.341,659.18],[20356,654.044,661.1],[20363,661.315,668.45],[20370,665.926,673.11],[20377,658.07,665.17],[20384,660.672,667.8],[20391,680.053,687.39],[20398,670.348,677.58],[20405,676.086,683.38],[20412,655.557,662.63],[20419,672.425,679.68],[20426,676.591,683.89],[20433,680.231,687.57],[20440,664.234,671.4],[20447,685.029,690.38],[20454,676.635,681.92],[20461,684.236,689.58],[20468,685.01,690.36],[20475,680.088,685.4],[20482,690.03,695.42],[20489,680.872,686.19],[20496,686.597,691.96],[20503,680.971,686.29],[20510,687.778,693.15],[20517,679.82,685.13],[20524,671.088,676.33],[20531,656.304,661.43],[20538,653.509,656.82],[20545,651.937,655.24],[20552,672.603,676.01],[20559,696.412,699.94],[20566,707.625,711.21],[20573,707.993,711.58],[20580,730.131,733.83],[20587,738.569,742.31],[20594,737.514,741.25],[20601,746.677,750.46],[20608,750.438,754.24],[20615,721.774,725.43],[20622,737.225,740.96],[20629,731.424,733.24],[20636,743.913,745.76],[20643,743.554,745.4],[20650,752.94,754.81],[20657,745.559,747.41],[20664,727.653,729.46],[20671,767.883,769.79],[20678,770.576,772.49],[20685,767.155,769.06],[20692,764.182,766.08],[20699,763.265,765.16],[20706,760.512,762.4],[20713,752.182,754.05],[20720,767.81,767.81],[20727,762.63,762.63],[20734,777.22,777.22],[20741,769.6,769.6],[20748,773.09,773.09],[20755,772.31,772.31],[20762,766.81,766.81],[20769,759.81,759.81],[20776,730.2,730.2],[20777,723.115,723.115]],[[19020,331.479,341.1],[19026,358.096,368.49],[19033,356.386,366.73],[19040,345.997,356.04],[19047,320.128,329.42],[19054,337.426,347.22],[19061,325.541,334.99],[19068,330.721,340.32],[19075,342.329,351.83],[19082,357.177,367.09],[19089,343.72,353.26],[19096,336.997,346.35],[19103,331.996,341.21],[19110,308.206,316.76],[19117,320.699,329.6],[19124,283.959,291.84],[19131,283.278,291.14],[19138,283.395,291.26],[19145,297.736,306],[19152,299.332,307.64],[19159,275.163,282.8],[19166,273.615,280.67],[19173,276.667,283.8],[19180,281.541,288.8],[19187,278.47,285.65],[19194,295.413,303.03],[19201,299.098,306.81],[19208,314.774,322.89],[19215,317.738,325.93],[19222,320.234,328.49],[19229,307.092,315.01],[19236,291.748,299.27],[19243,291.455,298.97],[19250,288.589,296.03],[19257,276.93,283.56],[19264,273.394,279.94],[19271,275.387,281.98],[19278,256.518,262.66],[19285,264.165,270.49],[19292,271.431,277.93],[19299,259.468,265.68],[19306,257.163,263.32],[19313,278.766,285.44],[19320,282.067,288.82],[19327,286.5,293.36],[19334,273.97,280.53],[19341,279.811,286.51],[19348,267.695,273.45],[19355,254.626,260.1],[19362,260.148,265.74],[19369,271.709,277.55],[19376,272.032,277.88],[19383,281.675,287.73],[19390,294.587,300.92],[19397,297.965,304.37],[19404,302.595,309.1],[19411,288.058,294.25],[19418,285.072,291.2],[19425,291.552,297.82],[19432,292.639,298.93],[19439,300.142,306.12],[19446,306.613,312.72],[19453,309.75,315.92],[19460,306.927,313.04],[19467,312.486,318.71],[19474,305.779,311.87],[19481,311.094,317.29],[19488,318.79,325.14],[19495,324.654,331.12],[19502,325.173,331.65],[19509,341.194,347.99],[19516,342.008,348.82],[19523,358.754,365.9],[19530,355.319,361.9],[19537,357.911,364.54],[19544,363.547,370.28],[19551,366.041,372.82],[19558,378.637,385.65],[19565,370.655,377.52],[19572,367.582,374.39],[19579,361.22,367.91],[19586,355.948,362.54],[19593,362.398,369.11],[19600,370.007,376.86],[19607,367.926,374.74],[19614,367.405,374.21],[19621,358.429,364.54],[19628,349.089,355.04],[19635,353.72,359.75],[19642,364.997,371.22],[19649,357.279,363.37],[19656,344.467,350.34],[19663,350.976,356.96],[19670,366.688,372.94],[19677,379.156,385.62],[19684,383.521,390.06],[19691,383.276,389.81],[19698,378.595,385.05],[19705,396.972,403.74],[19712,397.115,403.08],[19719,405.623,411.5],[19726,392.642,398.33],[19733,402.666,408.5],[19740,401.395,407.21],[19747,419.749,425.83],[19754,411.015,416.97],[19761,425.821,431.99],[19768,427.033,433.22],[19775,419.532,425.61],[19782,429.054,435.27],[19789,432.524,438.79],[19796,433.963,440.25],[19803,438.011,443.77],[19810,439.057,444.83],[19817,436.363,442.1],[19824,432.681,438.37],[19831,420.314,425.84],[19838,420.975,426.51],[19845,416.05,421.52],[19852,434.349,440.06],[19859,447.023,452.9],[19866,449.796,455.71],[19873,450.517,456.44],[19880,457.515,463.53],[19887,467.997,474.15],[19893,478.913,485.21],[19901,474.89,480.37],[19908,485.438,491.04],[19915,497.222,502.96],[19922,476.274,481.77],[19929,458.093,463.38],[19936,465.696,471.07],[19943,429.81,434.77],[19950,457.451,462.73],[19957,476.995,482.5],[19964,465.973,471.35],[19971,455.355,460.61],[19978,463.274,468.62],[19985,466.061,471.44],[19992,480.952,485.82],[19999,477.121,481.95],[20006,488.209,493.15],[20013,485.991,490.91],[20020,483.467,488.36],[20027,491.407,496.38],[20034,500.514,505.58],[20041,507.118,512.25],[20048,498.129,503.17],[20055,500.237,505.3],[20062,518.017,523.26],[20069,524.61,529.92],[20076,511.295,516.47],[20082,525.496,529.96],[20089,506.924,511.23],[20097,510.93,515.27],[20104,512.348,516.7],[20111,527.033,531.51],[20118,516.443,520.83],[20125,522.412,526.85],[20132,523.85,528.3],[20139,534.976,539.52],[20146,510.226,514.56],[20153,497.782,502.01],[20160,472.903,476.92],[20167,476.839,480.89],[20174,481.016,484.38],[20181,472.843,476.15],[20188,462.764,466],[20195,441.095,444.18],[20202,451.403,454.56],[20209,472.168,475.47],[20216,479.944,483.3],[20223,515.078,518.68],[20230,509.477,513.04],[20237,515.306,518.91],[20244,525.098,528.77],[20251,528.713,532.41],[20258,525.316,528.99],[20265,538.005,541.16],[20272,547.589,550.8],[20279,553.008,556.25],[20286,554.042,557.29],[20293,560.523,563.81],[20300,564.709,568.02],[20307,564.013,567.32],[20314,576.957,580.34],[20321,562.601,565.9],[20328,570.147,573.49],[20335,566.747,570.07],[20342,577.315,580.7],[20349,586.561,590],[20356,593.312,596.1],[20363,600.429,603.25],[20370,608.581,611.44],[20377,599.404,602.22],[20384,602.658,605.49],[20391,632.797,635.77],[20398,620.365,623.28],[20405,618.175,621.08],[20412,597.065,599.87],[20419,611.397,614.27],[20426,620.604,623.52],[20433,624.675,627.61],[20440,597.602,600.41],[20447,621.812,623.93],[20454,612.225,614.31],[20461,621.902,624.02],[20468,617.447,619.55],[20475,614.188,616.28],[20482,631.071,633.22],[20489,603.694,605.75],[20496,611.029,613.11],[20503,603.734,605.79],[20510,614.587,616.68],[20517,608.677,610.75],[20524,605.627,607.69],[20531,592.881,594.9],[20538,586.564,587.82],[20545,583.061,584.31],[20552,604.794,606.09],[20559,636.038,637.4],[20566,653.71,655.11],[20573,660.156,661.57],[20580,694.283,695.77],[20587,713.182,714.71],[20594,711.626,713.15],[20601,727.891,729.45],[20608,742.619,744.21],[20615,692.207,693.69],[20622,720.966,722.51],[20629,709.88,710.62],[20636,724.415,725.17],[20643,710.699,711.44],[20650,716.993,717.74],[20657,704.616,705.35],[20664,661.041,661.73],[20671,716.553,717.3],[20678,722.947,723.7],[20685,715.335,716.08],[20692,710.63,711.37],[20699,708.502,709.24],[20706,715.564,716.31],[20713,703.986,704.72],[20720,741.21,741.21],[20727,739.77,739.77],[20734,757.73,757.73],[20741,728.95,728.95],[20748,725.2,725.2],[20755,725.61,725.61],[20762,691.95,691.95],[20769,690.38,690.38],[20776,659.51,659.51],[20777,653.25,653.25]]]'></div><div class="legend-v"></div>
+<p class="note">Total return with dividends reinvested, from daily closing prices. Hover or tap the chart for exact values.</p></div>
 
-  <h2>How WINN compares</h2>
-  <p>WINN currently sits 69th out of 105 funds on the GrowthETFs list when sorted by total return. That is below the median for the list. For reference, the strongest performer on the list right now is TQQQ at 25403%.</p>
-  <p>With $1.18B in assets, WINN clears the $1B mark used by the "Big AUM" filter on the main GrowthETFs list.</p>
-  <p>WINN sits on the broad growth side of this list rather than targeting a single sector or market-cap band.</p>
+<div class="card"><h2>Trailing returns</h2><p class="sub">Total return including dividends, as of Nov 19, 2026.</p><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Period</th><th>WINN</th><th>SPY</th><th>QQQ</th></tr></thead><tbody><tr><td>1 month</td><td class="neg"><b>-7.6%</b></td><td class="neg">-5.7%</td><td class="neg">-9.1%</td></tr><tr><td>3 months</td><td class="neg"><b>-6.3%</b></td><td class="neg">-5.7%</td><td class="neg">-8.7%</td></tr><tr><td>6 months</td><td class="neg"><b>-3.7%</b></td><td class="neg">-2.0%</td><td class="neg">-8.2%</td></tr><tr><td>Year to date</td><td class="pos"><b>+0.4%</b></td><td class="pos">+6.1%</td><td class="pos">+5.8%</td></tr><tr><td>1 year</td><td class="pos"><b>+3.2%</b></td><td class="pos">+10.7%</td><td class="pos">+10.1%</td></tr><tr><td>3 yr (annual)</td><td class="pos"><b>+17.2%</b></td><td class="pos">+18.5%</td><td class="pos">+19.8%</td></tr><tr><td>5 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+10.5%</td><td class="pos">+10.9%</td></tr><tr><td>10 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+14.5%</td><td class="pos">+19.5%</td></tr></tbody></table></div><p class="note"><a href="/etf/winn/vs-spy">Full WINN vs SPY breakdown →</a> &nbsp; <a href="/etf/winn/vs-qqq">WINN vs QQQ →</a></p></div>
 
-  <h3>Reading these numbers</h3>
-  <p>The return figure above is backward-looking. A fund near the top of this list has already made
-  its move, which tells you about the period behind it and nothing about the period ahead.
-  Concentrated growth funds in particular tend to post the largest gains and the largest drawdowns,
-  often within the same year. Read the return alongside fund size rather than on its own, and check
-  the issuer's own fund page for holdings, fees and the full prospectus before acting on anything here.</p>
+<div class="card"><h2>Calendar-year returns</h2><p class="sub">3 of 3 full years were positive. Best: 2023 (+52.4%). Worst: 2025 (+14.1%).</p><div class="cy"><div style="background:rgba(22,163,74,0.12438878912461832)" title="2026 (partial year)"><small>2026*</small>+0.4%</div><div style="background:rgba(22,163,74,0.29668483847571636)" title="2025"><small>2025</small>+14.1%</div><div style="background:rgba(22,163,74,0.5300145537989966)" title="2024"><small>2024</small>+32.8%</div><div style="background:rgba(22,163,74,0.62)" title="2023"><small>2023</small>+52.4%</div><div style="background:rgba(220,38,38,0.45329978522332337)" title="2022 (partial year)"><small>2022*</small>-26.7%</div></div><p class="note">* Partial year (fund launch year or year to date).</p><p class="note"><a href="/etf/winn/calendar-returns">Year-by-year vs SPY and QQQ →</a></p></div>
 
-  <div class="cta-row">
-    <a class="cta cta-gold" href="https://growthetfs.com/">See the full ranked list &rarr;</a>
-    <a class="cta cta-outline" href="https://growthetfs.com/swipe.html">📈 Swipe growth ETFs</a>
-  </div>
+<div class="two">
+<div class="card"><h2>Drawdowns</h2><p class="sub">How far WINN fell from each high. Worst: -32.1% (Mar 2022 to Dec 2022). Today: -11.0% from its high.</p><svg viewBox="0 0 760 150" preserveAspectRatio="none" style="width:100%;height:150px;display:block;background:#fff"><path d="M0 0 L0.0 0.0 L2.6 0.0 L5.6 12.3 L8.7 51.1 L11.7 27.5 L14.8 49.3 L17.8 41.9 L20.8 22.2 L23.9 4.0 L26.9 22.1 L30.0 28.9 L33.0 35.9 L36.0 67.7 L39.1 58.2 L42.1 110.8 L45.2 112.1 L48.2 112.3 L51.2 94.3 L54.3 89.1 L57.3 119.6 L60.4 118.8 L63.4 115.1 L66.4 109.0 L69.5 113.7 L72.5 95.7 L75.6 90.8 L78.6 71.2 L81.6 65.2 L84.7 62.3 L87.7 77.3 L90.8 94.9 L93.8 93.6 L96.8 92.4 L99.9 107.3 L102.9 112.3 L106.0 110.9 L109.0 131.7 L112.0 123.7 L115.1 113.9 L118.1 127.4 L121.2 135.6 L124.2 110.8 L127.2 109.5 L130.3 102.1 L133.3 117.8 L136.4 111.9 L139.4 126.7 L142.4 139.0 L145.5 133.7 L148.5 120.3 L151.6 117.6 L154.6 108.9 L157.6 94.1 L160.7 91.4 L163.7 84.5 L166.8 100.8 L169.8 103.7 L172.8 98.3 L175.9 102.6 L178.9 92.0 L182.0 85.6 L185.0 80.9 L188.0 82.6 L191.1 73.5 L194.1 81.2 L197.2 74.1 L200.2 65.5 L203.2 60.2 L206.3 62.6 L209.3 48.9 L212.4 46.8 L215.4 29.4 L218.4 31.0 L221.5 28.6 L224.5 21.6 L227.6 20.5 L230.6 6.4 L233.6 15.6 L236.7 20.7 L239.7 25.9 L242.8 30.3 L245.8 23.4 L248.8 15.4 L251.9 17.1 L254.9 15.8 L258.0 28.1 L261.0 41.5 L264.0 36.2 L267.1 20.5 L270.1 31.0 L273.2 43.3 L276.2 34.8 L279.2 13.3 L282.3 1.3 L285.3 0.0 L288.4 0.0 L291.4 5.7 L294.4 0.0 L297.5 0.0 L300.5 0.0 L303.6 14.1 L306.6 0.0 L309.6 0.0 L312.7 0.0 L315.7 6.0 L318.8 0.0 L321.8 0.0 L324.8 11.7 L327.9 0.0 L330.9 0.0 L334.0 0.0 L337.0 0.0 L340.0 1.7 L343.1 4.3 L346.1 8.0 L349.2 20.3 L352.2 22.4 L355.2 25.2 L358.3 6.5 L361.3 0.0 L364.4 0.0 L367.4 0.0 L370.4 0.0 L373.5 0.0 L376.1 0.0 L379.6 1.0 L382.6 0.0 L385.6 0.0 L388.7 20.2 L391.7 35.4 L394.8 31.4 L397.8 59.7 L400.8 32.8 L403.9 16.7 L406.9 25.3 L410.0 34.3 L413.0 26.5 L416.0 23.0 L419.1 10.4 L422.1 17.4 L425.2 6.3 L428.2 6.8 L431.2 7.9 L434.3 0.7 L437.3 0.0 L440.4 0.0 L443.4 5.8 L446.4 2.9 L449.5 0.0 L452.5 0.0 L455.6 13.0 L458.2 0.0 L461.2 15.8 L464.7 11.4 L467.7 12.5 L470.8 0.0 L473.8 6.6 L476.8 0.8 L479.9 0.0 L482.9 0.0 L486.0 19.5 L489.0 30.5 L492.0 54.4 L495.1 51.8 L498.1 50.1 L501.2 55.9 L504.2 63.4 L507.2 82.6 L510.3 69.6 L513.3 51.2 L516.4 45.0 L519.4 17.3 L522.4 19.8 L525.5 17.8 L528.5 9.0 L531.6 5.8 L534.6 11.3 L537.6 0.8 L540.7 0.0 L543.7 0.0 L546.8 0.9 L549.8 0.0 L552.8 0.0 L555.9 0.0 L558.9 0.0 L562.0 6.6 L565.0 0.0 L568.0 2.6 L571.1 0.0 L574.1 0.0 L577.2 0.0 L580.2 0.0 L583.2 0.0 L586.3 8.3 L589.3 6.8 L592.4 0.0 L595.4 10.3 L598.4 11.4 L601.5 26.7 L604.5 17.9 L607.6 15.2 L610.6 15.2 L613.6 31.4 L616.7 15.1 L619.7 20.8 L622.8 16.3 L625.8 23.1 L628.8 31.2 L631.9 21.0 L634.9 41.6 L638.0 37.5 L641.0 42.5 L644.0 38.9 L647.1 42.1 L650.1 43.6 L653.2 55.1 L656.2 60.3 L659.2 61.8 L662.3 48.1 L665.3 24.3 L668.4 15.1 L671.4 18.8 L674.4 4.7 L677.5 1.2 L680.5 0.3 L683.6 0.0 L686.6 0.0 L689.6 25.1 L692.7 15.0 L695.7 22.2 L698.8 11.4 L701.8 9.2 L704.8 0.7 L707.9 11.6 L710.9 26.4 L714.0 0.0 L717.0 0.0 L720.0 6.3 L723.1 9.7 L726.1 10.0 L729.2 9.6 L732.2 12.6 L735.2 0.0 L738.3 0.0 L741.3 0.0 L744.4 10.0 L747.4 11.6 L750.4 13.3 L753.5 24.2 L756.5 27.6 L759.6 43.3 L760.0 47.0 L760 0 Z" fill="rgba(220,38,38,.18)" stroke="#dc2626" stroke-width="1.2"/></svg><p class="note"><a href="/etf/winn/drawdown">Drawdown breakdown →</a></p></div>
+<div class="card"><h2>52-week range</h2><p class="sub">WINN is 55% of the way from its 52-week low to its high.</p><div class="r52"><i style="left:calc(54.7% - 2px)"></i></div><div class="r52-l"><span>Low $26.76<br>Mar 30, 2026</span><span style="text-align:right">High $35.31<br>Oct 6, 2026</span></div>
+<div class="kn" style="grid-template-columns:1fr 1fr;margin-top:14px"><a href="/etf/winn/risk"><small>Volatility 1Y / 3Y</small><b>19% / 21%</b><span>annualized</span></a><a href="/etf/winn/dividends"><small>Dividend yield</small><b>0.00%</b><span>None payer</span></a></div></div>
+</div>
 
-  <h2>Similar growth ETFs</h2>
-  <div class="related">
-      <a href="https://growthetfs.com/etf/lgro-growth-etf.html">
-      <div class="r-sym">LGRO</div>
-      <div class="r-ret">77%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/jgro-growth-etf.html">
-      <div class="r-sym">JGRO</div>
-      <div class="r-ret">75%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/cneq-growth-etf.html">
-      <div class="r-sym">CNEQ</div>
-      <div class="r-ret">73%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/bamg-growth-etf.html">
-      <div class="r-sym">BAMG</div>
-      <div class="r-ret">71%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/ffog-growth-etf.html">
-      <div class="r-sym">FFOG</div>
-      <div class="r-ret">70%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/tgrw-growth-etf.html">
-      <div class="r-sym">TGRW</div>
-      <div class="r-ret">69%</div>
-    </a>
-  </div>
+<div class="card"><h2>Explore WINN</h2><p class="sub">Every number on this page has its own deep dive.</p><div class="bd"><a href="/etf/winn/total-return">📈 WINN Total Return</a><a href="/etf/winn/growth-of-10k">🌱 WINN Growth of $10,000</a><a href="/etf/winn/vs-spy">⚔️ WINN vs S&P 500 (SPY)</a><a href="/etf/winn/vs-qqq">⚔️ WINN vs Nasdaq-100 (QQQ)</a><a href="/etf/winn/calendar-returns">🗓️ WINN Calendar-Year Returns</a><a href="/etf/winn/drawdown">📉 WINN Max Drawdown</a><a href="/etf/winn/risk">🎢 WINN Volatility & Beta</a><a href="/etf/winn/52-week-range">📏 WINN 52-Week Range</a><a href="/etf/winn/dividends">💵 WINN Dividends & Yield</a><a href="/etf/winn/rank">🏆 WINN Rank vs Growth ETFs</a></div></div>
 
-  <h2>WINN FAQ</h2>
-  <p class="faq-q">What is WINN?</p>
-  <p>WINN is Harbor Long-Term Growers ETF. It is one of 105 growth-focused ETFs tracked on the GrowthETFs.com curated list.</p>
-  <p class="faq-q">How large is WINN?</p>
-  <p>Our data lists assets under management for WINN as $1.18B. Fund size moves daily with investor flows and market performance, so treat this as a snapshot rather than a fixed figure.</p>
-  <p class="faq-q">Where does WINN rank against other growth ETFs?</p>
-  <p>WINN ranks 69th of 105 on our list by total return, at 71%.</p>
-  <p class="faq-q">Is WINN a good investment?</p>
-  <p>We don&#39;t answer that. GrowthETFs.com is an informational and entertainment site and publishes no buy or sell signals. Whether any fund suits you depends on your own goals, time horizon and risk tolerance. Speak with a licensed financial advisor.</p>
+<div class="card"><h2>Similar-size growth ETFs</h2><p class="sub">Compare WINN with funds of a similar size on our list.</p><div class="rel"><a href="/etf/gflw-growth-etf.html"><b>GFLW</b><small>$1.16B AUM</small></a><a href="/etf/tgrw-growth-etf.html"><b>TGRW</b><small>$1.10B AUM</small></a><a href="/etf/ftgs-growth-etf.html"><b>FTGS</b><small>$1.28B AUM</small></a><a href="/etf/ftc-growth-etf.html"><b>FTC</b><small>$1.28B AUM</small></a><a href="/etf/viog-growth-etf.html"><b>VIOG</b><small>$1.06B AUM</small></a><a href="/etf/jsmd-growth-etf.html"><b>JSMD</b><small>$1.04B AUM</small></a><a href="/etf/fyc-growth-etf.html"><b>FYC</b><small>$1.37B AUM</small></a><a href="/etf/vtwg-growth-etf.html"><b>VTWG</b><small>$1.40B AUM</small></a></div></div>
 
-  <p class="fine"><strong>Disclaimer:</strong> GrowthETFs.com is for informational and educational
-purposes only. Nothing on this page constitutes investment advice or a recommendation to buy or sell any security.
-ETF data may be inaccurate or outdated and is sourced from public information. Investing carries risk, including
-loss of principal. We are not financial advisors. Always consult a licensed financial advisor before making
-investment decisions. <strong>This site is for entertainment purposes ONLY.</strong></p>
-</main>
+<div class="card faq"><h2>WINN FAQ</h2><details><summary>What is the WINN ETF?</summary><p>WINN is the Harbor Long-Term Growers ETF. It is one of 105 growth ETFs tracked on GrowthETFs.com, with about $1.18B in assets.</p></details><details><summary>What is WINN's total return?</summary><p>Since its first trading day in Feb 2022, WINN has returned +70% with dividends reinvested, about 11.7% a year. Over the last 12 months it returned +3.2%.</p></details><details><summary>Has WINN beaten the S&P 500?</summary><p>Over the last year WINN returned +3.2% versus +10.7% for SPY. </p></details><details><summary>How much would $10,000 in WINN be worth today?</summary><p>$10,000 invested in WINN at launch (Feb 2022) would be worth about $17,004 today with dividends reinvested, versus $17,251 in SPY over the same period.</p></details><details><summary>What was WINN's worst drawdown?</summary><p>WINN's largest drop from a high was -32.1%, from Mar 29, 2022 to Dec 28, 2022. It got back to its old high by Nov 20, 2023.</p></details><details><summary>Does WINN pay a dividend?</summary><p>WINN has not paid a dividend in the last 12 months. Like most growth ETFs, its return comes almost entirely from price gains.</p></details></div>
+<p class="note">Data: GrowthETFs.com list and Yahoo Finance daily prices as of Nov 19, 2026. Total return assumes dividends are reinvested. Past performance does not guarantee future results. Not financial advice.</p></main>
 <footer>
   <a href="https://growthetfs.com">GrowthETFs.com</a> &bull;
   <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &bull;
@@ -276,5 +284,25 @@ investment decisions. <strong>This site is for entertainment purposes ONLY.</str
   setInterval(load, 5 * 60 * 1000);
 })();
 </script>
+<script>(function(){document.querySelectorAll('.gchart').forEach(function(box){
+var D=JSON.parse(box.dataset.series),names=JSON.parse(box.dataset.names),cols=['#002D22','#c9a94e','#7c8bff'];var sel=box.dataset.range||'max',show={};names.forEach(function(n,i){show[n]=true});
+var svgNS='http://www.w3.org/2000/svg',svg=document.createElementNS(svgNS,'svg'),tip=document.createElement('div');tip.className='gtip';box.appendChild(svg);box.appendChild(tip);
+var card=box.closest('.card');var rb=card.querySelectorAll('.rng button');rb.forEach(function(b){b.onclick=function(){rb.forEach(function(x){x.classList.toggle('on',x===b)});sel=b.dataset.r;draw()}});
+card.querySelectorAll('.cmp input').forEach(function(c){c.onchange=function(){show[c.value]=c.checked;draw()}});
+var leg=card.querySelector('.legend-v');
+function from(){var last=D[0][D[0].length-1][0];var y=new Date(last*864e5).getUTCFullYear();return sel==='max'?0:sel==='ytd'?Date.UTC(y,0,1)/864e5:last-{'1m':30,'6m':182,'1y':365,'3y':1096,'5y':1826,'10y':3652}[sel]}
+function draw(){var W=box.clientWidth,H=box.clientHeight,pl=48,pr=10,pt=10,pb=24;svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
+var f=from();var start=Math.max(f,D[0][0][0]);var S=[];D.forEach(function(s,i){if(!show[names[i]])return;var pts=s.filter(function(p){return p[0]>=start});if(pts.length<2)return;var b=pts[0][1];S.push({i:i,n:names[i],p:pts.map(function(p){return[p[0],(p[1]/b-1)*100]})})});
+if(!S.length)return;var x0=start,x1=D[0][D[0].length-1][0],ys=[];S.forEach(function(s){s.p.forEach(function(p){ys.push(p[1])})});var y0=Math.min.apply(0,ys),y1=Math.max.apply(0,ys);var pad=(y1-y0)*.06||1;y0-=pad;y1+=pad;
+var X=function(v){return pl+(v-x0)/(x1-x0||1)*(W-pl-pr)},Y=function(v){return pt+(1-(v-y0)/(y1-y0))*(H-pt-pb)};
+for(var k=0;k<=4;k++){var v=y0+(y1-y0)*k/4,y=Y(v);var l=document.createElementNS(svgNS,'line');l.setAttribute('x1',pl);l.setAttribute('x2',W-pr);l.setAttribute('y1',y);l.setAttribute('y2',y);l.setAttribute('stroke','#e8ece6');svg.appendChild(l);var t=document.createElementNS(svgNS,'text');t.setAttribute('x',pl-6);t.setAttribute('y',y+4);t.setAttribute('text-anchor','end');t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.textContent=(v>=0?'+':'')+(Math.abs(v)>=1000?Math.round(v/100)/10+'k':Math.round(v))+'%';svg.appendChild(t)}
+var z=document.createElementNS(svgNS,'line');z.setAttribute('x1',pl);z.setAttribute('x2',W-pr);z.setAttribute('y1',Y(0));z.setAttribute('y2',Y(0));z.setAttribute('stroke','#9aa59f');z.setAttribute('stroke-dasharray','3 3');svg.appendChild(z);
+[0,.5,1].forEach(function(q){var v=x0+(x1-x0)*q,t=document.createElementNS(svgNS,'text');t.setAttribute('x',X(v));t.setAttribute('y',H-6);t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.setAttribute('text-anchor',q===0?'start':q===1?'end':'middle');t.textContent=new Date(v*864e5).toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'});svg.appendChild(t)});
+S.slice().reverse().forEach(function(s){var d='';s.p.forEach(function(p,j){d+=(j?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)});var pa=document.createElementNS(svgNS,'path');pa.setAttribute('d',d);pa.setAttribute('fill','none');pa.setAttribute('stroke',cols[s.i]);pa.setAttribute('stroke-width',s.i===0?2.4:1.6);pa.setAttribute('stroke-linejoin','round');svg.appendChild(pa)});
+if(leg)leg.innerHTML=S.map(function(s){var v=s.p[s.p.length-1][1];return'<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+cols[s.i]+';margin-right:6px"></i>'+s.n+' <b class="'+(v>=0?'pos':'neg')+'">'+(v>=0?'+':'')+v.toFixed(1)+'%</b></span>'}).join('');
+var vl=document.createElementNS(svgNS,'line');vl.setAttribute('stroke','#002D22');vl.setAttribute('stroke-width','1');vl.style.display='none';svg.appendChild(vl);
+svg.onmousemove=svg.ontouchmove=function(e){var r=svg.getBoundingClientRect(),cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;var xv=x0+(cx-pl)/(W-pl-pr)*(x1-x0);var html='',best=S[0].p.reduce(function(m,p){return Math.abs(p[0]-xv)<Math.abs(m[0]-xv)?p:m});html='<b>'+new Date(best[0]*864e5).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})+'</b>';S.forEach(function(s){var p=s.p.reduce(function(m,q){return Math.abs(q[0]-xv)<Math.abs(m[0]-xv)?q:m});html+='<br>'+s.n+': '+(p[1]>=0?'+':'')+p[1].toFixed(1)+'%'});tip.innerHTML=html;tip.style.display='block';var tx=Math.min(Math.max(cx+12,0),W-150);tip.style.left=tx+'px';tip.style.top='8px';vl.setAttribute('x1',X(best[0]));vl.setAttribute('x2',X(best[0]));vl.setAttribute('y1',pt);vl.setAttribute('y2',H-pb);vl.style.display=''};
+svg.onmouseleave=function(){tip.style.display='none';vl.style.display='none'}}
+draw();window.addEventListener('resize',draw)})})();</script>
 </body>
 </html>

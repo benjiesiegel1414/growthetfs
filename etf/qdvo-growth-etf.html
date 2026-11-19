@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QDVO ETF: Total Return, AUM &amp; Rank (2026) | Amplify CWP Growth &amp; Income ETF</title>
-<meta name="description" content="QDVO ETF is the Amplify CWP Growth &amp; Income ETF. Total return 39%, AUM $744.61M, ranked 85th of 105 growth ETFs on GrowthETFs.com. Free, updated daily.">
+<title>QDVO ETF: Performance, Total Return &amp; Risk vs SPY (2026) | Amplify CWP Growth &amp; Income ETF</title>
+<meta name="description" content="QDVO total return +38% since Aug 2024 (15.6%/yr), +5.4% over 1 year vs +10.7% for SPY. Charts, drawdowns, risk and rank among 105 growth ETFs.">
 <link rel="canonical" href="https://growthetfs.com/etf/qdvo-growth-etf.html">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="QDVO ETF: Total Return, AUM &amp; Rank (2026) | Amplify CWP Growth &amp; Income ETF">
@@ -105,7 +105,80 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
 @media(max-width:520px){
   table{font-size:13px}
   th,td{padding:9px 8px}
-}</style>
+}
+.gx{--g:#002D22;--g2:#003d2e;--gold:#c9a94e;--pos:#16a34a;--neg:#dc2626;--line:#e3e8e1;--mut:#5f6b66;--bg:#f2f4f0}
+.gx *{box-sizing:border-box}
+.gx .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 16px}
+.gx h2{font-size:1.25rem;color:var(--g);margin:0 0 4px;font-weight:900}
+.gx .sub{color:var(--mut);font-size:.88rem;margin:0 0 14px}
+.gx .pos{color:var(--pos)!important}.gx .neg{color:var(--neg)!important}
+.gx-hero{background:linear-gradient(135deg,#002D22,#00513c 70%,#0b6b50);color:#fff;border-radius:18px;padding:22px 24px;margin:6px 0 16px;display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:center;box-shadow:0 10px 30px rgba(0,45,34,.2)}
+.gx-hero .tk{display:flex;align-items:center;gap:12px}
+.gx-hero .sym{font-size:2.4rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+.gx-hero .nm{font-size:1rem;opacity:.9;margin-top:4px}
+.gx-hero .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.gx-hero .chips span{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.12)}
+.gx-hero .chips span.gold{background:var(--gold);color:#1f1600}
+.gx-hero .px{text-align:right}
+.gx-hero .px b{font-size:2.3rem;font-weight:900;display:block;line-height:1}
+.gx-hero .px small{opacity:.8;font-size:.78rem}
+.gx-hero .px .chg{display:inline-block;margin-top:6px;font-weight:800;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.12)}
+.gx-hero .mini{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.gx-hero .mini a{display:block;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px;text-align:center;transition:.15s}
+.gx-hero .mini a:hover{background:rgba(255,255,255,.16)}
+.gx-hero .mini b{display:block;font-size:1.15rem;font-weight:900}
+.gx-hero .mini b.pos{color:#7ff0b0!important}.gx-hero .mini b.neg{color:#ffaaa5!important}
+.gx-hero .mini small{font-size:.68rem;opacity:.8;text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.kn{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kn a{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:#222;background:#f7f9f6;border:1px solid var(--line);border-radius:12px;padding:14px;transition:.15s;position:relative}
+.kn a:hover{border-color:var(--g);background:#fff;box-shadow:0 6px 18px rgba(0,45,34,.08);transform:translateY(-2px)}
+.kn a::after{content:"→";position:absolute;right:12px;top:12px;color:var(--gold);font-weight:900}
+.kn small{font-size:.7rem;color:var(--mut);font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.kn b{font-size:1.35rem;font-weight:900;color:var(--g)}
+.kn span{font-size:.76rem;color:var(--mut)}
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.rng{display:flex;gap:4px;flex-wrap:wrap}
+.rng button,.cmp label{font-family:inherit;font-size:.78rem;font-weight:800;border:1px solid var(--line);background:#fff;color:#444;border-radius:8px;padding:6px 10px;cursor:pointer}
+.rng button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.cmp{display:flex;gap:6px;flex-wrap:wrap}
+.cmp label{display:inline-flex;align-items:center;gap:6px}
+.cmp i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.gchart{position:relative;width:100%;height:300px}
+.gchart svg{width:100%;height:100%;display:block}
+.gtip{position:absolute;pointer-events:none;background:#002D22;color:#fff;font-size:.76rem;padding:8px 10px;border-radius:8px;white-space:nowrap;display:none;box-shadow:0 6px 16px rgba(0,0,0,.2);z-index:3}
+.legend-v{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:.86rem}
+.legend-v b{font-weight:900}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem}
+.tbl th,.tbl td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+.tbl tr.me td{background:#f4faf6;font-weight:800}
+.tbl-wrap{overflow-x:auto}
+.cy{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.cy div{border-radius:10px;padding:10px 4px;text-align:center;font-weight:900;font-size:.9rem}
+.cy div small{display:block;font-size:.68rem;font-weight:700;opacity:.75}
+.r52{position:relative;height:12px;border-radius:999px;background:linear-gradient(90deg,#fecaca,#fde68a,#bbf7d0);margin:18px 0 8px}
+.r52 i{position:absolute;top:-6px;width:4px;height:24px;background:var(--g);border-radius:2px}
+.r52-l{display:flex;justify-content:space-between;font-size:.8rem;color:var(--mut)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.rel a{display:block;text-decoration:none;color:#222;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;transition:.15s}
+.rel a:hover{border-color:var(--g);transform:translateY(-2px)}
+.rel b{display:block;font-size:1rem;color:var(--g)}
+.rel small{font-size:.76rem;color:var(--mut)}
+.bd{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.bd a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--g);font-weight:800;font-size:.88rem;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.bd a:hover{border-color:var(--gold);background:#fffdf5}
+.faq details{border-bottom:1px solid var(--line);padding:12px 0}
+.faq summary{font-weight:800;cursor:pointer;color:var(--g)}
+.faq p{margin:8px 0 0;color:#444;line-height:1.6;font-size:.94rem}
+.note{font-size:.76rem;color:var(--mut);margin-top:10px;line-height:1.5}
+.bigstat{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bigstat b{font-size:2.6rem;font-weight:900;color:var(--g);line-height:1}
+.prose p{line-height:1.7;color:#333;margin:0 0 12px}
+@media(max-width:820px){.gx-hero{grid-template-columns:1fr}.gx-hero .px{text-align:left}.gx-hero .mini{grid-template-columns:repeat(3,1fr)}.kn{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.gchart{height:240px}}
+@media(max-width:480px){.gx-hero .mini{grid-template-columns:repeat(2,1fr)}.gx-hero .sym{font-size:2rem}.gx .card{padding:16px}}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -125,107 +198,42 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
     <a href="https://topetfs.com/" class="site-pill">📰 TopETFs.com</a>
   </div>
 </div>
-<main class="wrap">
-  <div class="crumbs"><a href="https://growthetfs.com/">Home</a> &rsaquo; <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; QDVO</div>
-
-  <section class="hero">
-    <div class="ticker">QDVO</div>
-    <h1>Amplify CWP Growth &amp; Income ETF</h1>
-    
-  </section>
-
-  <div class="focus-grid">
-    <div class="focus-box">
-      <div class="focus-val" data-live-price>$27.55</div>
-      <div class="focus-label">Price</div>
-    </div>
-    <div class="focus-box growth">
-      <div class="focus-val ">39%</div>
-      <div class="focus-label">Total Return</div>
-    </div>
-    <div class="focus-box">
-      <div class="focus-val">$744.61M</div>
-      <div class="focus-label">AUM</div>
-    </div>
+<main class="wrap gx"><div class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/all-growth-etfs.html">All Growth ETFs</a> &rsaquo; QDVO</div>
+<section class="gx-hero">
+  <div><div class="tk"><img src="/etf-images/qdvo.png" alt="" width="54" height="54" style="border-radius:12px;background:#fff" onerror="this.remove()"><div><div class="sym">QDVO</div><div class="nm">Amplify CWP Growth &amp; Income ETF</div></div></div>
+  <div class="chips"><span class="gold">#85 of 105 by total return</span><span>$744.61M AUM</span><span>Since Aug 2024</span><span>11.61% yield</span></div></div>
+  <div class="px"><b data-live-price="QDVO">$27.30</b><span class="chg">-0.94% last session</span><br><small>Close as of Nov 19, 2026. Delayed quote.</small></div>
+  <div class="mini">
+    <a href="/etf/qdvo/total-return"><b class="pos">+2.5%</b><small>YTD</small></a>
+    <a href="/etf/qdvo/total-return"><b class="pos">+5.4%</b><small>1 Year</small></a>
+    <a href="/etf/qdvo/total-return"><b class="">n/a</b><small>5Y / yr</small></a>
+    <a href="/etf/qdvo/growth-of-10k"><b>$13,834</b><small>$10k at launch</small></a>
+    <a href="/etf/qdvo/drawdown"><b class="neg">-18%</b><small>Max drawdown</small></a>
   </div>
-  <p class="price-note" data-price-note>Price as of 2026-11-18. Quotes may be delayed up to 20 minutes.</p>
+</section>
 
-  <div class="etf-signup" data-variant="featured" data-color="#002D22" data-accent="#c9a94e" data-source="growthetfs"></div>
-<script src="/email-signup.js" defer></script>
+<div class="card"><h2>QDVO key numbers</h2><p class="sub">Tap any box for the full breakdown.</p><div class="kn"><a href="/etf/qdvo/total-return"><small>Total return (since launch)</small><b class="pos">+38%</b><span>15.6% a year since Aug 2024</span></a><a href="/etf/qdvo/growth-of-10k"><small>Growth of $10,000</small><b class="">$13,834</b><span>invested at launch, Aug 2024</span></a><a href="/etf/qdvo/vs-spy"><small>vs S&P 500 (1 yr)</small><b class="neg">-5.3%</b><span>SPY +10.7% over the same year</span></a><a href="/etf/qdvo/vs-qqq"><small>vs Nasdaq-100 (1 yr)</small><b class="neg">-4.7%</b><span>QQQ +10.1% over the same year</span></a><a href="/etf/qdvo/drawdown"><small>Max drawdown</small><b class="neg">-17.8%</b><span>Jan 2025 to Apr 2025</span></a><a href="/etf/qdvo/risk"><small>Volatility (1 yr)</small><b class="">14.9%</b><span>beta 0.99 vs the S&P 500</span></a><a href="/etf/qdvo/52-week-range"><small>52-week position</small><b class="">28%</b><span>$25.87 to $30.93</span></a><a href="/etf/qdvo/rank"><small>Rank by total return</small><b class="">#85 of 105</b><span>#61 by fund size</span></a></div></div>
 
-  <h2>QDVO at a glance</h2>
-  <table>
-    <tbody>
-      <tr><th scope="row">Ticker</th><td><strong>QDVO</strong></td></tr>
-      <tr><th scope="row">Fund name</th><td>Amplify CWP Growth &amp; Income ETF</td></tr>
-      <tr><th scope="row">Price</th><td data-live-price>$27.55</td></tr>
-      <tr><th scope="row">Total return</th><td class="pos">39%</td></tr>
-      <tr><th scope="row">Assets under management</th><td>$744.61M</td></tr>
-      <tr><th scope="row">Rank on this list</th><td>85th of 105</td></tr>
-    </tbody>
-  </table>
+<div class="card" id="perf"><h2>QDVO performance vs SPY and QQQ</h2><p class="sub">Growth of every dollar since Aug 2024, dividends reinvested.</p><div class="chart-top"><div class="rng"><button type="button" data-r="1m">1M</button><button type="button" data-r="6m">6M</button><button type="button" data-r="ytd">YTD</button><button type="button" data-r="1y">1Y</button><button type="button" data-r="3y">3Y</button><button type="button" data-r="5y">5Y</button><button type="button" data-r="10y">10Y</button><button type="button" data-r="max" class="on">Max</button></div><div class="cmp"><label><input type="checkbox" value="SPY" checked><i style="background:#c9a94e"></i>SPY</label><label><input type="checkbox" value="QQQ" checked><i style="background:#7c8bff"></i>QQQ</label></div></div>
+<div class="gchart" data-range="max" data-names='[&quot;QDVO&quot;,&quot;SPY&quot;,&quot;QQQ&quot;]' data-series='[[[19958,19.7341,24.651],[19964,19.7333,24.65],[19971,19.4507,24.297],[19978,19.7653,24.69],[19985,19.9462,24.916],[19992,20.4378,25.53],[19999,20.296,25.205],[20006,20.7026,25.71],[20013,20.6865,25.69],[20020,20.6462,25.64],[20027,20.8976,25.802],[20034,21.309,26.31],[20041,21.8355,26.96],[20048,21.8436,26.97],[20055,21.8657,26.83],[20062,22.4304,27.523],[20069,22.6855,27.836],[20076,21.9553,26.94],[20082,22.7263,27.886],[20089,22.0614,26.797],[20097,22.2655,27.045],[20104,22.352,27.15],[20111,22.8213,27.72],[20118,22.4137,27.225],[20125,22.6268,27.289],[20132,22.5555,27.203],[20139,22.7752,27.468],[20146,22.0099,26.545],[20153,21.7368,26.02],[20160,20.9264,25.05],[20167,20.9724,25.105],[20174,21.0768,25.23],[20181,20.9455,24.864],[20188,20.7012,24.574],[20195,19.906,23.63],[20202,20.2009,23.98],[20209,21.0042,24.705],[20216,21.1104,24.83],[20223,22.2242,26.14],[20230,22.1902,26.1],[20237,22.4197,26.37],[20244,23.0135,26.82],[20251,22.9363,26.73],[20258,23.0307,26.84],[20265,23.434,27.31],[20272,23.7067,27.4],[20279,23.923,27.65],[20286,24.1912,27.96],[20293,24.4248,28.23],[20300,24.6445,28.27],[20307,24.7578,28.4],[20314,25.1327,28.83],[20321,24.7317,28.37],[20328,25.0368,28.72],[20335,25.0342,28.43],[20342,25.5097,28.97],[20349,25.6858,29.17],[20356,25.765,29.26],[20363,25.8204,29.03],[20370,26.2029,29.46],[20377,25.9449,29.17],[20384,25.9005,29.12],[20391,27.0123,30.37],[20398,26.6544,29.72],[20405,26.6544,29.72],[20412,26.0446,29.04],[20419,26.5735,29.36],[20426,26.5463,29.33],[20433,26.6097,29.4],[20440,25.8766,28.59],[20447,26.8359,29.65],[20454,26.5093,29.02],[20461,26.5824,29.1],[20468,26.4637,28.97],[20475,26.3267,28.82],[20482,26.8291,29.37],[20489,26.1796,28.42],[20496,26.2718,28.52],[20503,26.0323,28.26],[20510,26.3455,28.6],[20517,26.0538,28.05],[20524,25.9795,27.97],[20531,25.5244,27.48],[20538,25.2922,27.23],[20545,25.2019,26.88],[20552,25.9239,27.65],[20559,27.0771,28.88],[20566,27.4427,29.27],[20573,27.6124,29.18],[20580,28.3978,30.01],[20587,29.0224,30.67],[20594,28.9656,30.61],[20601,29.2211,30.88],[20608,29.1084,30.48],[20615,27.886,29.2],[20622,28.2967,29.63],[20629,27.8956,29.21],[20636,28.6152,29.69],[20643,28.5766,29.65],[20650,28.9621,30.05],[20657,28.6537,29.73],[20664,27.449,28.48],[20671,29.0785,29.89],[20678,29.1758,29.99],[20685,28.9423,29.75],[20692,28.8158,29.62],[20699,28.9618,29.5],[20706,29.0501,29.59],[20713,28.8538,29.39],[20720,29.7275,30.28],[20727,29.6274,29.9],[20734,30.3112,30.59],[20741,29.5977,29.87],[20748,29.4986,29.77],[20755,29.459,29.73],[20762,28.69,28.69],[20769,28.55,28.55],[20776,27.56,27.56],[20777,27.3,27.3]],[[19951,538.941,553.07],[19957,546.299,560.62],[19964,544.038,558.3],[19971,536.876,550.95],[19978,540.257,554.42],[19985,547.059,561.4],[19992,557.182,570.04],[19999,556.028,568.86],[20006,564.122,577.14],[20013,569.165,582.3],[20020,564.952,577.99],[20027,566.927,580.01],[20034,577.708,591.04],[20041,583.719,597.19],[20048,577.18,590.5],[20055,585.322,598.83],[20062,593.953,607.66],[20069,593.758,607.46],[20076,573.055,586.28],[20082,589.715,601.3],[20089,574.788,586.08],[20097,578.132,589.49],[20104,581.359,592.78],[20111,594.756,606.44],[20118,590.215,601.81],[20125,592.578,604.22],[20132,591.735,603.36],[20139,601.121,612.93],[20146,583.085,594.54],[20153,571.826,583.06],[20160,548.102,558.87],[20167,556.203,567.13],[20174,559.312,568.59],[20181,555.309,564.52],[20188,539.668,548.62],[20195,517.083,525.66],[20202,526.684,535.42],[20209,545.492,554.54],[20216,551.994,561.15],[20223,578.002,587.59],[20230,573.35,582.86],[20237,578.14,587.73],[20244,586.206,595.93],[20251,591.548,601.36],[20258,587.692,597.44],[20265,598.979,607.12],[20272,612.131,620.45],[20279,615.692,624.06],[20286,615.85,624.22],[20293,625.706,634.21],[20300,625.953,634.46],[20307,624.295,632.78],[20314,636.243,644.89],[20321,629.554,638.11],[20328,637.959,646.63],[20335,635.108,643.74],[20342,643.465,652.21],[20349,650.341,659.18],[20356,654.044,661.1],[20363,661.315,668.45],[20370,665.926,673.11],[20377,658.07,665.17],[20384,660.672,667.8],[20391,680.053,687.39],[20398,670.348,677.58],[20405,676.086,683.38],[20412,655.557,662.63],[20419,672.425,679.68],[20426,676.591,683.89],[20433,680.231,687.57],[20440,664.234,671.4],[20447,685.029,690.38],[20454,676.635,681.92],[20461,684.236,689.58],[20468,685.01,690.36],[20475,680.088,685.4],[20482,690.03,695.42],[20489,680.872,686.19],[20496,686.597,691.96],[20503,680.971,686.29],[20510,687.778,693.15],[20517,679.82,685.13],[20524,671.088,676.33],[20531,656.304,661.43],[20538,653.509,656.82],[20545,651.937,655.24],[20552,672.603,676.01],[20559,696.412,699.94],[20566,707.625,711.21],[20573,707.993,711.58],[20580,730.131,733.83],[20587,738.569,742.31],[20594,737.514,741.25],[20601,746.677,750.46],[20608,750.438,754.24],[20615,721.774,725.43],[20622,737.225,740.96],[20629,731.424,733.24],[20636,743.913,745.76],[20643,743.554,745.4],[20650,752.94,754.81],[20657,745.559,747.41],[20664,727.653,729.46],[20671,767.883,769.79],[20678,770.576,772.49],[20685,767.155,769.06],[20692,764.182,766.08],[20699,763.265,765.16],[20706,760.512,762.4],[20713,752.182,754.05],[20720,767.81,767.81],[20727,762.63,762.63],[20734,777.22,777.22],[20741,769.6,769.6],[20748,773.09,773.09],[20755,772.31,772.31],[20762,766.81,766.81],[20769,759.81,759.81],[20776,730.2,730.2],[20777,723.115,723.115]],[[19951,469.008,474.42],[19957,476.995,482.5],[19964,465.973,471.35],[19971,455.355,460.61],[19978,463.274,468.62],[19985,466.061,471.44],[19992,480.952,485.82],[19999,477.121,481.95],[20006,488.209,493.15],[20013,485.991,490.91],[20020,483.467,488.36],[20027,491.407,496.38],[20034,500.514,505.58],[20041,507.118,512.25],[20048,498.129,503.17],[20055,500.237,505.3],[20062,518.017,523.26],[20069,524.61,529.92],[20076,511.295,516.47],[20082,525.496,529.96],[20089,506.924,511.23],[20097,510.93,515.27],[20104,512.348,516.7],[20111,527.033,531.51],[20118,516.443,520.83],[20125,522.412,526.85],[20132,523.85,528.3],[20139,534.976,539.52],[20146,510.226,514.56],[20153,497.782,502.01],[20160,472.903,476.92],[20167,476.839,480.89],[20174,481.016,484.38],[20181,472.843,476.15],[20188,462.764,466],[20195,441.095,444.18],[20202,451.403,454.56],[20209,472.168,475.47],[20216,479.944,483.3],[20223,515.078,518.68],[20230,509.477,513.04],[20237,515.306,518.91],[20244,525.098,528.77],[20251,528.713,532.41],[20258,525.316,528.99],[20265,538.005,541.16],[20272,547.589,550.8],[20279,553.008,556.25],[20286,554.042,557.29],[20293,560.523,563.81],[20300,564.709,568.02],[20307,564.013,567.32],[20314,576.957,580.34],[20321,562.601,565.9],[20328,570.147,573.49],[20335,566.747,570.07],[20342,577.315,580.7],[20349,586.561,590],[20356,593.312,596.1],[20363,600.429,603.25],[20370,608.581,611.44],[20377,599.404,602.22],[20384,602.658,605.49],[20391,632.797,635.77],[20398,620.365,623.28],[20405,618.175,621.08],[20412,597.065,599.87],[20419,611.397,614.27],[20426,620.604,623.52],[20433,624.675,627.61],[20440,597.602,600.41],[20447,621.812,623.93],[20454,612.225,614.31],[20461,621.902,624.02],[20468,617.447,619.55],[20475,614.188,616.28],[20482,631.071,633.22],[20489,603.694,605.75],[20496,611.029,613.11],[20503,603.734,605.79],[20510,614.587,616.68],[20517,608.677,610.75],[20524,605.627,607.69],[20531,592.881,594.9],[20538,586.564,587.82],[20545,583.061,584.31],[20552,604.794,606.09],[20559,636.038,637.4],[20566,653.71,655.11],[20573,660.156,661.57],[20580,694.283,695.77],[20587,713.182,714.71],[20594,711.626,713.15],[20601,727.891,729.45],[20608,742.619,744.21],[20615,692.207,693.69],[20622,720.966,722.51],[20629,709.88,710.62],[20636,724.415,725.17],[20643,710.699,711.44],[20650,716.993,717.74],[20657,704.616,705.35],[20664,661.041,661.73],[20671,716.553,717.3],[20678,722.947,723.7],[20685,715.335,716.08],[20692,710.63,711.37],[20699,708.502,709.24],[20706,715.564,716.31],[20713,703.986,704.72],[20720,741.21,741.21],[20727,739.77,739.77],[20734,757.73,757.73],[20741,728.95,728.95],[20748,725.2,725.2],[20755,725.61,725.61],[20762,691.95,691.95],[20769,690.38,690.38],[20776,659.51,659.51],[20777,653.25,653.25]]]'></div><div class="legend-v"></div>
+<p class="note">Total return with dividends reinvested, from daily closing prices. Hover or tap the chart for exact values.</p></div>
 
-  <h2>How QDVO compares</h2>
-  <p>QDVO currently sits 85th out of 105 funds on the GrowthETFs list when sorted by total return. That is below the median for the list. For reference, the strongest performer on the list right now is TQQQ at 25403%.</p>
-  <p>QDVO holds $744.61M in assets, mid-sized by the standards of this list.</p>
-  <p>QDVO sits on the broad growth side of this list rather than targeting a single sector or market-cap band.</p>
+<div class="card"><h2>Trailing returns</h2><p class="sub">Total return including dividends, as of Nov 19, 2026.</p><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Period</th><th>QDVO</th><th>SPY</th><th>QQQ</th></tr></thead><tbody><tr><td>1 month</td><td class="neg"><b>-6.8%</b></td><td class="neg">-5.7%</td><td class="neg">-9.1%</td></tr><tr><td>3 months</td><td class="neg"><b>-5.7%</b></td><td class="neg">-5.7%</td><td class="neg">-8.7%</td></tr><tr><td>6 months</td><td class="neg"><b>-5.8%</b></td><td class="neg">-2.0%</td><td class="neg">-8.2%</td></tr><tr><td>Year to date</td><td class="pos"><b>+2.5%</b></td><td class="pos">+6.1%</td><td class="pos">+5.8%</td></tr><tr><td>1 year</td><td class="pos"><b>+5.4%</b></td><td class="pos">+10.7%</td><td class="pos">+10.1%</td></tr><tr><td>3 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+18.5%</td><td class="pos">+19.8%</td></tr><tr><td>5 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+10.5%</td><td class="pos">+10.9%</td></tr><tr><td>10 yr (annual)</td><td class=""><b>n/a</b></td><td class="pos">+14.5%</td><td class="pos">+19.5%</td></tr></tbody></table></div><p class="note"><a href="/etf/qdvo/vs-spy">Full QDVO vs SPY breakdown →</a> &nbsp; <a href="/etf/qdvo/vs-qqq">QDVO vs QQQ →</a></p></div>
 
-  <h3>Reading these numbers</h3>
-  <p>The return figure above is backward-looking. A fund near the top of this list has already made
-  its move, which tells you about the period behind it and nothing about the period ahead.
-  Concentrated growth funds in particular tend to post the largest gains and the largest drawdowns,
-  often within the same year. Read the return alongside fund size rather than on its own, and check
-  the issuer's own fund page for holdings, fees and the full prospectus before acting on anything here.</p>
+<div class="card"><h2>Calendar-year returns</h2><p class="sub">1 of 1 full years were positive. Best: 2025 (+19.6%). Worst: 2025 (+19.6%).</p><div class="cy"><div style="background:rgba(22,163,74,0.1506621197587209)" title="2026 (partial year)"><small>2026*</small>+2.5%</div><div style="background:rgba(22,163,74,0.36467087562735995)" title="2025"><small>2025</small>+19.6%</div><div style="background:rgba(22,163,74,0.28154696212161423)" title="2024 (partial year)"><small>2024*</small>+12.9%</div></div><p class="note">* Partial year (fund launch year or year to date).</p><p class="note"><a href="/etf/qdvo/calendar-returns">Year-by-year vs SPY and QQQ →</a></p></div>
 
-  <div class="cta-row">
-    <a class="cta cta-gold" href="https://growthetfs.com/">See the full ranked list &rarr;</a>
-    <a class="cta cta-outline" href="https://growthetfs.com/swipe.html">📈 Swipe growth ETFs</a>
-  </div>
+<div class="two">
+<div class="card"><h2>Drawdowns</h2><p class="sub">How far QDVO fell from each high. Worst: -17.8% (Jan 2025 to Apr 2025). Today: -9.9% from its high.</p><svg viewBox="0 0 760 150" preserveAspectRatio="none" style="width:100%;height:150px;display:block;background:#fff"><path d="M0 0 L0.0 0.0 L5.6 0.0 L12.1 15.6 L18.6 0.0 L25.1 0.0 L31.6 0.0 L38.0 7.6 L44.5 0.0 L51.0 0.8 L57.5 3.0 L64.0 0.0 L70.5 0.0 L77.0 0.0 L83.5 0.0 L90.0 0.0 L96.5 0.0 L103.0 0.0 L109.5 35.0 L115.1 0.0 L121.6 31.8 L129.0 22.1 L135.5 17.9 L142.0 0.0 L148.5 19.4 L155.0 9.3 L161.5 12.7 L168.0 2.2 L174.5 38.7 L181.0 51.7 L187.4 90.4 L193.9 88.2 L200.4 83.2 L206.9 89.5 L213.4 101.1 L219.9 139.0 L226.4 125.0 L232.9 86.7 L239.4 81.6 L245.9 28.5 L252.4 30.1 L258.9 19.2 L265.4 0.0 L271.9 3.7 L278.4 0.0 L284.9 0.0 L291.4 0.0 L297.9 0.0 L304.4 0.0 L310.9 0.0 L317.4 0.0 L323.9 0.0 L330.4 0.0 L336.8 17.4 L343.3 4.2 L349.8 4.3 L356.3 0.0 L362.8 0.0 L369.3 0.0 L375.8 0.0 L382.3 0.0 L388.8 10.7 L395.3 12.6 L401.8 0.0 L408.3 14.4 L414.8 14.4 L421.3 39.0 L427.8 17.7 L434.3 18.8 L440.8 16.2 L447.3 45.8 L453.8 7.1 L460.3 20.3 L466.8 17.3 L473.3 22.1 L479.8 27.6 L486.3 7.4 L492.7 33.6 L499.2 29.8 L505.7 39.5 L512.2 26.9 L518.7 38.6 L525.2 41.6 L531.7 60.0 L538.2 69.3 L544.7 73.0 L551.2 43.9 L557.7 0.0 L564.2 0.0 L570.7 0.0 L577.2 0.0 L583.7 0.0 L590.2 2.1 L596.7 0.0 L603.2 4.2 L609.7 49.7 L616.2 34.4 L622.7 49.4 L629.2 22.6 L635.7 24.0 L642.1 9.6 L648.6 21.1 L655.1 66.0 L661.6 5.3 L668.1 1.7 L674.6 10.4 L681.1 15.1 L687.6 9.7 L694.1 6.4 L700.6 13.7 L707.1 0.0 L713.6 3.7 L720.1 0.0 L726.6 25.6 L733.1 29.2 L739.6 30.6 L746.1 58.2 L752.6 63.2 L759.1 98.8 L760.0 108.1 L760 0 Z" fill="rgba(220,38,38,.18)" stroke="#dc2626" stroke-width="1.2"/></svg><p class="note"><a href="/etf/qdvo/drawdown">Drawdown breakdown →</a></p></div>
+<div class="card"><h2>52-week range</h2><p class="sub">QDVO is 28% of the way from its 52-week low to its high.</p><div class="r52"><i style="left:calc(28.3% - 2px)"></i></div><div class="r52-l"><span>Low $25.87<br>Mar 30, 2026</span><span style="text-align:right">High $30.93<br>May 14, 2026</span></div>
+<div class="kn" style="grid-template-columns:1fr 1fr;margin-top:14px"><a href="/etf/qdvo/risk"><small>Volatility 1Y / 3Y</small><b>15% / 17%</b><span>annualized</span></a><a href="/etf/qdvo/dividends"><small>Dividend yield</small><b>11.61%</b><span>Monthly payer</span></a></div></div>
+</div>
 
-  <h2>Similar growth ETFs</h2>
-  <div class="related">
-      <a href="https://growthetfs.com/etf/bchp-growth-etf.html">
-      <div class="r-sym">BCHP</div>
-      <div class="r-ret">45%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/cark-growth-etf.html">
-      <div class="r-sym">CARK</div>
-      <div class="r-ret">44%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/fflg-growth-etf.html">
-      <div class="r-sym">FFLG</div>
-      <div class="r-ret">43%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/gqqq-growth-etf.html">
-      <div class="r-sym">GQQQ</div>
-      <div class="r-ret">34%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/nbjp-growth-etf.html">
-      <div class="r-sym">NBJP</div>
-      <div class="r-ret">34%</div>
-    </a>
-      <a href="https://growthetfs.com/etf/csmd-growth-etf.html">
-      <div class="r-sym">CSMD</div>
-      <div class="r-ret">31%</div>
-    </a>
-  </div>
+<div class="card"><h2>Explore QDVO</h2><p class="sub">Every number on this page has its own deep dive.</p><div class="bd"><a href="/etf/qdvo/total-return">📈 QDVO Total Return</a><a href="/etf/qdvo/growth-of-10k">🌱 QDVO Growth of $10,000</a><a href="/etf/qdvo/vs-spy">⚔️ QDVO vs S&P 500 (SPY)</a><a href="/etf/qdvo/vs-qqq">⚔️ QDVO vs Nasdaq-100 (QQQ)</a><a href="/etf/qdvo/calendar-returns">🗓️ QDVO Calendar-Year Returns</a><a href="/etf/qdvo/drawdown">📉 QDVO Max Drawdown</a><a href="/etf/qdvo/risk">🎢 QDVO Volatility & Beta</a><a href="/etf/qdvo/52-week-range">📏 QDVO 52-Week Range</a><a href="/etf/qdvo/dividends">💵 QDVO Dividends & Yield</a><a href="/etf/qdvo/rank">🏆 QDVO Rank vs Growth ETFs</a></div></div>
 
-  <h2>QDVO FAQ</h2>
-  <p class="faq-q">What is QDVO?</p>
-  <p>QDVO is Amplify CWP Growth &amp; Income ETF. It is one of 105 growth-focused ETFs tracked on the GrowthETFs.com curated list.</p>
-  <p class="faq-q">How large is QDVO?</p>
-  <p>Our data lists assets under management for QDVO as $744.61M. Fund size moves daily with investor flows and market performance, so treat this as a snapshot rather than a fixed figure.</p>
-  <p class="faq-q">Where does QDVO rank against other growth ETFs?</p>
-  <p>QDVO ranks 85th of 105 on our list by total return, at 39%.</p>
-  <p class="faq-q">Is QDVO a good investment?</p>
-  <p>We don&#39;t answer that. GrowthETFs.com is an informational and entertainment site and publishes no buy or sell signals. Whether any fund suits you depends on your own goals, time horizon and risk tolerance. Speak with a licensed financial advisor.</p>
+<div class="card"><h2>Similar-size growth ETFs</h2><p class="sub">Compare QDVO with funds of a similar size on our list.</p><div class="rel"><a href="/etf/ais-growth-etf.html"><b>AIS</b><small>$766.42M AUM</small></a><a href="/etf/flcg-growth-etf.html"><b>FLCG</b><small>$805.89M AUM</small></a><a href="/etf/sfy-growth-etf.html"><b>SFY</b><small>$675.65M AUM</small></a><a href="/etf/lsgr-growth-etf.html"><b>LSGR</b><small>$822.83M AUM</small></a><a href="/etf/fflg-growth-etf.html"><b>FFLG</b><small>$607.32M AUM</small></a><a href="/etf/fad-growth-etf.html"><b>FAD</b><small>$586.24M AUM</small></a><a href="/etf/fny-growth-etf.html"><b>FNY</b><small>$546.12M AUM</small></a><a href="/etf/iscg-growth-etf.html"><b>ISCG</b><small>$957.03M AUM</small></a></div></div>
 
-  <p class="fine"><strong>Disclaimer:</strong> GrowthETFs.com is for informational and educational
-purposes only. Nothing on this page constitutes investment advice or a recommendation to buy or sell any security.
-ETF data may be inaccurate or outdated and is sourced from public information. Investing carries risk, including
-loss of principal. We are not financial advisors. Always consult a licensed financial advisor before making
-investment decisions. <strong>This site is for entertainment purposes ONLY.</strong></p>
-</main>
+<div class="card faq"><h2>QDVO FAQ</h2><details><summary>What is the QDVO ETF?</summary><p>QDVO is the Amplify CWP Growth &amp; Income ETF. It is one of 105 growth ETFs tracked on GrowthETFs.com, with about $744.61M in assets.</p></details><details><summary>What is QDVO's total return?</summary><p>Since its first trading day in Aug 2024, QDVO has returned +38% with dividends reinvested, about 15.6% a year. Over the last 12 months it returned +5.4%.</p></details><details><summary>Has QDVO beaten the S&P 500?</summary><p>Over the last year QDVO returned +5.4% versus +10.7% for SPY. </p></details><details><summary>How much would $10,000 in QDVO be worth today?</summary><p>$10,000 invested in QDVO at launch (Aug 2024) would be worth about $13,834 today with dividends reinvested, versus $13,341 in SPY over the same period.</p></details><details><summary>What was QDVO's worst drawdown?</summary><p>QDVO's largest drop from a high was -17.8%, from Jan 23, 2025 to Apr 8, 2025. It got back to its old high by Jun 4, 2025.</p></details><details><summary>Does QDVO pay a dividend?</summary><p>Yes, small. QDVO paid $3.17 per share over the last 12 months, about a 11.61% yield, paid monthly. Growth ETFs reinvest most of their return into price gains rather than paying it out.</p></details></div>
+<p class="note">Data: GrowthETFs.com list and Yahoo Finance daily prices as of Nov 19, 2026. Total return assumes dividends are reinvested. Past performance does not guarantee future results. Not financial advice.</p></main>
 <footer>
   <a href="https://growthetfs.com">GrowthETFs.com</a> &bull;
   <a href="https://growthetfs.com/all-growth-etfs.html">All Growth ETFs</a> &bull;
@@ -276,5 +284,25 @@ investment decisions. <strong>This site is for entertainment purposes ONLY.</str
   setInterval(load, 5 * 60 * 1000);
 })();
 </script>
+<script>(function(){document.querySelectorAll('.gchart').forEach(function(box){
+var D=JSON.parse(box.dataset.series),names=JSON.parse(box.dataset.names),cols=['#002D22','#c9a94e','#7c8bff'];var sel=box.dataset.range||'max',show={};names.forEach(function(n,i){show[n]=true});
+var svgNS='http://www.w3.org/2000/svg',svg=document.createElementNS(svgNS,'svg'),tip=document.createElement('div');tip.className='gtip';box.appendChild(svg);box.appendChild(tip);
+var card=box.closest('.card');var rb=card.querySelectorAll('.rng button');rb.forEach(function(b){b.onclick=function(){rb.forEach(function(x){x.classList.toggle('on',x===b)});sel=b.dataset.r;draw()}});
+card.querySelectorAll('.cmp input').forEach(function(c){c.onchange=function(){show[c.value]=c.checked;draw()}});
+var leg=card.querySelector('.legend-v');
+function from(){var last=D[0][D[0].length-1][0];var y=new Date(last*864e5).getUTCFullYear();return sel==='max'?0:sel==='ytd'?Date.UTC(y,0,1)/864e5:last-{'1m':30,'6m':182,'1y':365,'3y':1096,'5y':1826,'10y':3652}[sel]}
+function draw(){var W=box.clientWidth,H=box.clientHeight,pl=48,pr=10,pt=10,pb=24;svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
+var f=from();var start=Math.max(f,D[0][0][0]);var S=[];D.forEach(function(s,i){if(!show[names[i]])return;var pts=s.filter(function(p){return p[0]>=start});if(pts.length<2)return;var b=pts[0][1];S.push({i:i,n:names[i],p:pts.map(function(p){return[p[0],(p[1]/b-1)*100]})})});
+if(!S.length)return;var x0=start,x1=D[0][D[0].length-1][0],ys=[];S.forEach(function(s){s.p.forEach(function(p){ys.push(p[1])})});var y0=Math.min.apply(0,ys),y1=Math.max.apply(0,ys);var pad=(y1-y0)*.06||1;y0-=pad;y1+=pad;
+var X=function(v){return pl+(v-x0)/(x1-x0||1)*(W-pl-pr)},Y=function(v){return pt+(1-(v-y0)/(y1-y0))*(H-pt-pb)};
+for(var k=0;k<=4;k++){var v=y0+(y1-y0)*k/4,y=Y(v);var l=document.createElementNS(svgNS,'line');l.setAttribute('x1',pl);l.setAttribute('x2',W-pr);l.setAttribute('y1',y);l.setAttribute('y2',y);l.setAttribute('stroke','#e8ece6');svg.appendChild(l);var t=document.createElementNS(svgNS,'text');t.setAttribute('x',pl-6);t.setAttribute('y',y+4);t.setAttribute('text-anchor','end');t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.textContent=(v>=0?'+':'')+(Math.abs(v)>=1000?Math.round(v/100)/10+'k':Math.round(v))+'%';svg.appendChild(t)}
+var z=document.createElementNS(svgNS,'line');z.setAttribute('x1',pl);z.setAttribute('x2',W-pr);z.setAttribute('y1',Y(0));z.setAttribute('y2',Y(0));z.setAttribute('stroke','#9aa59f');z.setAttribute('stroke-dasharray','3 3');svg.appendChild(z);
+[0,.5,1].forEach(function(q){var v=x0+(x1-x0)*q,t=document.createElementNS(svgNS,'text');t.setAttribute('x',X(v));t.setAttribute('y',H-6);t.setAttribute('font-size','10');t.setAttribute('fill','#7a8580');t.setAttribute('text-anchor',q===0?'start':q===1?'end':'middle');t.textContent=new Date(v*864e5).toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'});svg.appendChild(t)});
+S.slice().reverse().forEach(function(s){var d='';s.p.forEach(function(p,j){d+=(j?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)});var pa=document.createElementNS(svgNS,'path');pa.setAttribute('d',d);pa.setAttribute('fill','none');pa.setAttribute('stroke',cols[s.i]);pa.setAttribute('stroke-width',s.i===0?2.4:1.6);pa.setAttribute('stroke-linejoin','round');svg.appendChild(pa)});
+if(leg)leg.innerHTML=S.map(function(s){var v=s.p[s.p.length-1][1];return'<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+cols[s.i]+';margin-right:6px"></i>'+s.n+' <b class="'+(v>=0?'pos':'neg')+'">'+(v>=0?'+':'')+v.toFixed(1)+'%</b></span>'}).join('');
+var vl=document.createElementNS(svgNS,'line');vl.setAttribute('stroke','#002D22');vl.setAttribute('stroke-width','1');vl.style.display='none';svg.appendChild(vl);
+svg.onmousemove=svg.ontouchmove=function(e){var r=svg.getBoundingClientRect(),cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;var xv=x0+(cx-pl)/(W-pl-pr)*(x1-x0);var html='',best=S[0].p.reduce(function(m,p){return Math.abs(p[0]-xv)<Math.abs(m[0]-xv)?p:m});html='<b>'+new Date(best[0]*864e5).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})+'</b>';S.forEach(function(s){var p=s.p.reduce(function(m,q){return Math.abs(q[0]-xv)<Math.abs(m[0]-xv)?q:m});html+='<br>'+s.n+': '+(p[1]>=0?'+':'')+p[1].toFixed(1)+'%'});tip.innerHTML=html;tip.style.display='block';var tx=Math.min(Math.max(cx+12,0),W-150);tip.style.left=tx+'px';tip.style.top='8px';vl.setAttribute('x1',X(best[0]));vl.setAttribute('x2',X(best[0]));vl.setAttribute('y1',pt);vl.setAttribute('y2',H-pb);vl.style.display=''};
+svg.onmouseleave=function(){tip.style.display='none';vl.style.display='none'}}
+draw();window.addEventListener('resize',draw)})})();</script>
 </body>
 </html>
