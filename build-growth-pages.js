@@ -628,6 +628,7 @@ ${rows}
   ${DISCLAIMER}
 </main>
 ${FOOTER}
+<script src="/site-search.js" defer></script>
 </body>
 </html>`;
 }

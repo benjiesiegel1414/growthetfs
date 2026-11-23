@@ -78,3 +78,5 @@
     fill('rel',list.slice(0,5).map(function(o){return '<a class="art" href="'+o.u+'">'+esc(o.t)+'</a>';}).join(''));
   }).catch(function(){});
 })();
+/* site-wide sticky search bar */
+(function(){if(window.__wxSearch||/^\/molly/.test(location.pathname)||document.querySelector('script[src*="site-search.js"]'))return;var s=document.createElement('script');s.src='/site-search.js';s.defer=true;document.head.appendChild(s);})();

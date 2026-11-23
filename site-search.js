@@ -72,6 +72,7 @@
       if (should === pinned) return; pinned = should;
       if (should) { hold.style.height = bar.offsetHeight + 'px'; bar.classList.add('pin'); }
       else { bar.classList.remove('pin'); hold.style.height = ''; }
+      try { window.dispatchEvent(new Event('resize')); } catch (e) {} /* lets side rails re-seat under the pinned bar */
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () { if (pinned) hold.style.height = bar.offsetHeight + 'px'; });
