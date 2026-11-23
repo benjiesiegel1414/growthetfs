@@ -258,6 +258,11 @@ footer a{color:var(--brand);text-decoration:none;font-weight:700}
 @media(max-width:520px){
   table{font-size:13px}
   th,td{padding:9px 8px}
+  table.hub{font-size:12.5px;table-layout:auto}
+  table.hub th,table.hub td{padding:8px 5px}
+  table.hub th{font-size:10.5px;letter-spacing:0}
+  table.hub th:nth-child(6),table.hub td:nth-child(6){display:none}
+  table.hub td:nth-child(3){overflow-wrap:anywhere}
 }`;
 
 function header() {
@@ -616,7 +621,7 @@ ${header()}
 
   ${SIGNUP}
 
-  <table>
+  <table class="hub">
     <thead>
       <tr><th>#</th><th>Ticker</th><th>Fund name</th><th>Total return</th><th>AUM</th><th>Price</th></tr>
     </thead>
