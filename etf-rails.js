@@ -80,15 +80,20 @@
 
   var strip = document.createElement('nav'); strip.className = 'gr-strip'; strip.setAttribute('aria-label', SYM + ' breakdowns'); strip.innerHTML = mlinks('');
   var hero = main.querySelector('.gx-hero') || main.querySelector('.crumbs');
-  if (hero && hero.parentNode) hero.parentNode.insertBefore(strip, hero.nextSibling);
+  try { if (hero && hero.parentNode) hero.parentNode.insertBefore(strip, hero.nextSibling); else main.insertBefore(strip, main.firstChild); } catch (e) {}
 
   var inl = document.createElement('div'); inl.className = 'gr-in';
   inl.innerHTML = '<div class="g"><div class="gr-b" data-k="near" hidden><h5>Ranked near $' + SYM + '</h5><div></div></div><div class="gr-b" data-k="top" hidden><h5>Top total returns <a href="/">All</a></h5><div></div></div><div class="gr-b" data-k="read" hidden><h5>Keep reading <a href="/blog.html">All</a></h5><div></div></div></div>';
   var pn = document.createElement('div'); pn.className = 'gr-pn'; pn.hidden = true;
-  var faq = main.querySelector('.card.faq') || main.querySelector('p.note') || main.lastElementChild;
-  var mid = main.children[Math.min(main.children.length - 1, 5)];
-  if (mid && mid !== faq) main.insertBefore(inl, mid); else main.insertBefore(inl, faq);
-  main.insertBefore(pn, faq);
+  /* anchors must be direct children of <main>; breakdown pages have a different structure than the overview */
+  var kids = [].slice.call(main.children).filter(function (c) { return c !== strip; });
+  var faq = main.querySelector('.card.faq');
+  while (faq && faq.parentNode !== main) faq = faq.parentNode;
+  var mid = kids.length > 6 ? kids[5] : kids.length > 3 ? kids[kids.length - 1] : null;
+  try {
+    if (mid && mid !== faq) main.insertBefore(inl, mid); else if (faq) main.insertBefore(inl, faq); else main.appendChild(inl);
+    if (faq) main.insertBefore(pn, faq); else main.appendChild(pn);
+  } catch (e) { main.appendChild(inl); main.appendChild(pn); }
 
   document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('.gr-r a,.gr-strip a,.gr-in a,.gr-pn a'); if (a) track(a.getAttribute('data-r') || 'link'); });
 
