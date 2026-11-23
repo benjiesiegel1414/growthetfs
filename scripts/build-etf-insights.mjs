@@ -115,7 +115,7 @@ const METRICS = [
   ['dividends', 'Dividends & Yield', '💵'], ['rank', 'Rank vs Growth ETFs', '🏆'],
 ];
 const L = Object.fromEntries(METRICS.map(([k, t]) => [k, t]));
-const url = (sym, m) => m ? `/etf/${sym.toLowerCase()}/${m}` : `/etf/${sym.toLowerCase()}-growth-etf.html`;
+const url = (sym, m) => m ? `/etf/${sym.toLowerCase()}/${m}` : `/etf/${sym.toLowerCase()}-growth-etf`;
 
 const CSS = `
 .gx{--g:#002D22;--g2:#003d2e;--gold:#c9a94e;--pos:#16a34a;--neg:#dc2626;--line:#e3e8e1;--mut:#5f6b66;--bg:#f2f4f0}

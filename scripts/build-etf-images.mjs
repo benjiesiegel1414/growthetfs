@@ -58,7 +58,7 @@ for (const e of ETFS) {
   e.slug = e.sym.toLowerCase();
   e.png = `${e.slug}-etf.png`; e.wide = `${e.slug}-etf-wide.png`;
   e.page = `/etf-images/${e.slug}`;
-  e.fundPage = `/etf/${e.slug}-growth-etf.html`;
+  e.fundPage = `/etf/${e.slug}-growth-etf`;
 }
 
 // ---------- render ----------
