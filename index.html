@@ -921,7 +921,7 @@
       return String(sym).trim().toUpperCase().replace(/[^A-Z0-9]/g, '').toLowerCase();
     }
     function etfUrl(sym) {
-      return 'https://growthetfs.com/etf/' + slugify(sym) + '-growth-etf.html';
+      return 'https://growthetfs.com/etf/' + slugify(sym) + '-growth-etf';
     }
     function escAttr(s) {
       return String(s == null ? '' : s)
@@ -1272,5 +1272,6 @@
   </script>
 
 <script src="/article-rails.js" defer></script>
+<script src="/site-search.js" defer></script>
 </body>
 </html>

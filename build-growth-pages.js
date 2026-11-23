@@ -300,7 +300,7 @@ investment decisions. <strong>This site is for entertainment purposes ONLY.</str
 function etfPage(etf, all) {
   const ogFile = String(etf.symbol).toLowerCase() + '-etf-wide.png';
   const ogImg = fs.existsSync(path.join(__dirname, 'etf-images', ogFile)) ? `${SITE}/etf-images/${ogFile}` : OG_IMAGE;
-  const url   = `${SITE}/etf/${etf.slug}-growth-etf.html`;
+  const url   = `${SITE}/etf/${etf.slug}-growth-etf`;
   const rank  = etf.rank;
   const total = all.length;
   const cls   = etf.cls;
@@ -345,7 +345,7 @@ function etfPage(etf, all) {
     .slice(0, 6);
 
   const relatedHtml = related.map(r =>
-    `<a href="${SITE}/etf/${r.slug}-growth-etf.html">
+    `<a href="${SITE}/etf/${r.slug}-growth-etf">
       <div class="r-sym">${esc(r.symbol)}</div>
       <div class="r-ret">${esc(r.returnVal)}</div>
     </a>`).join('\n      ');
@@ -503,6 +503,7 @@ ${(cls.leveraged || cls.inverse) ? '\n  ' + LEVERAGE_WARNING + '\n' : ''}
 </main>
 ${FOOTER}
 ${livePriceScript(etf.symbol)}
+<script src="/etf-rails.js" defer></script>
 </body>
 </html>`;
 }
@@ -560,7 +561,7 @@ function hubPage(all) {
 
   const rows = all.map(e => `      <tr>
         <td>${e.rank === null ? '\u2014' : e.rank}</td>
-        <td><a href="${SITE}/etf/${e.slug}-growth-etf.html">${esc(e.symbol)}</a></td>
+        <td><a href="${SITE}/etf/${e.slug}-growth-etf">${esc(e.symbol)}</a></td>
         <td>${esc(e.name)}</td>
         <td class="${e.returnNum === null ? '' : (e.returnNum >= 0 ? 'pos' : 'neg')}">${esc(e.returnVal)}</td>
         <td>${esc(e.aum)}</td>
@@ -576,7 +577,7 @@ function hubPage(all) {
       '@type': 'ListItem',
       position: i + 1,
       name: e.symbol,
-      url: `${SITE}/etf/${e.slug}-growth-etf.html`
+      url: `${SITE}/etf/${e.slug}-growth-etf`
     }))
   };
 
@@ -664,7 +665,7 @@ function sitemap(all) {
     entries.push(`  <url>\n    <loc>${escXml(loc)}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`);
   }
   for (const e of all) {
-    entries.push(`  <url>\n    <loc>${escXml(SITE + '/etf/' + e.slug + '-growth-etf.html')}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`);
+    entries.push(`  <url>\n    <loc>${escXml(SITE + '/etf/' + e.slug + '-growth-etf')}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`);
   }
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

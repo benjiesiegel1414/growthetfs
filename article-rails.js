@@ -4,7 +4,7 @@
   if(window.__artRails)return; window.__artRails=1;
   var C={brand:'#002D22',accent:'#c9a94e',font:"Lato,-apple-system,'Segoe UI',sans-serif",skip:/^(index|blog|advertise|etf|privacy|terms|faq|swipe|all-growth-etfs|growth-etfs-watchlist-builder)$/,blog:'/blog.html',cardSel:'a.post-card',titleSel:'.pc-title',
    csv:'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgB3eBiOxZ6CoBjVvi9Rm3PmJDssWCsHWuVG4YgCPnXLG02u0tQxoR055J-e21MYbXJES1UpPTy7h9/pub?gid=0&single=true&output=csv',nameCol:'Name',valCol:'Total Returns',
-   fund:function(s){return '/etf/'+String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-growth-etf.html';},topTitle:'Largest growth ETFs',bottomGap:24,
+   fund:function(s){return '/etf/'+String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-growth-etf';},topTitle:'Largest growth ETFs',bottomGap:24,
    top:function(rows){return rows;},
    tools:[['All growth ETFs ranked','/'],['All growth ETFs list','/all-growth-etfs.html'],['Watchlist builder','/growth-etfs-watchlist-builder.html'],['Swipe through ETFs','/swipe.html'],['All articles','/blog.html']]};
   var path=location.pathname.replace(/\/$/,'').replace(/\.html$/,''),slug=path.split('/').pop();
