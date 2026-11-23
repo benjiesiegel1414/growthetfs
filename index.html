@@ -156,7 +156,7 @@
     .hero {
       width: 100%;
       background: linear-gradient(160deg, var(--brand-mid) 0%, var(--brand-dark) 100%);
-      padding: 50px 20px 42px;
+      padding: 30px 20px 28px;
       text-align: center;
       border-bottom: 1px solid var(--border);
       box-sizing: border-box;
@@ -166,17 +166,19 @@
       font-size: clamp(1.5em, 4vw, 2.5em);
       font-weight: 900;
       color: #fff;
-      margin: 0 0 14px;
+      line-height: 1.2;
+      margin: 0 0 9px;
     }
     .hero h1 span { color: #fff; }
     .hero-desc {
       color: #fff;
       font-size: 0.96em;
       max-width: 680px;
-      margin: 0 auto 30px;
-      line-height: 1.75;
+      margin: 0 auto 20px;
+      line-height: 1.6;
     }
     .hero-desc strong { color: #fff; }
+    .hero-desc .gap { display: block; height: 9px; }
     .hero-stats {
       display: inline-flex;
       background: rgba(255,255,255,0.05);
@@ -185,7 +187,7 @@
       overflow: hidden;
     }
     .hero-stat {
-      padding: 16px 34px;
+      padding: 12px 32px;
       text-align: center;
       border-right: 1px solid rgba(201,169,78,0.14);
     }
@@ -575,9 +577,9 @@
 
     /* ─── MOBILE ─────────────────────────────────── */
     @media (max-width: 700px) {
-      .hero-stats { flex-direction: column; }
-      .hero-stat  { border-right: none; border-bottom: 1px solid rgba(201,169,78,0.14); }
-      .hero-stat:last-child { border-bottom: none; }
+      .hero { padding: 22px 16px 22px; }
+      .hero-stat { padding: 10px 16px; }
+      .hero-stat-val { font-size: 1.2em; }
       #etfTable th, #etfTable td { padding: 9px 6px; font-size: 0.82em; }
       .col-name { max-width: 150px; }
       #special-views { flex-direction: column; align-items: center; }
@@ -659,7 +661,7 @@
   <h1>Top <span>Growth ETFs</span> for 2026</h1>
   <p class="hero-desc">
     A free, hand-curated list of the best growth-focused ETFs across the stock market.<br>
-    <strong>One place. All the top names. 100% free!</strong><br><br>
+    <strong>One place. All the top names. 100% free!</strong><span class="gap"></span>
     <span style="font-size:0.9em;">
       <strong>Data:</strong> Sourced from public information — market data can change.<br>
       <strong>Curation:</strong> ETFs are hand-picked and may be added or removed over time.<br>
