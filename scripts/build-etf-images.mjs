@@ -175,6 +175,7 @@ ${body}
 ${BANNER2}
 </div>
 ${FOOT}
+<script src="/site-search.js" defer></script>
 </body>
 </html>
 `;
